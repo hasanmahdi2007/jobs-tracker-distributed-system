@@ -1,7 +1,6 @@
 CREATE DATABASE job_finder_db;
 
--- Connect to the job_finder_db database to build tables
-\c job_finder_db;
+-- (Remember to connect to job_finder_db in your GUI before running the rest!)
 
 -- Enable required extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -21,7 +20,7 @@ CREATE TABLE companies (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(255) NOT NULL UNIQUE,
     ats_type VARCHAR(50) NOT NULL,            
-    board_token VARCHAR(255) NOT NULL,         
+    board_token VARCHAR(255) NOT NULL,        
     website_url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -66,6 +65,9 @@ CREATE INDEX idx_jobs_search_vector ON jobs USING GIN (search_vector);
 CREATE INDEX idx_jobs_active_posted ON jobs(status, posted_at DESC);
 CREATE INDEX idx_jobs_company_id ON jobs(company_id);
 
+-- 🚀 NEW: Partial index heavily optimized for the expiration sweep
+CREATE INDEX idx_jobs_sweep_optimizer ON jobs(company_id, last_seen_at) WHERE status = 'ACTIVE';
+
 -- 4. Automated Search Vector Trigger
 CREATE OR REPLACE FUNCTION update_job_search_vector() RETURNS trigger AS $$
 BEGIN
@@ -84,3 +86,23 @@ DROP TRIGGER IF EXISTS trg_jobs_search_vector_update ON jobs;
 CREATE TRIGGER trg_jobs_search_vector_update
 BEFORE INSERT OR UPDATE ON jobs
 FOR EACH ROW EXECUTE FUNCTION update_job_search_vector();
+
+-- 5. 🚀 NEW: The Sweeper Procedure
+CREATE OR REPLACE PROCEDURE expire_stale_jobs(target_company_id UUID)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE jobs 
+    SET status = 'EXPIRED', 
+        closed_at = CURRENT_TIMESTAMP
+    WHERE company_id = target_company_id 
+      AND status = 'ACTIVE' 
+      -- Expires anything not updated in the last 24 hours
+      AND last_seen_at < (CURRENT_TIMESTAMP - INTERVAL '24 hours');
+END;
+$$;
+
+//////////////////////////////////////////////////////////////////////////////////// 
+
+INSERT INTO companies (name, ats_type, board_token, website_url) 
+VALUES ('Figma', 'GREENHOUSE', 'figma', 'https://figma.com');

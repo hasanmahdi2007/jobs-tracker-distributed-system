@@ -1,8 +1,5 @@
 CREATE DATABASE gateway_db;
 
--- Connect to the gateway database to build tables
-\c gateway_db;
-
 DROP TABLE IF EXISTS api_keys CASCADE;
 DROP TABLE IF EXISTS clients CASCADE;
 
