@@ -1,6 +1,8 @@
 CREATE DATABASE analytics_db;
 
--- 2. Switch inside it immediately
+
+
+DROP TABLE IF EXISTS api_telemetry_logs;
 
 CREATE TABLE api_telemetry_logs (
     id BIGSERIAL PRIMARY KEY,
@@ -16,5 +18,4 @@ CREATE TABLE api_telemetry_logs (
     api_key VARCHAR(255)
 );
 
--- Adding an index to the correlation_id makes searching for a specific request lightning fast
 CREATE INDEX idx_correlation_id ON api_telemetry_logs(correlation_id);
