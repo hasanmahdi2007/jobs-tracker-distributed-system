@@ -11,7 +11,7 @@ spring:
       routes:
       
         - id: job-finder-route
-          uri: http://localhost:8081
+          uri: http://localhost:8083
           predicates:
             - Path=/api/v1/jobs/**
           filters:
