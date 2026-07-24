@@ -1,7 +1,6 @@
 CREATE DATABASE analytics_db;
 
 -- 2. Switch inside it immediately
-\c analytics_db;
 
 CREATE TABLE api_telemetry_logs (
     id BIGSERIAL PRIMARY KEY,
