@@ -60,6 +60,8 @@ CREATE TABLE jobs (
     search_vector tsvector
 );
 
+ALTER TABLE jobs ADD COLUMN updated_at TIMESTAMP;
+
 -- 3. Indexes for Sub-Millisecond Search Performance
 CREATE INDEX idx_jobs_search_vector ON jobs USING GIN (search_vector);
 CREATE INDEX idx_jobs_active_posted ON jobs(status, posted_at DESC);
@@ -102,7 +104,8 @@ BEGIN
 END;
 $$;
 
-//////////////////////////////////////////////////////////////////////////////////// 
+SELECT current_database();
+
 
 INSERT INTO companies (name, ats_type, board_token, website_url) 
 VALUES ('Figma', 'GREENHOUSE', 'figma', 'https://figma.com');

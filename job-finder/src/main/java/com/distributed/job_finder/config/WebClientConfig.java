@@ -12,18 +12,18 @@ import java.time.Duration;
 @Configuration
 public class WebClientConfig {
 
-    // This pulls the 5000ms timeout we set in application.yml
-    @Value("${app.scraper.webclient.timeout-ms}")
+    // I added a ":5000" fallback just in case it's missing from application.yml
+    @Value("${app.scraper.webclient.timeout-ms:5000}")
     private int timeoutMs;
 
     @Bean
-    public WebClient webClient(WebClient.Builder builder) {
-        // We configure the underlying Netty engine to forcefully drop connections 
-        // if an ATS API takes longer than our timeout limit to respond
+    public WebClient webClient() { // <-- Removed the parameter here!
+        
         HttpClient httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMillis(timeoutMs));
 
-        return builder
+        // Create the builder manually right here
+        return WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
     }

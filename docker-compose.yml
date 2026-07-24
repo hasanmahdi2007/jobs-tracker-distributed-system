@@ -3,9 +3,9 @@ version: '3.8'
 services:
   postgres-db:
     image: postgres:15-alpine
-    container_name: distributed_postgres
+    container_name: distributed-api-gateway
     environment:
-      POSTGRES_USER: gateway_admin
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Hassouna10:)D
     ports:
       - "5432:5432"
@@ -15,7 +15,7 @@ services:
 
   redis-cache:
     image: redis:7-alpine
-    container_name: distributed_redis
+    container_name: gateway-redis
     ports:
       - "6379:6379"
 
