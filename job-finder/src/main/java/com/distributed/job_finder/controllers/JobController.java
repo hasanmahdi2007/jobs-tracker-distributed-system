@@ -31,7 +31,12 @@ public class JobController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        Page<JobDto> jobs = jobService.getJobs(search, location, page, size);
+        // Prevent the PostgreSQL 'bytea' null crash by defaulting to empty strings
+        String safeSearch = (search == null) ? "" : search;
+        String safeLocation = (location == null) ? "" : location;
+
+        // Pass the safe strings to the service
+        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, page, size);
         return ResponseEntity.ok(jobs);
     }
 
