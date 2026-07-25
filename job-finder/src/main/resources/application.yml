@@ -41,76 +41,71 @@ app:
     greenhouse:
       base-url: "https://boards-api.greenhouse.io/v1/boards"
       target-boards:
-        scraper:
-  greenhouse:
-    scraper:
-  greenhouse:
-    target-boards:
-      # --- Original Batch ---
-      - careem
-      - nana.direct
-      - salla
-      - zid
-      - sary
-      - floward
-      - eyewa
-      - tabby.ai
-      - tamara.co
-      - paymob
-      - thndr
-      - sarwa.co
-      - bitoasis
-      - nymcard
-      - tarabutgateway
-      - mnthalan
-      - checkoutcom
-      - stripe
-      - propertyfinder
-      - bayut
-      - dubizzle
-      - huspy
-      - nawy
-      - trukker.com
-      - trella
-      - cafu
-      - swvl
-      - vezeeta
-      - abwaab
-      - instabug
-      - unifonic
-      - foodics
-      - mozn
-      - penny
-      - qoyod
-      - mawdoo3
-      - sumerge
-      - robusta
-      - anghami
-      - starzplay
-      - playhera
-      - sandsoft
-      - wego
-      - xische
-      # --- Country Expansion Batches ---
-      - tappayments
-      - hala
-      - remotepass
-      - empg
-      - yassir
-      - rain
-      - calo
-      - eatapp
-      # --- Deep Dive Expansion ---
-      - stake
-      - postpay
-      - cashewpayments
-      - astratech
-      - almosafer
-      - seeragroup
-      - bosta
-      - moneyfellows
-      - tamatem
-      - opensooq
+        # --- Original Batch ---
+        - careem
+        - nana.direct
+        - salla
+        - zid
+        - sary
+        - floward
+        - eyewa
+        - tabby.ai
+        - tamara.co
+        - paymob
+        - thndr
+        - sarwa.co
+        - bitoasis
+        - nymcard
+        - tarabutgateway
+        - mnthalan
+        - checkoutcom
+        - stripe
+        - propertyfinder
+        - bayut
+        - dubizzle
+        - huspy
+        - nawy
+        - trukker.com
+        - trella
+        - cafu
+        - swvl
+        - vezeeta
+        - abwaab
+        - instabug
+        - unifonic
+        - foodics
+        - mozn
+        - penny
+        - qoyod
+        - mawdoo3
+        - sumerge
+        - robusta
+        - anghami
+        - starzplay
+        - playhera
+        - sandsoft
+        - wego
+        - xische
+        # --- Country Expansion Batches ---
+        - tappayments
+        - hala
+        - remotepass
+        - empg
+        - yassir
+        - rain
+        - calo
+        - eatapp
+        # --- Deep Dive Expansion ---
+        - stake
+        - postpay
+        - cashewpayments
+        - astratech
+        - almosafer
+        - seeragroup
+        - bosta
+        - moneyfellows
+        - tamatem
+        - opensooq
     lever:
       base-url: "https://api.lever.co/v0/postings"
 
