@@ -1,14 +1,18 @@
 package com.distributed.job_finder.services;
 
+import com.distributed.job_finder.config.GreenhouseConfig;
 import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.dtos.greenhouse.GreenhouseJobResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.StreamRecords;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import org.springframework.data.redis.connection.stream.RecordId;
 
 import java.util.UUID;
 
@@ -17,59 +21,66 @@ import java.util.UUID;
 public class GreenhouseScraperService {
 
     private final WebClient webClient;
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate;
+    private final GreenhouseConfig config;
 
     private static final String JOB_INGESTION_STREAM = "job:ingestion:stream";
 
     @Autowired
-    public GreenhouseScraperService(WebClient webClient, RedisTemplate<String, Object> redisTemplate) {
+    public GreenhouseScraperService(WebClient webClient, ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate, GreenhouseConfig config) {
         this.webClient = webClient;
-        this.redisTemplate = redisTemplate;
+        this.reactiveRedisTemplate = reactiveRedisTemplate;
+        this.config = config;
     }
 
-    /**
-     * Reaches out to a specific company's Greenhouse board and pushes scraped jobs to Redis Stream.
-     */
-    public void fetchJobsFromGreenhouse(UUID companyId, String boardToken) {
-        String greenhouseApiUrl = "https://boards-api.greenhouse.io/v1/boards/" + boardToken + "/jobs";
+    public Mono<Void> scrapeAllConfiguredBoards() {
+        log.info("Starting scrape for {} configured Greenhouse boards...", config.getTargetBoards().size());
 
+        return Flux.fromIterable(config.getTargetBoards())
+                // Limit to 3 concurrent HTTP requests so we don't get IP banned
+                .flatMap(boardToken -> {
+                    UUID dummyCompanyId = UUID.randomUUID();
+                    return fetchAndPushJobs(dummyCompanyId, boardToken);
+                }, 3)
+                .then();
+    }
+
+    private Mono<Void> fetchAndPushJobs(UUID companyId, String boardToken) {
+        String greenhouseApiUrl = String.format("%s/%s/jobs", config.getBaseUrl(), boardToken);
         log.info("Fetching jobs from Greenhouse for board: {}", boardToken);
 
-        webClient.get()
+        return webClient.get()
                 .uri(greenhouseApiUrl)
                 .retrieve()
-                // WebFlux automatically parses the JSON array into our GreenhouseJobResponse record
                 .bodyToMono(GreenhouseJobResponse.class)
-                .doOnSuccess(response -> {
+                // CLEANER FIX: Instead of mapping to a List, we safely turn it directly into a Flux stream
+                .flatMapMany(response -> {
                     if (response != null && response.jobs() != null) {
-                        log.info("Fetched {} jobs from Greenhouse for {}", response.jobs().size(), boardToken);
-
-                        // Process each job and slap it onto the Redis Stream
-                        response.jobs().forEach(ghJob -> {
-                            JobDto jobDto = new JobDto(
-                                    String.valueOf(ghJob.id()),
-                                    companyId,
-                                    ghJob.title(),
-                                    ghJob.location() != null ? ghJob.location().name() : "Remote / Unspecified",
-                                    "General", // Department placeholder
-                                    ghJob.absoluteUrl(),
-                                    "" // Full description can be loaded on demand or detail endpoint
-                            );
-
-                            pushToRedisStream(jobDto);
-                        });
+                        return Flux.fromIterable(response.jobs());
                     }
+                    return Flux.empty(); // Safely skips if the API returned no jobs
                 })
+                .map(ghJob -> new JobDto(
+                        String.valueOf(ghJob.id()),
+                        companyId,
+                        ghJob.title(),
+                        ghJob.location() != null ? ghJob.location().name() : "Remote / Unspecified",
+                        "General",
+                        ghJob.absoluteUrl(),
+                        ""
+                ))
+                .flatMap(this::pushToRedisStream)
+                .doOnComplete(() -> log.info("Finished fetching jobs for {}", boardToken))
                 .doOnError(error -> log.error("Failed to fetch jobs for board {}: {}", boardToken, error.getMessage()))
-                .subscribe(); // Non-blocking async execution
+                .then();
     }
 
-    private void pushToRedisStream(JobDto jobDto) {
+    private Mono<RecordId> pushToRedisStream(JobDto jobDto) {
         ObjectRecord<String, JobDto> record = StreamRecords.newRecord()
                 .ofObject(jobDto)
                 .withStreamKey(JOB_INGESTION_STREAM);
 
-        redisTemplate.opsForStream().add(record);
-        log.debug("Pushed job ticket to Redis Stream: {}", jobDto.atsJobId());
+        return reactiveRedisTemplate.opsForStream().add(record)
+                .doOnSuccess(recordId -> log.debug("Pushed job ticket to Redis Stream: {}", jobDto.atsJobId()));
     }
 }

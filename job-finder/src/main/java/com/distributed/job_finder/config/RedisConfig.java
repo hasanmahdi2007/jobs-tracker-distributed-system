@@ -1,31 +1,26 @@
 package com.distributed.job_finder.config;
 
+import com.distributed.job_finder.dtos.JobDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-        
-        // We use String for the Keys (e.g., "job:1234-uuid")
-        template.setKeySerializer(new StringRedisSerializer());
-        
-        // We use JSON for the Values so we can easily read the stored job data
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        
-        // Hash serializers for complex data structures
-        template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        
-        template.afterPropertiesSet();
-        return template;
+    public ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
+        Jackson2JsonRedisSerializer<JobDto> serializer = new Jackson2JsonRedisSerializer<>(JobDto.class);
+
+        RedisSerializationContext.RedisSerializationContextBuilder<String, JobDto> builder =
+                RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
+
+        RedisSerializationContext<String, JobDto> context = builder.value(serializer).build();
+
+        return new ReactiveRedisTemplate<>(factory, context);
     }
 }
