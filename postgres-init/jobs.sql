@@ -46,16 +46,11 @@ CREATE TABLE jobs (
     apply_url TEXT NOT NULL,
     ats_job_id VARCHAR(100),                  
     
-    -- Idempotency & Deduplication Key
-    fingerprint_hash VARCHAR(64), 
-    
     -- Lifecycle State
     status job_status DEFAULT 'ACTIVE',
     
     -- Timestamps
-    posted_at TIMESTAMP WITH TIME ZONE,
     last_seen_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    closed_at TIMESTAMP WITH TIME ZONE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
     
@@ -65,7 +60,8 @@ CREATE TABLE jobs (
 
 -- 3. Indexes for Sub-Millisecond Search Performance
 CREATE INDEX idx_jobs_search_vector ON jobs USING GIN (search_vector);
-CREATE INDEX idx_jobs_active_posted ON jobs(status, posted_at DESC);
+-- UPDATED: Now uses created_at instead of posted_at
+CREATE INDEX idx_jobs_active_created ON jobs(status, created_at DESC);
 CREATE INDEX idx_jobs_company_id ON jobs(company_id);
 
 -- 🚀 Partial index heavily optimized for the expiration sweep
@@ -94,8 +90,8 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
     UPDATE jobs 
-    SET status = 'EXPIRED', 
-        closed_at = CURRENT_TIMESTAMP
+    SET status = 'EXPIRED'
+    -- REMOVED closed_at update
     WHERE company_id = target_company_id 
       AND status = 'ACTIVE' 
       -- Expires anything not updated in the last 24 hours

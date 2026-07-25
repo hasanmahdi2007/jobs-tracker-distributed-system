@@ -29,12 +29,23 @@ public class GreenhouseScraperService {
 
     private static final String JOB_INGESTION_STREAM = "job:ingestion:stream";
 
+    // 1. Notice WebClient or WebClient.Builder is REMOVED from the parameters
     @Autowired
-    public GreenhouseScraperService(WebClient webClient, 
-                                    ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate, 
+    public GreenhouseScraperService(ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate, 
                                     GreenhouseConfig config,
                                     CompanyRepo companyRepo) {
-        this.webClient = webClient;
+        
+        // 2. Increase buffer size to 16MB to handle massive job descriptions
+        org.springframework.web.reactive.function.client.ExchangeStrategies strategies = 
+            org.springframework.web.reactive.function.client.ExchangeStrategies.builder()
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(16 * 1024 * 1024)) 
+                .build();
+
+        // 3. We call WebClient.builder() directly instead of relying on Spring injection
+        this.webClient = org.springframework.web.reactive.function.client.WebClient.builder()
+                .exchangeStrategies(strategies)
+                .build();
+        
         this.reactiveRedisTemplate = reactiveRedisTemplate;
         this.config = config;
         this.companyRepo = companyRepo;

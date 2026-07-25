@@ -48,9 +48,6 @@ public class Job {
 
     // --- ADDED MISSING COLUMNS BELOW ---
 
-    @Column(name = "fingerprint_hash")
-    private String fingerprintHash;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status", columnDefinition = "job_status")
     @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.NAMED_ENUM)
