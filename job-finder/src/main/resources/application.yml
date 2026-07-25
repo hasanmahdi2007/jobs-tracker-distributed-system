@@ -40,6 +40,12 @@ app:
       timeout-ms: 5000 # If an ATS API goes down, WebClient gives up after 5 seconds instead of hanging
     greenhouse:
       base-url: "https://boards-api.greenhouse.io/v1/boards"
+      target-boards:
+        - github
+        - twitch
+        - discord
+        - figma
+        - stripe
     lever:
       base-url: "https://api.lever.co/v0/postings"
 

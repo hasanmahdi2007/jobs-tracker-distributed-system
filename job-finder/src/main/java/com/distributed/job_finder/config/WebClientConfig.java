@@ -17,13 +17,13 @@ public class WebClientConfig {
     private int timeoutMs;
 
     @Bean
-    public WebClient webClient() { // <-- Removed the parameter here!
+    public WebClient webClient(WebClient.Builder builder) { // <-- Inject Spring's auto-configured builder!
         
         HttpClient httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMillis(timeoutMs));
 
-        // Create the builder manually right here
-        return WebClient.builder()
+        // Use the injected builder instead of WebClient.builder()
+        return builder
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
     }
