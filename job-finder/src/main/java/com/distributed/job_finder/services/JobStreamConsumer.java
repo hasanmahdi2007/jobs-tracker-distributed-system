@@ -65,6 +65,7 @@ public class JobStreamConsumer {
                                 Job newJob = new Job();
                                 newJob.setAtsJobId(incomingJob.atsJobId());
                                 newJob.setCompanyId(incomingJob.companyId());
+                                newJob.setCompanyName(incomingJob.companyName());
                                 newJob.setTitle(incomingJob.title());
                                 newJob.setLocation(incomingJob.location());
                                 newJob.setDepartment(incomingJob.department());

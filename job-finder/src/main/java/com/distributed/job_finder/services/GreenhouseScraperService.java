@@ -49,12 +49,12 @@ public class GreenhouseScraperService {
                     Mono.fromCallable(() -> companyRepo.findByBoardTokenIgnoreCase(boardToken)
                             .orElseThrow(() -> new RuntimeException("Company not found in DB for board token: " + boardToken)))
                             .subscribeOn(reactor.core.scheduler.Schedulers.boundedElastic())
-                            .flatMap(company -> fetchAndPushJobs(company.getId(), boardToken))
+                            .flatMap(company -> fetchAndPushJobs(company.getId(), company.getName(), boardToken))
                 , 3)
                 .then();
     }
 
-    private Mono<Void> fetchAndPushJobs(UUID companyId, String boardToken) {
+    private Mono<Void> fetchAndPushJobs(UUID companyId, String companyName, String boardToken) {
         String greenhouseApiUrl = String.format("%s/%s/jobs", config.getBaseUrl(), boardToken);
         log.info("Fetching jobs from Greenhouse for board: {}", boardToken);
 
@@ -71,6 +71,7 @@ public class GreenhouseScraperService {
                 .map(ghJob -> new JobDto(
                         String.valueOf(ghJob.id()),
                         companyId,
+                        companyName,
                         ghJob.title(),
                         ghJob.location() != null ? ghJob.location().name() : "Remote / Unspecified",
                         "General",

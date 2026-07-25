@@ -5,6 +5,7 @@ import java.util.UUID;
 public record JobDto(
     String atsJobId,
     UUID companyId,
+    String companyName,
     String title,
     String location,
     String department,

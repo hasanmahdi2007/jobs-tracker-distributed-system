@@ -31,6 +31,7 @@ public class JobService {
         return jobPage.map(job -> new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),
+                job.getCompanyName(),
                 job.getTitle(),
                 job.getLocation(),
                 job.getDepartment(),
@@ -51,6 +52,7 @@ public class JobService {
                 return new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),
+                job.getCompanyName(),
                 job.getTitle(),
                 job.getLocation(),
                 job.getDepartment(),
