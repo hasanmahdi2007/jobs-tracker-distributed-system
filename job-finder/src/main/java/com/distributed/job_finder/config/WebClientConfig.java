@@ -12,18 +12,16 @@ import java.time.Duration;
 @Configuration
 public class WebClientConfig {
 
-    // I added a ":5000" fallback just in case it's missing from application.yml
     @Value("${app.scraper.webclient.timeout-ms:5000}")
     private int timeoutMs;
 
     @Bean
-    public WebClient webClient(WebClient.Builder builder) { // <-- Inject Spring's auto-configured builder!
-        
+    public WebClient webClient() {
         HttpClient httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMillis(timeoutMs));
 
-        // Use the injected builder instead of WebClient.builder()
-        return builder
+        // Manually build it using WebClient.builder() instead of injecting it as a parameter
+        return WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
     }

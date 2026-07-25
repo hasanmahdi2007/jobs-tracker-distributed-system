@@ -61,6 +61,8 @@ CREATE TABLE jobs (
 );
 
 ALTER TABLE jobs ADD COLUMN updated_at TIMESTAMP;
+ALTER TABLE jobs ALTER COLUMN fingerprint_hash DROP NOT NULL;
+ALTER TABLE companies ALTER COLUMN id SET DEFAULT gen_random_uuid();
 
 -- 3. Indexes for Sub-Millisecond Search Performance
 CREATE INDEX idx_jobs_search_vector ON jobs USING GIN (search_vector);
@@ -106,6 +108,8 @@ $$;
 
 SELECT current_database();
 
-
-INSERT INTO companies (name, ats_type, board_token, website_url) 
-VALUES ('Figma', 'GREENHOUSE', 'figma', 'https://figma.com');
+INSERT INTO companies (name, ats_type, board_token, website_url) VALUES 
+('GitHub', 'GREENHOUSE', 'github', 'https://github.com'),
+('Twitch', 'GREENHOUSE', 'twitch', 'https://twitch.tv'),
+('Discord', 'GREENHOUSE', 'discord', 'https://discord.com'),
+('Stripe', 'GREENHOUSE', 'stripe', 'https://stripe.com');
