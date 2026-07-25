@@ -30,7 +30,7 @@ public class JobScraperScheduler {
      * PRODUCTION TRIGGER: Runs once every day at exactly midnight (00:00:00).
      * The cron expression format is: Second Minute Hour Day Month Weekday
      */
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 3 * * *")
     public void runDailyScrape() {
         log.info("[DAILY CRON] Firing scheduled daily Greenhouse scrape...");
         scraperService.scrapeAllConfiguredBoards().subscribe();
