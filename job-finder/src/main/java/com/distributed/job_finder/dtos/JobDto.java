@@ -9,5 +9,10 @@ public record JobDto(
     String location,
     String department,
     String url,
-    String description
+    String description,
+    String experienceLevel,
+    String employmentType,
+    Integer salaryMin,
+    Integer salaryMax,
+    String salaryCurrency
 ) {}

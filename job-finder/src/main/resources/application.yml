@@ -46,6 +46,24 @@ app:
         - discord
         - figma
         - stripe
+        - careem
+        - anghami
+        - instabug
+        - swvl
+        - kitopi
+        - tabby
+        - tamara
+        - sarwa
+        - propense
+        - trukker
+        - barage
+        - mumzworld
+        - unifonic
+        - nana
+        - foodsics
+        - eyewa
+        - propic
+        - fossicker
     lever:
       base-url: "https://api.lever.co/v0/postings"
 

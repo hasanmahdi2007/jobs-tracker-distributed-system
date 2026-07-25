@@ -75,7 +75,12 @@ public class GreenhouseScraperService {
                         ghJob.location() != null ? ghJob.location().name() : "Remote / Unspecified",
                         "General",
                         ghJob.absoluteUrl(),
-                        ""
+                        "",     // description
+                        null,   // experienceLevel
+                        null,   // employmentType
+                        null,   // salaryMin
+                        null,   // salaryMax
+                        "USD"   // salaryCurrency
                 ))
                 .flatMap(this::pushToRedisStream)
                 .doOnComplete(() -> log.info("Finished fetching jobs for {}", boardToken))

@@ -35,7 +35,12 @@ public class JobService {
                 job.getLocation(),
                 job.getDepartment(),
                 job.getApplyUrl(),
-                job.getDescriptionText()
+                job.getDescriptionText(),
+                job.getExperienceLevel(),
+                job.getEmploymentType(),
+                job.getSalaryMin(),
+                job.getSalaryMax(),
+                job.getSalaryCurrency()
         ));
     }
 
@@ -43,14 +48,19 @@ public class JobService {
         Job job = jobRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Job not found with id: " + id));
 
-        return new JobDto(
+                return new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),
                 job.getTitle(),
                 job.getLocation(),
                 job.getDepartment(),
                 job.getApplyUrl(),
-                job.getDescriptionText()
+                job.getDescriptionText(),
+                job.getExperienceLevel(),
+                job.getEmploymentType(),
+                job.getSalaryMin(),
+                job.getSalaryMax(),
+                job.getSalaryCurrency()
         );
     }
 }
