@@ -3,7 +3,8 @@ package com.distributed.job_finder.services;
 import com.distributed.job_finder.config.GreenhouseConfig;
 import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.dtos.greenhouse.GreenhouseJobResponse;
-import com.distributed.job_finder.repos.CompanyRepo; // <-- Add this import
+import com.distributed.job_finder.repos.CompanyRepo;
+import com.distributed.job_finder.utils.JobDataParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
@@ -24,7 +25,7 @@ public class GreenhouseScraperService {
     private final WebClient webClient;
     private final ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate;
     private final GreenhouseConfig config;
-    private final CompanyRepo companyRepo; // <-- 1. Declare repository
+    private final CompanyRepo companyRepo;
 
     private static final String JOB_INGESTION_STREAM = "job:ingestion:stream";
 
@@ -32,7 +33,7 @@ public class GreenhouseScraperService {
     public GreenhouseScraperService(WebClient webClient, 
                                     ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate, 
                                     GreenhouseConfig config,
-                                    CompanyRepo companyRepo) { // <-- 2. Inject it here
+                                    CompanyRepo companyRepo) {
         this.webClient = webClient;
         this.reactiveRedisTemplate = reactiveRedisTemplate;
         this.config = config;
@@ -43,9 +44,7 @@ public class GreenhouseScraperService {
         log.info("Starting scrape for {} configured Greenhouse boards...", config.getTargetBoards().size());
 
         return Flux.fromIterable(config.getTargetBoards())
-                // Limit to 3 concurrent HTTP requests so we don't get IP banned
                 .flatMap(boardToken -> 
-                    // Wrap the blocking DB call in a Mono and run it on a blocking thread pool
                     Mono.fromCallable(() -> companyRepo.findByBoardTokenIgnoreCase(boardToken)
                             .orElseThrow(() -> new RuntimeException("Company not found in DB for board token: " + boardToken)))
                             .subscribeOn(reactor.core.scheduler.Schedulers.boundedElastic())
@@ -55,7 +54,7 @@ public class GreenhouseScraperService {
     }
 
     private Mono<Void> fetchAndPushJobs(UUID companyId, String companyName, String boardToken) {
-        String greenhouseApiUrl = String.format("%s/%s/jobs", config.getBaseUrl(), boardToken);
+        String greenhouseApiUrl = String.format("%s/%s/jobs?content=true", config.getBaseUrl(), boardToken);
         log.info("Fetching jobs from Greenhouse for board: {}", boardToken);
 
         return webClient.get()
@@ -68,28 +67,33 @@ public class GreenhouseScraperService {
                     }
                     return Flux.empty();
                 })
-                .map(ghJob -> new JobDto(
-                        String.valueOf(ghJob.id()),
-                        companyId,
-                        companyName,
-                        ghJob.title(),
-                        ghJob.location() != null ? ghJob.location().name() : "Remote / Unspecified",
-                        "General",
-                        ghJob.absoluteUrl(),
-                        "",     // description
-                        null,   // experienceLevel
-                        null,   // employmentType
-                        null,   // salaryMin
-                        null,   // salaryMax
-                        "USD"   // salaryCurrency
-                ))
+                .map(ghJob -> {
+                    String jobTitle = ghJob.title();
+                    String jobDescription = ghJob.content() != null ? ghJob.content() : "";
+
+                    return new JobDto(
+                            String.valueOf(ghJob.id()),
+                            companyId,
+                            companyName,
+                            jobTitle,
+                            ghJob.location() != null ? ghJob.location().name() : "Remote / Unspecified",
+                            JobDataParser.extractDepartment(jobTitle),
+                            ghJob.absoluteUrl(),
+                            jobDescription,
+                            JobDataParser.extractExperienceLevel(jobTitle),
+                            JobDataParser.extractEmploymentType(jobTitle, jobDescription),
+                            null, 
+                            null, 
+                            "USD" 
+                    );
+                })
                 .flatMap(this::pushToRedisStream)
                 .doOnComplete(() -> log.info("Finished fetching jobs for {}", boardToken))
                 .onErrorResume(error -> {
                     log.warn("Skipping board '{}' due to error: {}", boardToken, error.getMessage());
                     return Flux.empty();
                 })
-                .then();
+                .then(); // <-- ADD THIS LINE to convert the Flux into Mono<Void>
     }
 
     private Mono<RecordId> pushToRedisStream(JobDto jobDto) {

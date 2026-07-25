@@ -41,7 +41,6 @@ public class JobStreamConsumer {
     public void startConsuming() {
         streamReceiver.receive(Consumer.from(CONSUMER_GROUP, "worker-1"),
                         StreamOffset.create(STREAM_KEY, ReadOffset.lastConsumed()))
-                // CRITICAL: Moves the slow database inserts to a separate thread pool so Redis isn't blocked!
                 .publishOn(Schedulers.boundedElastic()) 
                 .subscribe(this::processMessage);
     }
@@ -52,12 +51,20 @@ public class JobStreamConsumer {
         log.info("Worker picked up ticket for ATS Job ID: {}", incomingJob.atsJobId());
 
         try {
-            // 1. Check if we already have this job in the database
             jobRepository.findByAtsJobIdAndCompanyId(incomingJob.atsJobId(), incomingJob.companyId())
                     .ifPresentOrElse(
                             existingJob -> {
                                 existingJob.setTitle(incomingJob.title());
                                 existingJob.setLocation(incomingJob.location());
+                                existingJob.setDepartment(incomingJob.department());
+                                existingJob.setDescriptionText(incomingJob.description());
+                                existingJob.setExperienceLevel(incomingJob.experienceLevel());
+                                existingJob.setEmploymentType(incomingJob.employmentType());
+                                // Update salary fields if they were extracted
+                                existingJob.setSalaryMin(incomingJob.salaryMin());
+                                existingJob.setSalaryMax(incomingJob.salaryMax());
+                                existingJob.setSalaryCurrency(incomingJob.salaryCurrency());
+
                                 jobRepository.save(existingJob);
                                 log.debug("Updated existing job: {}", existingJob.getId());
                             },
@@ -71,21 +78,29 @@ public class JobStreamConsumer {
                                 newJob.setDepartment(incomingJob.department());
                                 newJob.setApplyUrl(incomingJob.url());
                                 newJob.setDescriptionText(incomingJob.description());
+                                newJob.setExperienceLevel(incomingJob.experienceLevel());
+                                newJob.setEmploymentType(incomingJob.employmentType());
+                                newJob.setSalaryMin(incomingJob.salaryMin());
+                                newJob.setSalaryMax(incomingJob.salaryMax());
+                                newJob.setSalaryCurrency(incomingJob.salaryCurrency());
 
                                 jobRepository.save(newJob);
                                 log.info("Saved BRAND NEW job to PostgreSQL: {}", incomingJob.title());
                             }
                     );
 
-            // 2. Acknowledge the message so Redis knows we finished saving it
-                factory.getReactiveConnection().streamCommands()
-        .xAck(ByteBuffer.wrap(STREAM_KEY.getBytes()), CONSUMER_GROUP, message.getId().getValue())
-        .subscribe();
+            // 2. Acknowledge AND Delete the message to free up Redis memory
+            factory.getReactiveConnection().streamCommands()
+                    .xAck(ByteBuffer.wrap(STREAM_KEY.getBytes()), CONSUMER_GROUP, message.getId().getValue())
+                    .then(factory.getReactiveConnection().streamCommands()
+                            .xDel(ByteBuffer.wrap(STREAM_KEY.getBytes()), message.getId().getValue()))
+                    .subscribe(
+                            result -> log.debug("Successfully acked and deleted message from stream"),
+                            err -> log.error("Failed to delete message from stream", err)
+                    );
 
         } catch (Exception e) {
             log.error("Failed to process job ticket: {}", incomingJob.atsJobId(), e);
-            // We intentionally do NOT acknowledge the message here. 
-            // It stays in Redis so another worker can try again later!
         }
     }
 }

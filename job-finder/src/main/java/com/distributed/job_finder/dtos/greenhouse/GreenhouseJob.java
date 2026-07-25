@@ -7,5 +7,6 @@ public record GreenhouseJob(
     String title,
     @JsonProperty("absolute_url") String absoluteUrl,
     GreenhouseLocation location,
-    @JsonProperty("updated_at") String updatedAt
+    @JsonProperty("updated_at") String updatedAt,
+    String content // <-- ADD THIS FIELD to hold the description
 ) {}
