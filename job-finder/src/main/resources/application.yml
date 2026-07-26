@@ -31,7 +31,7 @@ spring:
     redis:
       host: localhost
       port: 6379
-      timeout: 2000
+      timeout: 5000
 
 # 4. Custom Application Properties
 app:
@@ -41,71 +41,60 @@ app:
     greenhouse:
       base-url: "https://boards-api.greenhouse.io/v1/boards"
       target-boards:
-        # --- Original Batch ---
+        - anthropic
+        - asana
+        - adyen
+        - airtable
+        - boxinc
+        - brex
+        - canonical
+        - chime
+        - cloudflare
+        - coinbase
+        - coursera
+        - databricks
+        - datadog
+        - discord
+        - doordashglobal
+        - dropbox
+        - duolingo
+        - elastic
+        - epicgames
+        - fastly
+        - figma
+        - gemini
+        - gitlab
+        - hubspot
+        - instacart
+        - lyft
+        - masterclass
+        - mongodb
+        - monzo
+        - n26
+        - okta
+        - pagerduty
+        - papaya
+        - peloton
+        - pinterest
+        - postman
+        - reddit
+        - remote
+        - roblox
+        - robinhood
+        - getscale
+        - smartsheet
+        - squarespace
+        - twitch
+        - udemy
+        - webflow
+        - wizinc
+        - zscaler
+        # --- Regional MENA Anchor Boards ---
         - careem
-        - nana.direct
-        - salla
-        - zid
-        - sary
-        - floward
-        - eyewa
-        - tabby.ai
-        - tamara.co
-        - paymob
-        - thndr
-        - sarwa.co
-        - bitoasis
-        - nymcard
-        - tarabutgateway
-        - mnthalan
-        - checkoutcom
         - stripe
-        - propertyfinder
-        - bayut
-        - dubizzle
-        - huspy
-        - nawy
-        - trukker.com
-        - trella
-        - cafu
-        - swvl
-        - vezeeta
-        - abwaab
-        - instabug
-        - unifonic
-        - foodics
-        - mozn
-        - penny
-        - qoyod
-        - mawdoo3
-        - sumerge
-        - robusta
-        - anghami
-        - starzplay
-        - playhera
-        - sandsoft
-        - wego
-        - xische
-        # --- Country Expansion Batches ---
-        - tappayments
         - hala
-        - remotepass
-        - empg
-        - yassir
-        - rain
-        - calo
-        - eatapp
-        # --- Deep Dive Expansion ---
-        - stake
-        - postpay
-        - cashewpayments
-        - astratech
-        - almosafer
-        - seeragroup
-        - bosta
-        - moneyfellows
-        - tamatem
-        - opensooq
+        - tamara
+        - airbnb
     lever:
       base-url: "https://api.lever.co/v0/postings"
 
