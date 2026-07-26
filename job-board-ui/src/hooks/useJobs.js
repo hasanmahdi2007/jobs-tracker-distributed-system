@@ -21,7 +21,8 @@ export function useJobs() {
       if (!response.ok) throw new Error(`Gateway Error ${response.status}: Pipeline disrupted.`);
       
       const data = await response.json();
-      setJobs(data.content || []);
+      // This checks for a Page object first, then a direct List array, then falls back to empty.
+      setJobs(data.content || (Array.isArray(data) ? data : []));
       return true;
     } catch (err) {
       setError(err.message);

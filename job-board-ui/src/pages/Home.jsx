@@ -1,80 +1,80 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Power, Activity } from 'lucide-react';
+import { ArrowRight, Terminal, Globe, Shield } from 'lucide-react';
 
 export default function Home() {
+  const container = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  };
+
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      
-      {/* LIVING BACKGROUND: Infinite breathing plasma orbs */}
+    <div className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 z-10">
       <motion.div 
-        animate={{ 
-          scale: [1, 1.5, 1], 
-          x: [0, 100, -50, 0],
-          y: [0, -100, 50, 0]
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-600/40 rounded-full blur-[120px] mix-blend-screen pointer-events-none"
-      />
-      
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1.8, 1], 
-          x: [0, -150, 50, 0],
-          y: [0, 150, -50, 0]
-        }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-fuchsia-600/30 rounded-full blur-[150px] mix-blend-screen pointer-events-none"
-      />
-
-      <motion.div 
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"
-      />
-
-      {/* FOREGROUND: The Glass Terminal */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9, y: 40 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 flex flex-col items-center justify-center text-center p-12 max-w-4xl w-full"
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="max-w-5xl mx-auto text-center"
       >
-        <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mb-8 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-2xl"
-        >
-          <motion.div 
-            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
-          />
-          <span className="text-cyan-400 text-xs font-mono tracking-widest uppercase">Distributed Engine Active</span>
+        {/* Top Badge */}
+        <motion.div variants={item} className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-semibold shadow-sm">
+          <Terminal className="w-4 h-4 text-blue-500" />
+          <span>System V2.0 Online</span>
         </motion.div>
 
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/20 mb-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-          ENTER THE <br /> NEXUS
-        </h1>
+        {/* Hero Text */}
+        <motion.h1 variants={item} className="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[1.05] mb-6">
+          Navigate the grid with <br className="hidden md:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+            absolute precision.
+          </span>
+        </motion.h1>
 
-        <p className="text-slate-400 text-lg md:text-xl font-light tracking-wide max-w-2xl mb-12">
-          A real-time synchronization pipeline. Aggregating tech roles across the global grid.
-        </p>
+        {/* Subtitle */}
+        <motion.p variants={item} className="text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+          Powered by a highly available Spring Boot microservice architecture and a real-time PostgreSQL synchronization pipeline.
+        </motion.p>
 
-        {/* The Portal Button */}
-        <Link to="/dashboard" className="group relative">
-          {/* Glowing aura behind the button that expands on hover */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-fuchsia-600 rounded-full blur-lg opacity-40 group-hover:opacity-100 transition duration-500 group-hover:duration-200 animate-pulse"></div>
+        {/* Call to Action */}
+        <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link 
+            to="/dashboard"
+            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] active:scale-95"
+          >
+            Enter the Console
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
+
+        {/* Mini Bento Grid */}
+        <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-24 max-w-4xl mx-auto text-left">
           
-          <button className="relative flex items-center gap-4 px-10 py-5 bg-black border border-white/10 rounded-full text-white font-bold tracking-widest uppercase overflow-hidden transition-all hover:border-cyan-500/50 hover:bg-white/5 backdrop-blur-xl">
-            <Power className="w-5 h-5 text-cyan-400 group-hover:animate-spin" />
-            Initialize System
-            
-            {/* Light sweep effect on hover */}
-            <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-          </button>
-        </Link>
+          <div className="p-8 bg-white/60 backdrop-blur-md border border-slate-200/80 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow group">
+            <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <Globe className="w-6 h-6 text-blue-600" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight">Distributed Pipeline</h3>
+            <p className="text-slate-500 font-medium leading-relaxed">
+              Aggregating tech roles globally across multiple redundant backend nodes for zero downtime.
+            </p>
+          </div>
+
+          <div className="p-8 bg-white/60 backdrop-blur-md border border-slate-200/80 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow group">
+            <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <Shield className="w-6 h-6 text-indigo-600" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight">Secure Gateway</h3>
+            <p className="text-slate-500 font-medium leading-relaxed">
+              Protected by reactive Spring Cloud WebFlux routing and strict token-based client authentication.
+            </p>
+          </div>
+
+        </motion.div>
       </motion.div>
     </div>
   );
