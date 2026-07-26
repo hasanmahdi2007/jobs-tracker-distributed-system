@@ -5,18 +5,30 @@ spring:
   application:
     name: api-gateway
 
-  # --- 1. ROUTING (Spring Cloud Gateway) ---
+  # --- 1. ROUTING & CORS (Spring Cloud Gateway) ---
   cloud:
     gateway:
-      routes:
+      # --- CORS FIX ADDED HERE ---
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
       
+      routes:
         - id: job-finder-route
           uri: http://localhost:8083
           predicates:
             - Path=/api/v1/jobs/**
           filters:
             - AddRequestHeader=X-Internal-Secret, super-secret-internal-key-123!
-
 
         - id: protected-api-route
           uri: https://httpbin.org
@@ -26,18 +38,15 @@ spring:
   # --- 2. CACHE DATABASE (Redis for Rate Limiting) ---
   data:
     redis:
-      # Apply the Docker trick so the Gateway can find Redis in the container network
       host: ${REDIS_HOST:localhost}
       port: 6379
 
   # --- 3. MAIN DATABASE (PostgreSQL for API Keys & Authentication) ---
   datasource:
-    # Defaults to localhost for IDE testing, but Docker can override it!
     url: jdbc:postgresql://${DB_HOST:localhost}:5432/gateway_db
     username: postgres
     password: ${POSTGRES_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
-
 
   # --- 4. ORM SETTINGS (JPA / Hibernate) ---
   jpa:
