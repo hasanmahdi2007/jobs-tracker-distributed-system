@@ -1,64 +1,80 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Terminal, Globe, Zap } from 'lucide-react';
+import { Power, Activity } from 'lucide-react';
 
 export default function Home() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
-  };
-
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Premium Background Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none" />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      
+      {/* LIVING BACKGROUND: Infinite breathing plasma orbs */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.5, 1], 
+          x: [0, 100, -50, 0],
+          y: [0, -100, 50, 0]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-600/40 rounded-full blur-[120px] mix-blend-screen pointer-events-none"
+      />
+      
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.2, 1.8, 1], 
+          x: [0, -150, 50, 0],
+          y: [0, 150, -50, 0]
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-fuchsia-600/30 rounded-full blur-[150px] mix-blend-screen pointer-events-none"
+      />
 
       <motion.div 
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8"
+        animate={{ opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"
+      />
+
+      {/* FOREGROUND: The Glass Terminal */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 flex flex-col items-center justify-center text-center p-12 max-w-4xl w-full"
       >
-        <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium">
-          <Terminal className="w-4 h-4" /> V1.0 Distributed Engine Live
+        <motion.div 
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mb-8 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-2xl"
+        >
+          <motion.div 
+            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+          />
+          <span className="text-cyan-400 text-xs font-mono tracking-widest uppercase">Distributed Engine Active</span>
         </motion.div>
 
-        <motion.h1 variants={item} className="text-5xl md:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-200 to-slate-500 leading-tight pb-2">
-          Find your next role with <br /> distributed precision.
-        </motion.h1>
+        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/20 mb-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+          ENTER THE <br /> NEXUS
+        </h1>
 
-        <motion.p variants={item} className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400">
-          Powered by a highly available Spring Boot microservice architecture and real-time PostgreSQL pipelines.
-        </motion.p>
+        <p className="text-slate-400 text-lg md:text-xl font-light tracking-wide max-w-2xl mb-12">
+          A real-time synchronization pipeline. Aggregating tech roles across the global grid.
+        </p>
 
-        <motion.div variants={item} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <Link 
-            to="/dashboard"
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-950 font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/10"
-          >
-            Initialize Search <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </motion.div>
-
-        {/* Feature Grid */}
-        <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-16 max-w-3xl mx-auto text-left">
-          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Globe className="w-8 h-8 text-blue-400 mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Global Gateway</h3>
-            <p className="text-slate-400 text-sm">Secure, token-authenticated API routing protecting our core databases.</p>
-          </div>
-          <div className="p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Zap className="w-8 h-8 text-amber-400 mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Real-time Pipeline</h3>
-            <p className="text-slate-400 text-sm">Lightning-fast query execution aggregating tech roles across the web.</p>
-          </div>
-        </motion.div>
+        {/* The Portal Button */}
+        <Link to="/dashboard" className="group relative">
+          {/* Glowing aura behind the button that expands on hover */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-fuchsia-600 rounded-full blur-lg opacity-40 group-hover:opacity-100 transition duration-500 group-hover:duration-200 animate-pulse"></div>
+          
+          <button className="relative flex items-center gap-4 px-10 py-5 bg-black border border-white/10 rounded-full text-white font-bold tracking-widest uppercase overflow-hidden transition-all hover:border-cyan-500/50 hover:bg-white/5 backdrop-blur-xl">
+            <Power className="w-5 h-5 text-cyan-400 group-hover:animate-spin" />
+            Initialize System
+            
+            {/* Light sweep effect on hover */}
+            <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+          </button>
+        </Link>
       </motion.div>
     </div>
   );
