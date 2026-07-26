@@ -98,13 +98,15 @@ public class GreenhouseScraperService {
                             "USD" 
                     );
                 })
-                .flatMap(this::pushToRedisStream)
+                // CRITICAL: Throttle the ingestion so we don't crash the Redis socket
+                .delayElements(java.time.Duration.ofMillis(5)) 
+                .flatMap(jobDto -> pushToRedisStream(jobDto), 16) // Max 16 concurrent Redis pushes per board
                 .doOnComplete(() -> log.info("Finished fetching jobs for {}", boardToken))
                 .onErrorResume(error -> {
                     log.warn("Skipping board '{}' due to error: {}", boardToken, error.getMessage());
                     return Flux.empty();
                 })
-                .then(); // <-- ADD THIS LINE to convert the Flux into Mono<Void>
+                .then(); 
     }
 
     private Mono<RecordId> pushToRedisStream(JobDto jobDto) {
