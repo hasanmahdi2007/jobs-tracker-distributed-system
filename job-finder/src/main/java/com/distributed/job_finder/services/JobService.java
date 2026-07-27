@@ -22,12 +22,23 @@ public class JobService {
         this.jobRepo = jobRepo;
     }
 
-    public Page<JobDto> getJobs(String search, String location, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+    public Page<JobDto> getJobs(String search, String location, String type, String sort, int page, int size) {
         
-        Page<Job> jobPage = jobRepo.searchJobs(search, location, pageable);
+        // Dynamically build the sort order based on frontend request
+        Sort sortOrder;
+        if ("relevant".equalsIgnoreCase(sort)) {
+            // If they want relevant, we sort alphabetically by title (or you can adjust later)
+            sortOrder = Sort.by("title").ascending();
+        } else {
+            // Default to 'recent' (Newest first)
+            sortOrder = Sort.by("createdAt").descending();
+        }
 
-        // Map Job entity -> JobDto for the REST response
+        Pageable pageable = PageRequest.of(page, size, sortOrder);
+        
+        // Pass the new type parameter to the repo
+        Page<Job> jobPage = jobRepo.searchJobs(search, location, type, pageable);
+
         return jobPage.map(job -> new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),
@@ -49,7 +60,7 @@ public class JobService {
         Job job = jobRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Job not found with id: " + id));
 
-                return new JobDto(
+        return new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),
                 job.getCompanyName(),

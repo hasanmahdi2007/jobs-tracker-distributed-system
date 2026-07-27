@@ -20,11 +20,11 @@ public class JobScraperScheduler {
      * TEST TRIGGER: Runs exactly once when the application boots up.
      * (You can delete this method once you confirm data is in PostgreSQL).
      */
-    @PostConstruct
+    /*@PostConstruct
     public void runOnStartup() {
         log.info("[TEST] Application booted. Firing initial Greenhouse scrape...");
         scraperService.scrapeAllConfiguredBoards().subscribe();
-    }
+    }*/
 
     /**
      * PRODUCTION TRIGGER: Runs once every day at exactly midnight (00:00:00).

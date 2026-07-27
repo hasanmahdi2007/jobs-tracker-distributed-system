@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/jobs")
-@CrossOrigin(origins = "*") 
 public class JobController {
 
     private final JobService jobService;
@@ -21,28 +20,25 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    /**
-     * Endpoint 1: Search and Pagination
-     */
     @GetMapping
     public ResponseEntity<Page<JobDto>> getAllJobs(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String location,
+            @RequestParam(required = false) String type,
+            @RequestParam(defaultValue = "recent") String sort,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         // Prevent the PostgreSQL 'bytea' null crash by defaulting to empty strings
         String safeSearch = (search == null) ? "" : search;
         String safeLocation = (location == null) ? "" : location;
+        String safeType = (type == null) ? "" : type;
 
-        // Pass the safe strings to the service
-        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, page, size);
+        // Pass all safe strings and sort instructions to the service
+        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, safeType, sort, page, size);
         return ResponseEntity.ok(jobs);
     }
 
-    /**
-     * Endpoint 2: Get a single job by its ID
-     */
     @GetMapping("/{id}")
     public ResponseEntity<JobDto> getJobById(@PathVariable UUID id) {
         JobDto job = jobService.getJobById(id);

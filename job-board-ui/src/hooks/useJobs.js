@@ -5,23 +5,37 @@ export function useJobs() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchJobs = useCallback(async (searchTerm, apiKey, isGuest) => {
-    if (!apiKey && !isGuest) return false; // Triggers auth modal in UI
+  // Added the "filters" object to the parameters
+  const fetchJobs = useCallback(async (searchTerm, filters = {}, apiKey, isGuest) => {
+    if (!apiKey && !isGuest) return false;
 
     setLoading(true);
     setError(null);
     
     try {
-      const headerKey = isGuest ? 'GUEST-ACCESS-TOKEN' : apiKey; 
+      // Build the URL dynamically based on what the user selected
+      const queryParams = new URLSearchParams({
+        search: searchTerm || '',
+        page: 0,
+        size: 20, // Fetching 20 to fill out the grid nicely
+        ...(filters.location && { location: filters.location }),
+        ...(filters.type && { type: filters.type }),
+        ...(filters.sort && { sort: filters.sort })
+      });
+
       const response = await fetch(
-        `http://localhost:8080/api/v1/jobs?search=${encodeURIComponent(searchTerm)}&page=0&size=10`, 
-        { headers: { 'X-API-KEY': headerKey } }
+        `http://localhost:8080/api/v1/jobs?${queryParams.toString()}`, 
+        { headers: { 'X-API-KEY': apiKey } }
       );
       
-      if (!response.ok) throw new Error(`Gateway Error ${response.status}: Pipeline disrupted.`);
+      if (!response.ok) {
+        if (response.status === 401) throw new Error("Unauthorized: Invalid API Key.");
+        throw new Error(`Gateway Error ${response.status}: Pipeline disrupted.`);
+      }
       
       const data = await response.json();
-      // This checks for a Page object first, then a direct List array, then falls back to empty.
+      
+      // Handle Spring Boot's Page<Job> format safely
       setJobs(data.content || (Array.isArray(data) ? data : []));
       return true;
     } catch (err) {
