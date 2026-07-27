@@ -4,61 +4,63 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class FindAllHiddenTokens {
     public static void main(String[] args) {
-        // Massive list of global tech, AI, infrastructure, and fintech giants
         List<String> globalCompanies = Arrays.asList(
-            "openai", "anthropic", "scale", "cohere", "huggingface", "midjourney", "perplexity",
-            "stripe", "plaid", "brex", "ramp", "chime", "robinhood", "coinbase", "kraken",
-            "gemini", "revolut", "monzo", "n26", "qonto", "wise", "adyen", "checkout",
-            "airbnb", "doordash", "instacart", "lyft", "uber", "discord", "twitch",
-            "reddit", "pinterest", "dropbox", "figma", "asana", "gitlab", "github",
-            "databricks", "snowflake", "palantir", "mongodb", "elastic", "datadog",
-            "cloudflare", "fastly", "hashicorp", "confluent", "postman", "docker",
-            "canva", "notion", "airtable", "linear", "loom", "framer", "webflow",
-            "hubspot", "zendesk", "docusign", "box", "smartsheet", "pagerduty",
-            "crowdstrike", "zscaler", "okta", "snyk", "lacework", "wiz", "1password",
-            "shopify", "squarespace", "wix", "etsy", "wayfair", "peloton", "strava",
-            "duolingo", "coursera", "udemy", "masterclass", "roblox", "unity", "epicgames",
-            "canonical", "remote", "deel", "papaya", "multiplier", "safetywing"
+            "visioneers", "asico", "ebra", "meraki-global", "gsstech-group", 
+            "mondia", "hudabeauty", "drivenproperties", "dubizzle", "servme", 
+            "imdad", "agility", "propertyfinder", "bayzat", "careem", "talabat",
+            "openai", "stripe", "revolut", "doordash", "figma", "notion"
         );
 
         String[] suffixes = {"", "hq", "app", "inc", "group", "global", "careers", "tech", "team"};
         String[] prefixes = {"", "get", "join", "weare"};
 
-        // 40 parallel threads to make short work of thousands of URLs
-        HttpClient client = HttpClient.newBuilder().executor(Executors.newFixedThreadPool(40)).build();
+        HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(5))
+                .executor(Executors.newFixedThreadPool(15))
+                .build();
         
         int totalPermutations = globalCompanies.size() * suffixes.length * prefixes.length;
-        System.out.println("Generated " + totalPermutations + " permutations across " + globalCompanies.size() + " global companies.");
-        System.out.println("Blasting Greenhouse Global API endpoints... Please wait.\n");
+        System.out.println("Generated " + totalPermutations + " permutations across " + globalCompanies.size() + " companies.");
+        System.out.println("Blasting Workable Public API endpoints safely... Please wait.\n");
 
-        List<CompletableFuture<Void>> futures = globalCompanies.stream().flatMap(company -> 
-            Arrays.stream(prefixes).flatMap(prefix -> 
-                Arrays.stream(suffixes).map(suffix -> {
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+
+        // Standard loops avoid all compiler type-inference and red underline issues
+        for (String company : globalCompanies) {
+            for (String prefix : prefixes) {
+                for (String suffix : suffixes) {
                     String guess = prefix + company + suffix;
+                    
                     HttpRequest req = HttpRequest.newBuilder()
-                        .uri(URI.create("https://boards-api.greenhouse.io/v1/boards/" + guess + "/jobs"))
+                        .uri(URI.create("https://www.workable.com/api/accounts/" + guess + "?details=false"))
+                        .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                        .header("Accept", "application/json")
                         .GET().build();
 
-                    return client.sendAsync(req, HttpResponse.BodyHandlers.discarding())
-                        .thenAccept(res -> {
-                            if (res.statusCode() == 200) {
-                                System.out.println("✅ FOUND LIVE TOKEN: \"" + guess + "\" (matched: " + company + ")");
+                    CompletableFuture<Void> future = client.sendAsync(req, HttpResponse.BodyHandlers.discarding())
+                        .handle((res, ex) -> {
+                            if (ex == null && res.statusCode() == 200) {
+                                System.out.println("✅ FOUND LIVE WORKABLE TOKEN: \"" + guess + "\" (matched: " + company + ")");
                             }
+                            return null;
                         });
-                })
-            )
-        ).collect(Collectors.toList());
+
+                    futures.add(future);
+                }
+            }
+        }
 
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-        System.out.println("\nGlobal scan complete! Copy the active tokens straight into your application.yml.");
+        System.out.println("\nWorkable token scan complete!");
         System.exit(0);
     }
 }
