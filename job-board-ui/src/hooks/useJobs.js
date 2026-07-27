@@ -6,26 +6,26 @@ export function useJobs() {
   const [error, setError] = useState(null);
 
   const fetchJobs = useCallback(async (searchTerm, filters = {}) => {
-    // 1. Instantly trigger the loading skeleton so you know the button works
     setLoading(true);
     setError(null);
     
     try {
-      // 2. Grab the hidden key from the .env file
       const hiddenApiKey = import.meta.env.VITE_API_KEY;
       
-      // Safety check: if Vite can't find the .env file, throw a visible error
       if (!hiddenApiKey) {
         throw new Error("Missing API Key! Check your .env file and restart Vite.");
       }
 
+      // Updated to include company and category!
       const queryParams = new URLSearchParams({
         search: searchTerm || '',
         page: 0,
         size: 20,
         ...(filters.location && { location: filters.location }),
         ...(filters.type && { type: filters.type }),
-        ...(filters.sort && { sort: filters.sort })
+        ...(filters.sort && { sort: filters.sort }),
+        ...(filters.company && { company: filters.company }),   // <-- Added
+        ...(filters.category && { category: filters.category }) // <-- Added
       });
 
       console.log("Attempting to fetch with key:", hiddenApiKey.substring(0, 10) + "...");
@@ -48,7 +48,7 @@ export function useJobs() {
       console.error("Fetch Error:", err);
       setError(err.message);
     } finally {
-      setLoading(false); // Stop the loading skeleton
+      setLoading(false);
     }
   }, []);
 

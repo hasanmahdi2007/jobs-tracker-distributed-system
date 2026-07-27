@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Search, MapPin, Briefcase, Filter } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, MapPin, Briefcase, Filter, Building, Layers } from 'lucide-react';
 import { useJobs } from '../hooks/useJobs';
 import JobCard from '../components/JobCard';
 import JobSkeleton from '../components/JobSkeleton';
+import JobModal from '../components/JobModal';
 
 export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filters, setFilters] = useState({ location: '', type: '', sort: 'recent' });
+  const [filters, setFilters] = useState({ location: '', type: '', sort: 'recent', company: '', category: '' });
+  const [selectedJob, setSelectedJob] = useState(null); 
   
   const { jobs, loading, error, fetchJobs } = useJobs();
 
-  // Automatically fetch jobs when the page loads
+  // The [filters] dependency means this runs automatically whenever ANY dropdown changes!
   useEffect(() => {
-    fetchJobs('', filters);
-  }, []);
+    fetchJobs(searchTerm, filters);
+  }, [filters]);
 
   const executeSearch = () => {
     fetchJobs(searchTerm, filters);
@@ -28,7 +30,6 @@ export default function Dashboard() {
           <h2 className="text-4xl font-black text-slate-900 tracking-tight">Query Console</h2>
           <p className="text-slate-500 mt-1 font-medium">Live connection to PostgreSQL grid.</p>
         </div>
-        {/* The Authenticate button has been completely removed from here */}
       </div>
 
       <motion.div 
@@ -48,7 +49,7 @@ export default function Dashboard() {
           onClick={executeSearch} disabled={loading}
           className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3.5 rounded-xl transition-all disabled:opacity-50 flex items-center justify-center shadow-md active:scale-95"
         >
-          Execute Query
+          Search
         </button>
       </motion.div>
 
@@ -85,6 +86,36 @@ export default function Dashboard() {
           </select>
         </div>
 
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200/80 rounded-xl text-sm font-medium text-slate-600 hover:border-sky-300 transition-colors shadow-sm">
+          <Layers className="w-4 h-4 text-slate-400" />
+          <select 
+            value={filters.category} 
+            onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+            className="bg-transparent outline-none cursor-pointer w-full"
+          >
+            <option value="">All Roles</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Product">Product</option>
+            <option value="Design">Design</option>
+            <option value="Marketing">Marketing</option>
+          </select>
+        </div>
+
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200/80 rounded-xl text-sm font-medium text-slate-600 hover:border-sky-300 transition-colors shadow-sm">
+          <Building className="w-4 h-4 text-slate-400" />
+          <select 
+            value={filters.company} 
+            onChange={(e) => setFilters({ ...filters, company: e.target.value })}
+            className="bg-transparent outline-none cursor-pointer w-full"
+          >
+            <option value="">All Companies</option>
+            <option value="Anthropic">Anthropic</option>
+            <option value="Stripe">Stripe</option>
+            <option value="Google">Google</option>
+            <option value="Meta">Meta</option>
+          </select>
+        </div>
+
         <div className="flex items-center gap-2 px-4 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl text-sm font-medium text-slate-700 hover:border-slate-300 transition-colors shadow-sm ml-auto">
           <Filter className="w-4 h-4 text-slate-400" />
           <span className="text-slate-400 mr-1">Sort:</span>
@@ -95,6 +126,8 @@ export default function Dashboard() {
           >
             <option value="recent">Newest First</option>
             <option value="relevant">Most Relevant</option>
+            <option value="salary_desc">Highest Salary</option>
+            <option value="salary_asc">Lowest Salary</option>
           </select>
         </div>
       </motion.div>
@@ -106,7 +139,12 @@ export default function Dashboard() {
       ) : (
         <div className="mt-8 grid gap-4">
           {jobs.map((job, idx) => (
-            <JobCard key={job.atsJobId || job.id || idx} job={job} index={idx} />
+            <JobCard 
+              key={job.atsJobId || job.id || idx} 
+              job={job} 
+              index={idx} 
+              onClick={() => setSelectedJob(job)} 
+            />
           ))}
           {!loading && jobs.length === 0 && !error && (
              <div className="text-center py-20 text-slate-400 font-medium border-2 border-dashed border-slate-200 rounded-3xl mt-4">
@@ -115,6 +153,13 @@ export default function Dashboard() {
           )}
         </div>
       )}
+
+      {/* The Job Details Modal */}
+      <AnimatePresence>
+        {selectedJob && (
+          <JobModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
