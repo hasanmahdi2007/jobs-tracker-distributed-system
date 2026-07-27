@@ -5,44 +5,50 @@ export function useJobs() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Added the "filters" object to the parameters
-  const fetchJobs = useCallback(async (searchTerm, filters = {}, apiKey, isGuest) => {
-    if (!apiKey && !isGuest) return false;
-
+  const fetchJobs = useCallback(async (searchTerm, filters = {}) => {
+    // 1. Instantly trigger the loading skeleton so you know the button works
     setLoading(true);
     setError(null);
     
     try {
-      // Build the URL dynamically based on what the user selected
+      // 2. Grab the hidden key from the .env file
+      const hiddenApiKey = import.meta.env.VITE_API_KEY;
+      
+      // Safety check: if Vite can't find the .env file, throw a visible error
+      if (!hiddenApiKey) {
+        throw new Error("Missing API Key! Check your .env file and restart Vite.");
+      }
+
       const queryParams = new URLSearchParams({
         search: searchTerm || '',
         page: 0,
-        size: 20, // Fetching 20 to fill out the grid nicely
+        size: 20,
         ...(filters.location && { location: filters.location }),
         ...(filters.type && { type: filters.type }),
         ...(filters.sort && { sort: filters.sort })
       });
 
+      console.log("Attempting to fetch with key:", hiddenApiKey.substring(0, 10) + "...");
+
       const response = await fetch(
         `http://localhost:8080/api/v1/jobs?${queryParams.toString()}`, 
-        { headers: { 'X-API-KEY': apiKey } }
+        { 
+          headers: { 'X-API-KEY': hiddenApiKey } 
+        }
       );
       
       if (!response.ok) {
-        if (response.status === 401) throw new Error("Unauthorized: Invalid API Key.");
-        throw new Error(`Gateway Error ${response.status}: Pipeline disrupted.`);
+        throw new Error(`Gateway Error ${response.status}: Failed to fetch jobs.`);
       }
       
       const data = await response.json();
-      
-      // Handle Spring Boot's Page<Job> format safely
       setJobs(data.content || (Array.isArray(data) ? data : []));
-      return true;
+      
     } catch (err) {
+      console.error("Fetch Error:", err);
       setError(err.message);
-      return false;
     } finally {
-      setLoading(false);
+      setLoading(false); // Stop the loading skeleton
     }
   }, []);
 
