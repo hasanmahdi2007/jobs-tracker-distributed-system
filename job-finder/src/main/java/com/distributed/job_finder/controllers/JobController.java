@@ -25,17 +25,21 @@ public class JobController {
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String location,
             @RequestParam(required = false) String type,
+            @RequestParam(required = false) String company,
+            @RequestParam(required = false) String category,
             @RequestParam(defaultValue = "recent") String sort,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        // Prevent the PostgreSQL 'bytea' null crash by defaulting to empty strings
-        String safeSearch = (search == null) ? "" : search;
-        String safeLocation = (location == null) ? "" : location;
-        String safeType = (type == null) ? "" : type;
+        // Prevent database null crashes by defaulting unselected filters to empty strings
+        String safeSearch = (search == null || search.trim().isEmpty()) ? "" : search.trim();
+        String safeLocation = (location == null || location.trim().isEmpty()) ? "" : location.trim();
+        String safeType = (type == null || type.trim().isEmpty()) ? "" : type.trim();
+        String safeCompany = (company == null || company.trim().isEmpty()) ? "" : company.trim();
+        String safeCategory = (category == null || category.trim().isEmpty()) ? "" : category.trim();
 
-        // Pass all safe strings and sort instructions to the service
-        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, safeType, sort, page, size);
+        // Pass all safe variables down to the service layer
+        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, safeType, safeCompany, safeCategory, sort, page, size);
         return ResponseEntity.ok(jobs);
     }
 

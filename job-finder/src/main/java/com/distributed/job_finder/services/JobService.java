@@ -22,13 +22,16 @@ public class JobService {
         this.jobRepo = jobRepo;
     }
 
-    public Page<JobDto> getJobs(String search, String location, String type, String sort, int page, int size) {
+    public Page<JobDto> getJobs(String search, String location, String type, String company, String category, String sort, int page, int size) {
         
         // Dynamically build the sort order based on frontend request
         Sort sortOrder;
         if ("relevant".equalsIgnoreCase(sort)) {
-            // If they want relevant, we sort alphabetically by title (or you can adjust later)
             sortOrder = Sort.by("title").ascending();
+        } else if ("salary_desc".equalsIgnoreCase(sort)) {
+            sortOrder = Sort.by("salaryMax").descending(); // Highest Salary
+        } else if ("salary_asc".equalsIgnoreCase(sort)) {
+            sortOrder = Sort.by("salaryMin").ascending(); // Lowest Salary
         } else {
             // Default to 'recent' (Newest first)
             sortOrder = Sort.by("createdAt").descending();
@@ -36,8 +39,8 @@ public class JobService {
 
         Pageable pageable = PageRequest.of(page, size, sortOrder);
         
-        // Pass the new type parameter to the repo
-        Page<Job> jobPage = jobRepo.searchJobs(search, location, type, pageable);
+        // Pass all parameters to the repository search query
+        Page<Job> jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
 
         return jobPage.map(job -> new JobDto(
                 job.getAtsJobId(),

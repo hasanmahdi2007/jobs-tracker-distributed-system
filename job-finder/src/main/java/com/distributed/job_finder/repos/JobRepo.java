@@ -16,13 +16,17 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
 
     Optional<Job> findByAtsJobIdAndCompanyId(String atsJobId, UUID companyId);
 
-    // Search jobs by title/company, location, and employment type
+    // Search jobs by title/company, location, employment type, exact company, and department (category)
     @Query("SELECT j FROM Job j WHERE " +
            "(:search = '' OR LOWER(j.title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(j.companyName) LIKE LOWER(CONCAT('%', :search, '%'))) AND " +
            "(:location = '' OR LOWER(j.location) LIKE LOWER(CONCAT('%', :location, '%'))) AND " +
-           "(:type = '' OR j.employmentType = :type)")
+           "(:type = '' OR j.employmentType = :type) AND " +
+           "(:company = '' OR j.companyName = :company) AND " +
+           "(:category = '' OR j.department = :category)")
     Page<Job> searchJobs(@Param("search") String search, 
                          @Param("location") String location, 
                          @Param("type") String type,
+                         @Param("company") String company,
+                         @Param("category") String category,
                          Pageable pageable);
 }
