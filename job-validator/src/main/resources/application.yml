@@ -1,0 +1,18 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: job-validator
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+
+logging:
+  level:
+    # Shows your custom log messages (like ✅ SUCCESS or ❌ Miss)
+    com.distributed.job_validator: INFO
+    # Suppresses the massive amount of internal WebClient network logs
+    org.springframework.web.reactive.function.client.WebClient: WARN
