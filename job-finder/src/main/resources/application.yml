@@ -38,6 +38,9 @@ app:
   scraper:
     webclient:
       timeout-ms: 5000 # If an ATS API goes down, WebClient gives up after 5 seconds instead of hanging
+    workable:
+      target-boards:
+        - visioneers # You can add more separated by commas later if your code splits them
     greenhouse:
       base-url: "https://boards-api.greenhouse.io/v1/boards"
       target-boards:

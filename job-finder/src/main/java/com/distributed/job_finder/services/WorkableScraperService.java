@@ -1,12 +1,12 @@
 package com.distributed.job_finder.services;
 
+import com.distributed.job_finder.config.WorkableConfig;
 import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.dtos.workable.WorkableResponse;
 import com.distributed.job_finder.repos.CompanyRepo;
 import com.distributed.job_finder.utils.JobDataParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
@@ -26,17 +26,14 @@ public class WorkableScraperService {
     private final WebClient webClient;
     private final ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate;
     private final CompanyRepo companyRepo;
-
-    // Assuming you have a list of Workable subdomains in your properties/config
-    @Value("${workable.target-boards}")
-    private List<String> targetBoards;
+    private final WorkableConfig workableConfig; // Added config dependency
 
     private static final String JOB_INGESTION_STREAM = "job:ingestion:stream";
-    private static final String WORKABLE_API_BASE = "https://www.workable.com/api/accounts";
 
     @Autowired
     public WorkableScraperService(ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate, 
-                                  CompanyRepo companyRepo) {
+                                  CompanyRepo companyRepo,
+                                  WorkableConfig workableConfig) { 
         
         org.springframework.web.reactive.function.client.ExchangeStrategies strategies = 
             org.springframework.web.reactive.function.client.ExchangeStrategies.builder()
@@ -49,14 +46,21 @@ public class WorkableScraperService {
         
         this.reactiveRedisTemplate = reactiveRedisTemplate;
         this.companyRepo = companyRepo;
+        this.workableConfig = workableConfig; // Assign config
     }
 
     public Mono<Void> scrapeAllConfiguredBoards() {
+        List<String> targetBoards = workableConfig.getTargetBoards();
+        
+        if (targetBoards == null || targetBoards.isEmpty()) {
+            log.warn("No Workable target boards configured. Skipping scrape.");
+            return Mono.empty();
+        }
+
         log.info("Starting scrape for {} configured Workable boards...", targetBoards.size());
 
         return Flux.fromIterable(targetBoards)
                 .flatMap(boardToken -> 
-                    // Matches your setup: find company by the ATS board token
                     Mono.fromCallable(() -> companyRepo.findByBoardTokenIgnoreCase(boardToken)
                             .orElseThrow(() -> new RuntimeException("Company not found in DB for board token: " + boardToken)))
                             .subscribeOn(reactor.core.scheduler.Schedulers.boundedElastic())
@@ -66,8 +70,8 @@ public class WorkableScraperService {
     }
 
     private Mono<Void> fetchAndPushJobs(UUID companyId, String companyName, String boardToken) {
-        // Workable endpoint requires ?details=true to get the description text
-        String workableApiUrl = String.format("%s/%s?details=true", WORKABLE_API_BASE, boardToken);
+        // Use the baseUrl from the config dynamically
+        String workableApiUrl = String.format("%s/%s?details=true", workableConfig.getBaseUrl(), boardToken);
         log.info("Fetching jobs from Workable for board: {}", boardToken);
 
         return webClient.get()
@@ -84,7 +88,6 @@ public class WorkableScraperService {
                     String jobTitle = wJob.title();
                     String jobDescription = wJob.description() != null ? wJob.description() : "";
 
-                    // Workable Location parsing
                     String locationStr = "Unspecified";
                     if (wJob.location() != null) {
                         if (wJob.location().telecommuting()) {
@@ -96,7 +99,6 @@ public class WorkableScraperService {
                         }
                     }
 
-                    // Map directly inline, just like Greenhouse
                     return new JobDto(
                             wJob.id(),
                             companyId,

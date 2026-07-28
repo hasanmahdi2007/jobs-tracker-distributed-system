@@ -41,11 +41,10 @@ public class FindAllHiddenTokens {
                     String guess = prefix + company + suffix;
                     
                     HttpRequest req = HttpRequest.newBuilder()
-                        .uri(URI.create("https://www.workable.com/api/accounts/" + guess + "?details=false"))
-                        .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-                        .header("Accept", "application/json")
-                        .GET().build();
-
+                .uri(URI.create("https://apply.workable.com/api/v1/widget/accounts/" + guess))
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                .header("Accept", "application/json")
+                .GET().build();
                     CompletableFuture<Void> future = client.sendAsync(req, HttpResponse.BodyHandlers.discarding())
                         .handle((res, ex) -> {
                             if (ex == null && res.statusCode() == 200) {
