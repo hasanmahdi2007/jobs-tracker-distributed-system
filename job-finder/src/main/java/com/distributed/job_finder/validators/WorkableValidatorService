@@ -1,0 +1,45 @@
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+import java.util.Set;
+
+@Service
+public class WorkableValidatorService {
+
+    // Spring's built-in HTTP client
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    /**
+     * Takes the generated slugs and tests them against the Workable API.
+     * Returns the valid token if found, or null if none match.
+     */
+    public String findValidWorkableToken(String rawCompanyName) {
+        Set<String> possibleSlugs = CompanySlugGenerator.generateSlugs(rawCompanyName);
+
+        for (String slug : possibleSlugs) {
+            // Workable's public API endpoint for an account's job board
+            String endpoint = "https://apply.workable.com/api/v3/accounts/" + slug + "/jobs";
+
+            try {
+                System.out.println("📡 Testing slug: " + slug);
+                
+                // We send a fast GET request. We just ask for String back to check the status.
+                restTemplate.getForObject(endpoint, String.class);
+                
+                // If the line above doesn't crash, we got a 200 OK!
+                System.out.println("✅ MATCH FOUND! Valid token: " + slug);
+                return slug;
+
+            } catch (HttpClientErrorException.NotFound e) {
+                // We got a 404 Not Found. This slug is wrong.
+                System.out.println("❌ 404 Not Found: " + slug);
+            } catch (Exception e) {
+                // Catch any other weird network errors (500s, timeouts) and just move on
+                System.out.println("⚠️ Network error testing " + slug + ": " + e.getMessage());
+            }
+        }
+
+        // If we tried all permutations and all returned 404, they don't use Workable.
+        return null; 
+    }
+}
