@@ -38,7 +38,47 @@ app:
   scraper:
     talentera:
       target-boards:
-        
+        - aab
+        - tra
+        - royaljordanian
+        - mobica
+        - masar
+        - tamimi
+        - mobily
+        - orangebedbath
+        - magrabi
+        - rawabi
+        - itqan
+        - chi
+        - radwa
+        - careers
+        - integral
+        - ncec
+        - panda
+        - beam
+        - care
+        - badruddin
+        - saib
+        - gosi
+        - al-dawaa
+        - savethechildren
+        - taiba
+        - concrete
+        - maliks
+        - ejada
+        - demo
+        - sba
+        - choithrams
+        - alfardan
+        - gib
+        - msd
+        - sal
+        - spsp
+        - batelco
+        - nwc
+        - cma
+        - modon
+        - alrashed
     webclient:
       timeout-ms: 5000 # If an ATS API goes down, WebClient gives up after 5 seconds instead of hanging
     workable:

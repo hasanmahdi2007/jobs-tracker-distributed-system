@@ -10,6 +10,10 @@ spring:
       port: 6379
       timeout: 2000ms
 
+# 👇 Add this block to control which runner executes
+scraper:
+  target: workable  # Options: workable, talentera, or none
+
 logging:
   level:
     # Shows your custom log messages (like ✅ SUCCESS or ❌ Miss)

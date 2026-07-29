@@ -1,8 +1,3 @@
-CREATE DATABASE job_finder_db;
-
--- (Remember to connect to job_finder_db in your GUI before running the rest!)
-
--- Drop everything cleanly in the correct order (respecting foreign key constraints)
 DROP TRIGGER IF EXISTS trg_jobs_search_vector_update ON jobs;
 DROP FUNCTION IF EXISTS update_job_search_vector();
 DROP PROCEDURE IF EXISTS expire_stale_jobs(UUID);
@@ -101,61 +96,48 @@ $$;
 
 SELECT current_database();
 
+-- Clean insert for Middle East Talentera Portals
 INSERT INTO companies (name, ats_type, board_token, website_url) VALUES 
--- Regional MENA
-('Careem', 'GREENHOUSE', 'careem', 'https://www.careem.com'),
-('Stripe', 'GREENHOUSE', 'stripe', 'https://stripe.com'),
-('Hala', 'GREENHOUSE', 'hala', 'https://www.halapay.com'),
-('Tamara', 'GREENHOUSE', 'tamara', 'https://tamara.co'),
--- Global Tech & Unicorns
-('Airbnb', 'GREENHOUSE', 'airbnb', 'https://www.airbnb.com'),
-('Anthropic', 'GREENHOUSE', 'anthropic', 'https://www.anthropic.com'),
-('Asana', 'GREENHOUSE', 'asana', 'https://asana.com'),
-('Adyen', 'GREENHOUSE', 'adyen', 'https://www.adyen.com'),
-('Airtable', 'GREENHOUSE', 'airtable', 'https://airtable.com'),
-('Box', 'GREENHOUSE', 'boxinc', 'https://www.box.com'),
-('Brex', 'GREENHOUSE', 'brex', 'https://www.brex.com'),
-('Canonical', 'GREENHOUSE', 'canonical', 'https://canonical.com'),
-('Chime', 'GREENHOUSE', 'chime', 'https://www.chime.com'),
-('Cloudflare', 'GREENHOUSE', 'cloudflare', 'https://www.cloudflare.com'),
-('Coinbase', 'GREENHOUSE', 'coinbase', 'https://www.coinbase.com'),
-('Coursera', 'GREENHOUSE', 'coursera', 'https://www.coursera.com'),
-('Databricks', 'GREENHOUSE', 'databricks', 'https://databricks.com'),
-('Datadog', 'GREENHOUSE', 'datadog', 'https://www.datadoghq.com'),
-('Discord', 'GREENHOUSE', 'discord', 'https://discord.com'),
-('DoorDash', 'GREENHOUSE', 'doordashglobal', 'https://www.doordash.com'),
-('Dropbox', 'GREENHOUSE', 'dropbox', 'https://www.dropbox.com'),
-('Duolingo', 'GREENHOUSE', 'duolingo', 'https://www.duolingo.com'),
-('Elastic', 'GREENHOUSE', 'elastic', 'https://www.elastic.co'),
-('Epic Games', 'GREENHOUSE', 'epicgames', 'https://www.epicgames.com'),
-('Fastly', 'GREENHOUSE', 'fastly', 'https://www.fastly.com'),
-('Figma', 'GREENHOUSE', 'figma', 'https://www.figma.com'),
-('Gemini', 'GREENHOUSE', 'gemini', 'https://www.gemini.com'),
-('GitLab', 'GREENHOUSE', 'gitlab', 'https://about.gitlab.com'),
-('HubSpot', 'GREENHOUSE', 'hubspot', 'https://www.hubspot.com'),
-('Instacart', 'GREENHOUSE', 'instacart', 'https://www.instacart.com'),
-('Lyft', 'GREENHOUSE', 'lyft', 'https://www.lyft.com'),
-('Masterclass', 'GREENHOUSE', 'masterclass', 'https://www.masterclass.com'),
-('MongoDB', 'GREENHOUSE', 'mongodb', 'https://www.mongodb.com'),
-('Monzo', 'GREENHOUSE', 'monzo', 'https://monzo.com'),
-('N26', 'GREENHOUSE', 'n26', 'https://n26.com'),
-('Okta', 'GREENHOUSE', 'okta', 'https://www.okta.com'),
-('PagerDuty', 'GREENHOUSE', 'pagerduty', 'https://www.pagerduty.com'),
-('Papaya Global', 'GREENHOUSE', 'papaya', 'https://papayaglobal.com'),
-('Peloton', 'GREENHOUSE', 'peloton', 'https://www.onepeloton.com'),
-('Pinterest', 'GREENHOUSE', 'pinterest', 'https://www.pinterest.com'),
-('Postman', 'GREENHOUSE', 'postman', 'https://www.postman.com'),
-('Reddit', 'GREENHOUSE', 'reddit', 'https://www.reddit.com'),
-('Remote', 'GREENHOUSE', 'remote', 'https://remote.com'),
-('Roblox', 'GREENHOUSE', 'roblox', 'https://www.roblox.com'),
-('Robinhood', 'GREENHOUSE', 'robinhood', 'https://robinhood.com'),
-('Scale AI', 'GREENHOUSE', 'getscale', 'https://scale.com'),
-('Smartsheet', 'GREENHOUSE', 'smartsheet', 'https://www.smartsheet.com'),
-('Squarespace', 'GREENHOUSE', 'squarespace', 'https://www.squarespace.com'),
-('Twitch', 'GREENHOUSE', 'twitch', 'https://www.twitch.tv'),
-('Udemy', 'GREENHOUSE', 'udemy', 'https://www.udemy.com'),
-('Webflow', 'GREENHOUSE', 'webflow', 'https://webflow.com'),
-('Wiz', 'GREENHOUSE', 'wizinc', 'https://www.wiz.io'),
-('Zscaler', 'GREENHOUSE', 'zscaler', 'https://www.zscaler.com')
-ON CONFLICT (name) DO UPDATE 
-SET board_token = EXCLUDED.board_token, ats_type = EXCLUDED.ats_type;
+('Abdullah Abdulghani & Bros (AAB)', 'TALENTERA', 'aab', 'https://aab.talentera.com'),
+('Telecommunications Regulatory Authority', 'TALENTERA', 'tra', 'https://tra.talentera.com'),
+('Royal Jordanian', 'TALENTERA', 'royaljordanian', 'https://royaljordanian.talentera.com'),
+('Mobica', 'TALENTERA', 'mobica', 'https://mobica.talentera.com'),
+('Masar', 'TALENTERA', 'masar', 'https://masar.talentera.com'),
+('Tamimi Markets', 'TALENTERA', 'tamimi', 'https://tamimi.talentera.com'),
+('Mobily', 'TALENTERA', 'mobily', 'https://mobily.talentera.com'),
+('Orange Bed & Bath', 'TALENTERA', 'orangebedbath', 'https://orangebedbath.talentera.com'),
+('Magrabi', 'TALENTERA', 'magrabi', 'https://magrabi.talentera.com'),
+('Rawabi Holding', 'TALENTERA', 'rawabi', 'https://rawabi.talentera.com'),
+('Itqan', 'TALENTERA', 'itqan', 'https://itqan.talentera.com'),
+('Council of Health Insurance (CHI)', 'TALENTERA', 'chi', 'https://chi.talentera.com'),
+('Radwa Food Products', 'TALENTERA', 'radwa', 'https://radwa.talentera.com'),
+('Talentera Careers', 'TALENTERA', 'careers', 'https://careers.talentera.com'),
+('Integral', 'TALENTERA', 'integral', 'https://integral.talentera.com'),
+('National Center for Environmental Compliance (NCEC)', 'TALENTERA', 'ncec', 'https://ncec.talentera.com'),
+('Panda Retail Company', 'TALENTERA', 'panda', 'https://panda.talentera.com'),
+('BEAM', 'TALENTERA', 'beam', 'https://beam.talentera.com'),
+('Care National Hospital', 'TALENTERA', 'care', 'https://care.talentera.com'),
+('Badruddin', 'TALENTERA', 'badruddin', 'https://badruddin.talentera.com'),
+('Saudi Investment Bank (SAIB)', 'TALENTERA', 'saib', 'https://saib.talentera.com'),
+('General Organization for Social Insurance (GOSI)', 'TALENTERA', 'gosi', 'https://gosi.talentera.com'),
+('Al-Dawaa Pharmacies', 'TALENTERA', 'al-dawaa', 'https://al-dawaa.talentera.com'),
+('Save the Children', 'TALENTERA', 'savethechildren', 'https://savethechildren.talentera.com'),
+('Taiba Investments', 'TALENTERA', 'taiba', 'https://taiba.talentera.com'),
+('Concrete', 'TALENTERA', 'concrete', 'https://concrete.talentera.com'),
+('Maliks', 'TALENTERA', 'maliks', 'https://maliks.talentera.com'),
+('Ejada', 'TALENTERA', 'ejada', 'https://ejada.talentera.com'),
+('Talentera Demo', 'TALENTERA', 'demo', 'https://demo.talentera.com'),
+('Saudi Bar Association (SBA)', 'TALENTERA', 'sba', 'https://sba.talentera.com'),
+('Choithrams', 'TALENTERA', 'choithrams', 'https://choithrams.talentera.com'),
+('Alfardan Group', 'TALENTERA', 'alfardan', 'https://alfardan.talentera.com'),
+('Gulf International Bank (GIB)', 'TALENTERA', 'gib', 'https://gib.talentera.com'),
+('MSD', 'TALENTERA', 'msd', 'https://msd.talentera.com'),
+('SAL Saudi Logistics Services', 'TALENTERA', 'sal', 'https://sal.talentera.com'),
+('Saudi Petroleum Services Polytechnic (SPSP)', 'TALENTERA', 'spsp', 'https://spsp.talentera.com'),
+('Batelco', 'TALENTERA', 'batelco', 'https://batelco.talentera.com'),
+('National Water Company (NWC)', 'TALENTERA', 'nwc', 'https://nwc.talentera.com'),
+('Capital Market Authority (CMA)', 'TALENTERA', 'cma', 'https://cma.talentera.com'),
+('MODON', 'TALENTERA', 'modon', 'https://modon.talentera.com'),
+('Al Rashed', 'TALENTERA', 'alrashed', 'https://alrashed.talentera.com')
+ON CONFLICT (board_token) DO UPDATE 
+SET name = EXCLUDED.name, ats_type = EXCLUDED.ats_type;

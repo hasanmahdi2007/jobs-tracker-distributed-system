@@ -1,85 +1,57 @@
 package com.distributed.job_validator.talentera;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.time.Duration;
 
 @Service
 public class TalenteraHunter {
 
-    private final HttpClient httpClient;
+    private final WebClient webClient;
 
-    public TalenteraHunter() {
-        this.httpClient = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_2)
-                .followRedirects(HttpClient.Redirect.NORMAL)
-                .connectTimeout(Duration.ofSeconds(3))
+    public TalenteraHunter(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder
+                .defaultHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .build();
     }
 
-    public boolean isTalentera(String slug) {
+    public Mono<Boolean> isTalentera(String slug) {
         if (slug == null || slug.isBlank()) {
-            return false;
+            return Mono.just(false);
         }
 
         String cleanSlug = slug.toLowerCase().replaceAll("[^a-z0-9-]", "");
 
         // 1. Direct Talentera Subdomain Check
-        if (checkUrl("https://" + cleanSlug + ".talentera.com")) {
-            return true;
-        }
-
-        // 2. Custom Domain Probes with Footprint Verification
-        if (checkUrlAndFootprint("https://careers." + cleanSlug + ".com")) {
-            return true;
-        }
-
-        if (checkUrlAndFootprint("https://jobs." + cleanSlug + ".com")) {
-            return true;
-        }
-
-        return false;
+        return checkUrl("https://" + cleanSlug + ".talentera.com")
+                // 2. Careers Custom Domain Probe
+                .flatMap(found -> found ? Mono.just(true) : checkUrlAndFootprint("https://careers." + cleanSlug + ".com"))
+                // 3. Jobs Custom Domain Probe
+                .flatMap(found -> found ? Mono.just(true) : checkUrlAndFootprint("https://jobs." + cleanSlug + ".com"));
     }
 
-    private boolean checkUrl(String url) {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .timeout(Duration.ofSeconds(3))
-                    .GET()
-                    .build();
-
-            HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-            int code = response.statusCode();
-            return (code >= 200 && code < 400);
-        } catch (Exception e) {
-            return false;
-        }
+    private Mono<Boolean> checkUrl(String url) {
+        return webClient.get()
+                .uri(url)
+                .retrieve()
+                .toBodilessEntity()
+                .map(response -> response.getStatusCode().is2xxSuccessful() || response.getStatusCode().is3xxRedirection())
+                .timeout(Duration.ofSeconds(3))
+                .onErrorResume(e -> Mono.just(false));
     }
 
-    private boolean checkUrlAndFootprint(String url) {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .timeout(Duration.ofSeconds(4))
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() >= 200 && response.statusCode() < 400) {
-                String body = response.body().toLowerCase();
-                return body.contains("powered by talentera")
+    private Mono<Boolean> checkUrlAndFootprint(String url) {
+        return webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(String.class)
+                .map(String::toLowerCase)
+                .map(body -> body.contains("powered by talentera")
                         || body.contains("bayt.com")
-                        || body.contains("talentera");
-            }
-            return false;
-        } catch (Exception e) {
-            return false;
-        }
+                        || body.contains("talentera"))
+                .timeout(Duration.ofSeconds(4))
+                .onErrorResume(e -> Mono.just(false));
     }
 }
