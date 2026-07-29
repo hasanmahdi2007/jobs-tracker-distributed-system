@@ -464,9 +464,6 @@ AA Trading & Contracting Co.
 AAA (Arabian Automobile Association)
 AAA Holding Group LTD
 AAA Service Centre
-AAB Building Contracting
-AAB Tools
-AAB Tools Industrial Supply
 AAES store
 AAFES Exchange (PX)
 AALCO Trading
@@ -9608,7 +9605,6 @@ Al-Dakhil Plaza 2
 Al-Dallah Supermarket
 Al-Damuk Scientific Office
 Al-Dar General Trading Company
-Al-Dawaa
 Al-Dawaa Al-Arabi Secondary Station
 Al-Deeb Mall
 Al-Deil Real Estate Marketing and Brokerage Office
@@ -10017,7 +10013,6 @@ Al-Ramah Police Station
 Al-Ramlawy
 Al-Raqa
 Al-Rashad Passenger Transport Company
-Al-Rashed
 Al-Rashed Mall
 Al-Rashid Electronics, Electricals, and Energy Solutions Office
 Al-Rashid Real Estate Office
@@ -10736,10 +10731,6 @@ Alfanar Travel
 Alfanoof Sami Ali Ahmed Aldoseri
 Alfarah Corner Tailoring
 Alfaraj Electronics
-Alfardan Jewellery
-Alfardan Motorcycles
-Alfardan Premier Motors
-Alfardan Sports Motors
 Alfareej Gate Food Stuff
 Alfares
 Alfares Computer
@@ -11479,7 +11470,6 @@ Alralaheen Bakery
 Alramz Allamaa
 Alraqim Boutique
 Alras
-Alrashed Pools
 Alrashid library
 Alrasikhoon Real Estate الراسخون للعقارات
 Alrawad ceramics
@@ -14429,7 +14419,6 @@ Badran Star Laundry
 Badrana
 Badri
 Badriya Tailoring
-Badruddin Markets
 Badshah Electronic
 Badyã City Operation Center (COC)
 Baelasan Fashion
@@ -15095,10 +15084,6 @@ Bata Outlet
 Batal Lighting
 Bateel
 Bateel Dates
-Batelco
-Batelco Argentina Food Stuff
-Batelco HQ
-Batelco Real Madred Cold Store
 Baten park D1
 Bath & Body Works
 Bath & Tile Krait
@@ -15228,8 +15213,6 @@ Beacon Advertising Agency
 Beacon Decor & Light LLC
 Beacon Men's Salon
 Beaity & Best Diet
-Beam Car Accessories
-Beam Engineering Office
 Beardo
 Bearings International
 Beat El Hadaia
@@ -17499,8 +17482,6 @@ CLNS-132KV(E16)
 CLS - ML - E parts irak man
 CLS Global
 CLUE COMPANY
-CMA
-CMA CGM
 CMC هيئة الاعلام والإتصالات
 CMFP SIDI BABA (OFPPT)
 CMH
@@ -17926,21 +17907,10 @@ Card Posta
 Cardial
 Cardiff Building Materials Trading Company
 Cardiff Salon
-Care Auto Repair Services
-Care Car Accessories
-Care International
-Care Line
-Care Line Beauty Cosmetices WLL
-Care Line Beauty Cosmetics
-Care Pet Animals Accessories
-Care Plus
-Care Plus Supermarket
-Care n cure
 Careefour
 Careem Captain Center
 Career Campus
 Career Development Center
-Careers Office
 Careffour BIER
 Carefive
 Carefour
@@ -18657,7 +18627,6 @@ Chez el majdoub
 Chezena
 Chhan Adil V . Des Tapis
 Chhappan Bhog
-Chi تشآي
 Chiang Mai Mart
 Chic
 Chic Bridal
@@ -18774,10 +18743,6 @@ Choitarams
 Choithram
 Choithram's Super Market
 Choithram's Supermarket
-Choithrams
-Choithrams Al Rais Supermarket
-Choithrams Park Gate Residences
-Choithrams Shorooq
 Choitram
 Choitram Supermarket
 Choitram's (Greens Village)
@@ -19515,9 +19480,6 @@ Concord Establishment
 Concord Market Cold Store
 Concord Plaza
 Concorde
-Concrete
-Concrete Office
-Concrete Solutions Company
 Condor
 Condor Contracting office
 Confecciones Chikri
@@ -20154,7 +20116,6 @@ DECORMA
 DED Al Maktoum
 DELMON OPTIC W.L.L
 DELTA
-DEMO store
 DENTALINE ORTHODONTICS
 DESCO
 DESCO Copy & Print Center
@@ -23111,8 +23072,6 @@ Eiffel Auto Accessories
 Eiffel Automatic Laundry
 Eihab Travel
 Eissa
-Ejada Systems Ltd.
-Ejada United
 Ejaz Ahmed Electronics
 Ejteyaz Marketing Consultancy
 Ekbun company for real estate
@@ -26592,8 +26551,6 @@ GOLDEN SKY LINKS COMPANY
 GOLY SAN Co.
 GOODYEAR PNEUMATIQUE
 GORENA vêtements
-GOSI
-GOSI Mall
 GOSP TYPING
 GOZY
 GP Office for Internet Services & Surveillance Cameras
@@ -27283,7 +27240,6 @@ Ghusen Al Baan
 Ghuuam Hazart Bakery
 Ghwani Gowns
 Gi Properties
-GiB
 Giancario Giotelli
 Giancarlo Jewellery
 Giant
@@ -30687,7 +30643,6 @@ Insurance House
 Insurance building
 Int. Exh. for Modern Furniture Co.
 Integraed System for Trading
-Integral
 Integrated Links
 Integrated Projects & Dubai
 Intel Electronics Trading Office
@@ -31013,10 +30968,6 @@ Itell
 Ithmar Electronic
 Itissalat Al Maghrib Headquarters
 Itkane
-Itqan
-Itqan Gents Salon
-Itqan Real Estate
-Itqan Technologies
 Itronix Electronics
 Itsalat Alsmawa
 Ittfaq
@@ -35066,8 +35017,6 @@ MAG Commercial
 MAG NGO office
 MAG Organization
 MAGIC GOWN TAILORING & EMBROIDERY SHOP
-MAGRABI OPTICAL
-MAGRABi
 MAK Homes Real Estate
 MAKTABATI STATIONERY
 MAKTech 3d
@@ -35217,7 +35166,6 @@ MODERN FACTORY
 MODERN LIGHT TRAD & CONT.CO. LLC
 MODERNPHARMA
 MODLI Cairo
-MODON office
 MOF Attestation office Oman
 MOF Eng Co. Smart Home
 MOF attestation Office Nizwa
@@ -35252,7 +35200,6 @@ MSAN E258
 MSAN RAZI
 MSC
 MSCA
-MSD Studio
 MSF -Abs Office
 MSF office
 MSF-Holland
@@ -35556,10 +35503,6 @@ Magnum
 Magnum Plaza
 Magnum Trading & Technical Services
 Magnum Video
-Magrabi
-Magrabi For Optical
-Magrabi Optical
-Magrabi Opticals
 Magrebi
 Magwash
 Maha
@@ -35983,7 +35926,6 @@ Malikan Trading
 Malikat
 Malikis
 Maliko Sweets
-Maliks
 Malin mode
 Malix
 Mall
@@ -36595,7 +36537,6 @@ Masakin
 Masakn Mart
 Masakn Supermarket
 Masala Chai
-Masar & Omani Topi
 Masarat
 Masarat Internet Services Company
 Masaya
@@ -37974,7 +37915,6 @@ Mobi Style
 Mobi Zone
 Mobi tech
 Mobiblanc
-Mobica
 Mobidata
 Mobil 1 Center
 Mobil 1 Center - Fayoum
@@ -38018,10 +37958,6 @@ Mobilia triangle D'or Agdal
 MobiliaUno Furniture Store
 Mobilium
 Mobilmart
-Mobily
-Mobily Falastin
-Mobily Office
-Mobily Store
 Mobinil
 Mobitech
 Mobitel
@@ -38142,7 +38078,6 @@ Modern star wood Laundry
 Modesh
 Modesto
 Modhi Tailoring
-Modon
 Mody More
 Mody Trading
 Moe Therapy Centre
@@ -39321,8 +39256,6 @@ NCA Duhok
 NCA kabarto
 NCC Real Estate Services
 NCCI
-NCEC
-NCEC - Nat. Ctr for Eng. Consultancy
 NCR ATLEOS / Cardtronics
 ND Fashion
 ND Store
@@ -39448,7 +39381,6 @@ NW-IPS-01
 NW-IPS-02
 NW-SBY
 NW-SWH-02 (Pumping station Tanker)
-NWC
 NWSA
 NYUAD Bookstore
 Na Geo Food
@@ -41805,8 +41737,6 @@ Oragne Express
 Oranfresh
 Orange
 Orange Abbas akad branch
-Orange Bed & Bath
-Orange Bed Bath
 Orange Botique
 Orange Boutique
 Orange Business
@@ -42328,17 +42258,6 @@ Panama
 Panama Electric & Sanitary Ware
 Panasonic
 Panasonic Store
-Panda
-Panda 435
-Panda Dry Cleaning
-Panda Hypermarket
-Panda Market
-Panda Store
-Panda Super
-Panda Super Market - Jarir
-Panda Supermarket
-Panda Supermarket بندة
-Panda mini supermarket
 Pandati
 Pandero Sweets
 Pandora
@@ -44654,8 +44573,6 @@ Radiologie El Hilal
 Radiologie Firdaous
 Radioshack
 Rado Supermarket
-Radwa for cars
-Radwa market
 Radwan
 Rae'd Gents Saloon
 Raed Al-Hasnawi Real Estate
@@ -45004,14 +44921,6 @@ Rawaa Al Jamal
 Rawaak Barber Shop
 Rawaat Al Naseem
 Rawaat Al Naseem Kids Accessories
-Rawabi
-Rawabi Al Jama'a
-Rawabi Al Madeena Shopping Centre
-Rawabi Al Walja United
-Rawabi Food Stuff
-Rawabi Hyper Market
-Rawabi Ibri Trading
-Rawabi Zamzam Road Company for Hajj, Umrah, Tourism and Travel
 Rawad of Law Company
 Rawadi Grocery
 Rawafed AlMadenah Drugstore
@@ -46051,7 +45960,6 @@ Royal Horizon Fazal
 Royal House
 Royal House Opticals
 Royal Job Company
-Royal Jordanian
 Royal Jordanian Geographic Center
 Royal Key
 Royal Kitchen
@@ -46448,7 +46356,6 @@ SAUDI SUPERMARKET
 SAV SYM
 SAVINO HAWLER
 SB ingenierie
-SBA
 SBF beauty salon
 SBIC
 SBK Projects
@@ -46693,7 +46600,6 @@ SPEX optical سبيكس للبصريات
 SPMP Sohar offices
 SPORT & STYLE (S&S)
 SPRING FLOWER TRADING
-SPSP
 SPiDR Telecom -Point A
 SQ Mobile
 SQLI Digital Experience
@@ -47152,7 +47058,6 @@ Sahraya Lady Tailoring
 Sai Gold Smith
 Sai Sharda
 Sai Workshop
-Saib City Management Office
 Saicom Computer
 Said
 Said Benjelloun
@@ -47713,9 +47618,6 @@ Salwah Bahary Youth Center
 Salway Co-op Society
 Saly Ladies Salon
 Saly Perfumes
-Salé Prefecture
-Salé Sucré
-Salé Sucré Pâtisserie
 Sam Boutique
 Sam Cell
 Sam Electronics
@@ -48267,7 +48169,6 @@ Sayyid Shawqi Al-Mousawi Office
 Sbai Issam V. Vêtements
 Sbai Mohamed Karim Papeterie Al Houda
 Sbata phone
-Sbaï
 Sbc Group/Lenovo / Motorola/ iTel
 Sbitar Ouled oujih
 Scali
@@ -52018,7 +51919,6 @@ TPF
 TPS
 TPS Bardo Trad (centre d'appel)
 TR Engineering
-TRA
 TRADING ESTABLISHMENT CITYCO LLC
 TRAFFIC
 TRANE
@@ -52148,16 +52048,6 @@ Tahseen Salon
 Tahssine Abbas Homewares
 Tahwwur
 Taib Al Madina Grocery
-Taiba
-Taiba Al-Hadbaa Real Estate Office
-Taiba Auto Accessories
-Taiba Hyper Market
-Taiba Jewellery
-Taiba Mobile Phone Maintenance Office
-Taiba Opticals
-Taiba Real Estate Co.
-Taiba destination
-Taiba Équipement Siera
 Taibah Marbles
 Taibah Supermarket
 Taibat Document Clearing
@@ -52326,13 +52216,6 @@ Tamim Laundry
 Tamim Optics
 Tamim al Hijaz Grocery
 Tamima
-Tamimi
-Tamimi Camp
-Tamimi Market
-Tamimi Markets
-Tamimi Supermarket
-Tamimi mini mart
-Tamimi supermarket
 Taminath hayath
 Tamkeen
 Tamkeen International
@@ -58155,7 +58038,6 @@ bashayer foodstuff grocery
 bashir
 baskin robbins
 bata
-batelco
 battlezone
 batwan company
 bawzir
@@ -59654,8 +59536,6 @@ mobile com for cell phones
 mobile shop location
 mobile talaban
 mobilei karwan
-mobily
-mobily offeic
 mod new printer
 modern House
 modern cornice carpentry
@@ -59906,8 +59786,6 @@ pally
 palm
 palm tree
 panasonic
-panda
-panda supermarket
 panorama optics
 papazz
 papeterie moojam مكتبة المعجم
@@ -60035,7 +59913,6 @@ rabih sport
 rachidi trader
 radiant lounge
 radiation Center protection
-radwa exhibition
 radwan shopping centre
 raed alharbi est
 rafaiya safa
@@ -60212,7 +60089,6 @@ saudi commission for health specialties
 saudi electricity company
 saudi energy
 saudi research and media group (srmg)
-save the children
 savegate
 sawari photo studio
 sawill majzoub
@@ -60483,7 +60359,6 @@ taif city card buy here
 taimour mobile
 take a look
 tamil nadu
-tamimi market أسواق التميمي
 taminat yanbu al balad
 taminath Al Raise
 taminath rawasi
