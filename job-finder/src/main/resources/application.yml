@@ -36,6 +36,9 @@ spring:
 # 4. Custom Application Properties
 app:
   scraper:
+    talentera:
+      target-boards:
+        
     webclient:
       timeout-ms: 5000 # If an ATS API goes down, WebClient gives up after 5 seconds instead of hanging
     workable:
