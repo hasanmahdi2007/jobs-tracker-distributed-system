@@ -40,6 +40,10 @@ public class ApiRequestLog {
     @Column(name = "api_key")
     private String apiKey;
 
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private java.time.OffsetDateTime createdAt;
+
+
     // ==========================================
     // GETTERS AND SETTERS
     // ==========================================
@@ -76,4 +80,7 @@ public class ApiRequestLog {
 
     public String getApiKey() { return apiKey; }
     public void setApiKey(String apiKey) { this.apiKey = apiKey; }
+
+    public java.time.OffsetDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(java.time.OffsetDateTime createdAt) { this.createdAt = createdAt; }
 }

@@ -15,13 +15,19 @@ public class WebClientConfig {
     @Value("${app.scraper.webclient.timeout-ms:5000}")
     private int timeoutMs;
 
+    // 1. Give Spring the Builder that your DomainResolverService is asking for
     @Bean
-    public WebClient webClient() {
+    public WebClient.Builder webClientBuilder() {
+        return WebClient.builder();
+    }
+
+    // 2. Use that Builder to create your custom timed-out WebClient
+    @Bean
+    public WebClient webClient(WebClient.Builder builder) {
         HttpClient httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMillis(timeoutMs));
 
-        // Manually build it using WebClient.builder() instead of injecting it as a parameter
-        return WebClient.builder()
+        return builder
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
     }
