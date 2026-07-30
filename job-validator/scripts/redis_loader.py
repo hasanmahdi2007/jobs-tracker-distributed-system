@@ -5,7 +5,7 @@ import re
 r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
 # New queue for Workable
-QUEUE_NAME = "queue:slugs:workable"
+QUEUE_NAME = "queue:slugs:greenhouse"
 
 def generate_slugs(raw_name):
     clean = re.sub(r'[\u0600-\u06FF]', '', raw_name.lower())

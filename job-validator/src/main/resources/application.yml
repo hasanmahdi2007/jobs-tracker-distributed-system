@@ -12,7 +12,7 @@ spring:
 
 # 👇 Add this block to control which runner executes
 scraper:
-  target: workable  # Options: workable, talentera, or none
+  target: greenhouse  # Options: workable, talentera, or none
 
 logging:
   level:

@@ -12,7 +12,7 @@ public class TalenteraHunter {
     private final WebClient webClient;
 
     public TalenteraHunter(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder
+        this.webClient = WebClient.builder()
                 .defaultHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .build();
     }
