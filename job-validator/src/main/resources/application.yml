@@ -10,13 +10,15 @@ spring:
       port: 6379
       timeout: 2000ms
 
-# 👇 Add this block to control which runner executes
 scraper:
-  target: greenhouse  # Options: workable, talentera, or none
+  target: greenhouse  # Options: greenhouse, lever, workable, talentera
 
 logging:
   level:
-    # Shows your custom log messages (like ✅ SUCCESS or ❌ Miss)
+    # Your custom logs
     com.distributed.job_validator: INFO
-    # Suppresses the massive amount of internal WebClient network logs
+    # Suppress WebClient internal logs
     org.springframework.web.reactive.function.client.WebClient: WARN
+    # Suppress Netty SSL/TLS Handshake Timeout stack traces
+    reactor.netty.http.client.HttpClientConnect: ERROR
+    reactor.netty.http.client.HttpClient: ERROR

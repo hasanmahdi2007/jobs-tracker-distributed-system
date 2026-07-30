@@ -36,6 +36,90 @@ spring:
 # 4. Custom Application Properties
 app:
   scraper:
+    lever:
+      base-url: "https://api.lever.co/v0/postings"
+      target-boards:
+        - mirror
+        - spectrum
+        - isee
+        - grand
+        - ashoka
+        - aero
+        - vana
+        - cic
+        - falcon
+        - tonic
+        - form
+        - aleph
+        - better
+        - ion
+        - incorta
+        - florence
+        - sure
+        - accurate
+        - tala
+        - sila
+        - career
+        - sar
+        - life
+        - mazars
+        - horizon
+        - maya
+        - source
+        - nextech
+        - greenlight
+        - blue
+        - raya
+        - erg
+        - hotstar
+        - coins
+        - retro
+        - aldar
+        - advocate
+        - pattern
+        - fantasy
+        - rise
+        - gamma
+        - rai
+        - kpmg
+        - reliable
+        - trio
+        - fortress
+        - powerex
+        - bigblue
+        - angel
+        - neon
+        - avante
+        - abt
+        - gate
+        - moo
+        - capital
+        - tag
+        - lever
+        - beta
+        - sep
+        - assurance
+        - harmony
+        - dutch
+        - text
+        - lemon
+        - safe
+        - terminus
+        - jmi
+        - crossfit
+        - aquarium
+        - charcuterie
+        - adora
+        - mega
+        - signal
+        - espace
+        - relay
+        - sfeir
+        - deputy
+        - mawsim
+        - ans
+        - brilliant
+        - computercare
     talentera:
       target-boards:
         - aab

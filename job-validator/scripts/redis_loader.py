@@ -1,14 +1,19 @@
+import zipfile
+import pandas as pd
 import redis
 import re
 
-# Connect to local Redis
+# Connect to local Redis instance
 r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
-# New queue for Workable
-QUEUE_NAME = "queue:slugs:lever"
+# Target Redis queue key (change to queue:slugs:greenhouse when testing Greenhouse)
+REDIS_QUEUE_KEY = "queue:slugs:lever"
 
-def generate_slugs(raw_name):
-    clean = re.sub(r'[\u0600-\u06FF]', '', raw_name.lower())
+# Your target zip file path
+ZIP_PATH = r"C:\Users\user\Downloads\companies-2023-q4-sm.csv.zip"
+
+def clean_to_slugs(raw_name):
+    clean = re.sub(r'[\u0600-\u06FF]', '', str(raw_name).lower())
     clean = re.sub(r'\b(llc|ltd|co|inc|sal|wll|fzco|fz-llc|group|company|corporation|llp)\b', '', clean)
     clean = re.sub(r'[^a-z0-9\s]', ' ', clean)
     clean = re.sub(r'\b\d+\b', '', clean)
@@ -21,29 +26,36 @@ def generate_slugs(raw_name):
     dashed = clean.replace(" ", "-")
     mashed = clean.replace(" ", "")
     
-    if 2 < len(dashed) < 63: 
-        slugs.add(dashed)
-    if 2 < len(mashed) < 63: 
-        slugs.add(mashed)
-    
-    if " " in clean:
-        first_word = clean.split(" ")[0]
-        if len(first_word) >= 3: 
-            slugs.add(first_word)
-
+    if 3 < len(dashed) < 63: slugs.add(dashed)
+    if 3 < len(mashed) < 63: slugs.add(mashed)
     return slugs
 
-print(f"🚀 Reading cleaned raw_me_companies.txt and pushing to '{QUEUE_NAME}'...")
+print(f"📦 Opening zip file: {ZIP_PATH}")
 
-total_pushed = 0
+with zipfile.ZipFile(ZIP_PATH, 'r') as z:
+    csv_filename = z.namelist()[0]
+    print(f"📄 Found inside: {csv_filename}")
+    
+    with z.open(csv_filename) as f:
+        # Detect exact column name (handles 'name', 'Name', etc.)
+        first_line = pd.read_csv(f, nrows=1)
+        f.seek(0)
+        
+        name_col = next((col for col in ['name', 'Name', 'company_name', 'organization'] if col in first_line.columns), first_line.columns[0])
+        print(f"🔍 Reading company names from column: '{name_col}'")
 
-with open("../data/raw_me_companies.txt", "r", encoding="utf-8") as f:
-    for line in f:
-        company = line.strip()
-        if company:
-            slugs = generate_slugs(company)
-            for slug in slugs:
-                if r.sadd(QUEUE_NAME, slug):
-                    total_pushed += 1
+        chunk_size = 100_000
+        total_slugs = 0
+        
+        for chunk in pd.read_csv(f, chunksize=chunk_size, usecols=[name_col], dtype=str):
+            slug_batch = set()
+            for name in chunk[name_col].dropna():
+                slugs = clean_to_slugs(name)
+                slug_batch.update(slugs)
+            
+            if slug_batch:
+                r.sadd(REDIS_QUEUE_KEY, *slug_batch)
+                total_slugs += len(slug_batch)
+                print(f"📥 Chunk processed. Total unique candidate slugs in Redis: {total_slugs:,}")
 
-print(f"🎉 Done! Pushed {total_pushed} unique Lever candidate slugs into Redis key: '{QUEUE_NAME}'")
+print(f"✅ Finished! Set '{REDIS_QUEUE_KEY}' is ready for your Spring Boot validator.")
