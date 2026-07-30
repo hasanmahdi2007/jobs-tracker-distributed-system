@@ -10,7 +10,6 @@
 % Arabica
 (Bin Talib) Engineering Consulting and Contracting Office
 (Fish)
-(General Telecomm. Institute (GTI
 (Iraqi) Ministry of Foreign Affairs office-Erbil
 (Not work)
 (dishonest)
@@ -93,7 +92,6 @@
 2-44 ADA HQ
 20 20 Laundry
 20/20 Vision
-2000 General Trading
 2000 Tailor
 2000 repair
 2004 Cold Store
@@ -431,7 +429,6 @@ A218
 A22
 A224
 A238
-A24
 A242
 A25
 A258
@@ -482,13 +479,6 @@ ABANA
 ABB Factory Egypt
 ABB Head Office Egypt
 ABB Industries
-ABC
-ABC Cargo
-ABC Hamra
-ABC Project
-ABC books
-ABC hamra
-ABC offices Villa Mexico
 ABDULLAH NASER TRADING EST
 ABED - Saffron & Caviar
 ABILMONA TRADING EST
@@ -862,7 +852,6 @@ ALWADI CO
 ALWADIAH TRADING CO. LLC
 ALWAHA BUTCHERY
 ALWIAM OFFICES
-ALX
 ALYOSFI
 ALamal Grocery
 ALbelad Mall
@@ -880,12 +869,10 @@ AM Business Hub W.L.L.
 AM Electric Bike
 AM Info
 AM Market
-AM:PM
 AMA Audit Tax Advisory
 AMA Motors
 AMADO supermarket
 AMC Auditors & Consultants FZE
-AMCA Auditing And Business Advisors
 AMCO
 AMD Medical Supplies
 AMECO - Arab Medical Equipment Co.
@@ -923,7 +910,6 @@ AP Soft Company
 API
 APM
 APNI-African Plant Nutrition Institute
-APOLLO enterprises (scaffolding materials store)
 APPLE FOOD STUFF
 AQE Photography Trading
 ARABIA insurance Co.
@@ -1062,7 +1048,6 @@ AXA assurance
 AXA تأمينات أكسا
 AXD
 AXIS OPTIC
-AXON
 AYOOB
 AZAR BAKERY
 AZHAR AL MADINA HYPERMARKET
@@ -1163,7 +1148,6 @@ Abbasi
 Abbassi Law Office
 Abboud Tools
 Abby Boutique
-Abc Maii
 Abchir Mohamed Épicier
 Abcom solutions
 Abd Al Fatah Jad
@@ -1949,9 +1933,6 @@ Acongulf Cont & Services
 Acsessories b.m.w. road
 Actan
 Acting Decoration & Carpentry
-Action
-Action Immo
-Action Video
 Activ
 Active
 Active Digital Trading
@@ -2073,9 +2054,6 @@ Administration des Douanes et Impôts Indirects
 Administration des Douanes et des Impôts Indirects إدارة الجمارك والضرائب غير المباشرة
 Administration des douanes et impots indirects
 Administration الإدارة
-Administrative Attache Sidi Talha - الملحقة الادارية سيدي طلحة
-Administrative Office
-Administrative Prosecution – New Cairo
 Admiral
 Admission and Registration Department
 Admore
@@ -2365,7 +2343,6 @@ Agro Gamk
 Agrometeorological Center
 Agusta
 Agyad mall
-Aha Trading Co. Ltd.
 Ahak Khan Electromechanical Contracting
 Ahal Aleze Salon
 Ahal Alezz
@@ -2582,26 +2559,6 @@ Ainaan
 Ainawi Auto Accessories
 Ainday slemani company
 Aiouch Sanae Optic
-Air Algérie
-Air Arabia
-Air Arabia Airlines
-Air Asia
-Air Blue
-Air Blue Office Sharjah
-Air Borne Travel Agency
-Air Call
-Air China
-Air Communication Satellite;Al Essa Upholserty
-Air Conditioning Spare Parts
-Air Conditioning Store
-Air France
-Air India
-Air India & Air India Express Office
-Air Lines Centre
-Air Mall
-Air Wings Travels
-Air World Travel And Tourism Co. LLC
-Air force Management
 AirArabia
 Airburiste benchekroun
 Airbus
@@ -10356,7 +10313,6 @@ Alaa.net
 Alaabdi Food Industries
 Alaaj Gate Bags & Shoes
 Alaaraf Fresh Meat
-Alabaster Art Office
 Alabbad Supermarket
 Alabbas Gallery
 Alabbasi Laundry
@@ -11158,18 +11114,12 @@ Allewa Alkhdher Grocery
 Alley for Real Estate Investment
 Allganic
 Allhdekia Grocery
-Alliance Auto
-Alliance Fire Protection
-Alliance Franco-Marocaine Ibn Khaldoun
-Alliance Française de Dubaï
 Alliances
 Alliances Darna - Bureau de Vente
 Allianz
 Allianz Assurance
 Allianz Assurances Hajar
 Allianz Egypt
-Allied Computer Services ALCS
-Allied Power Technical Services
 Alligator SHoes Trading
 Allimentation
 Allison
@@ -11617,11 +11567,6 @@ Alsutoaa Cold Store
 Alswaf
 Alswari Al Dhabiah
 Alswey Grocery
-Alta
-Alta Gold
-Alta Moda
-Alta Sartoria
-Alta moda
 Altaadeel
 Altaaf Cars Exbhition
 Altaiyabat Vegetables & Fruits
@@ -11663,8 +11608,6 @@ Altunsa Company, Basra Branch, altunsa
 Alturaiki Technology
 Alturkey Juices
 Altwite
-Alu tec
-Alu tec warehouse
 Alubaf
 Alubail Glass & Mirrors
 Aluco
@@ -12264,7 +12207,6 @@ Anthony Market
 Anti-Racism Movement (ARM)
 Anticop
 Anticorrosion Protective Systems
-Antigua medina
 Antiochia
 Antiquaire Haut-Atlas
 Antique Handcafts
@@ -12336,7 +12278,6 @@ Anwar Tamana Trading
 Anwar alkanane
 Anwar's Office No. 7
 Anwer AL Martja For Foodstuff
-Any Time For Konofa And Sweets
 Anzio Massimo
 Ao Meng Lighting
 Aoowal Opticals
@@ -12346,25 +12287,9 @@ Aouiwa
 Aoun Fruits and Vegetables
 Aoun Market
 Aous Mega Market
-Apex
-Apex Auto Garage
-Apex Fire Engineering & Trading
-Apex Gulf Enterprises
-Apex Gulf Trading
-Apex Opticals
-Apex Press and Printing
-Apex Reprographics
 Apia
 Aplus Typing
 Apoli
-Apollo
-Apollo Computer
-Apollo Curtain
-Apollo Furniture
-Apollo Gold W.L.L
-Apollo Holidays Centre
-Apollo Laundry
-Apollo Medical Cener
 Apostolic Nunciature
 Apostrophe
 Appareils Menagers
@@ -13370,13 +13295,10 @@ Athar Computer
 Atheer Flower
 Atheer Flowers
 Atheer Networks Telecom
-Athena FlowerShop
-Athena Star
 Athlete's Co
 Athlete's Co.
 Athletes Co.
 Athletes Point
-Athletics
 Athoob Sweet Water
 Athr bookshop
 Atif Foodstuff Trading
@@ -13522,9 +13444,6 @@ Aun Digital
 Auntie Hanady Cheesecake and Cookies
 Auoon Jawaher Salon
 Auotman General Trading
-Aura
-Aura Luxury
-Aura Trading Company
 Aurisage
 Aurjon
 Aurora Touches
@@ -13686,7 +13605,6 @@ Ava Trading
 Ava Wannas Shrine
 Avaggio
 Avalon
-Avani
 Avanta Floral Boutique
 Avante Garde Beauty shop
 Avantys Immo
@@ -13812,9 +13730,6 @@ Axa assurance
 Axa assurance florance
 Axam
 Axe Optic
-Axiom Care
-Axiom Telec
-Axiom Telecom
 Axis
 Axis Auto Garage
 Axis Standard Trade & Services
@@ -13926,17 +13841,6 @@ Azhr Al Madina
 Azilon Cars
 Azira Electro
 Azita
-Aziz
-Aziz Delicatessen
-Aziz Grocery
-Aziz Mall
-Aziz Market
-Aziz Nasir
-Aziz Razzouq
-Aziz Salahi electrician cars
-Aziz Supermarket
-Aziz express Messagerie
-Aziz's shop
 Aziza
 Aziza Studio
 Azizi sales office szr
@@ -14016,7 +13920,6 @@ B11
 B11 Baker
 B112
 B114
-B12
 B120
 B134
 B15
@@ -14086,7 +13989,6 @@ BARCODE branch 1 GARMENT TRADING LLC
 BARRACUDA MARINE FISHING & MARINE TEADING
 BARRAKA 2
 BASAM JOMAIDAH
-BASIC Outlet
 BAWIQ MARKETING L.L.C.
 BBC Paints
 BBC Phones
@@ -14195,7 +14097,6 @@ BNPP Barakah Nuclear Power Plant
 BNPP Entrance
 BNT Air Conditioning
 BO-BOSS
-BOB Fashion store
 BOC
 BODY
 BOHEC MIDDLE EAST CO.
@@ -14217,7 +14118,6 @@ BREW92 برو٩٢
 BRG
 BRICOTOOLS
 BRO hair style
-BROADWAY GROUP
 BRT Peerjan Furniture
 BRUSNIKA
 BRYN Trading Pet Accessories
@@ -14237,9 +14137,6 @@ BUhairt Al Baga
 BV Office
 BYC
 BYC Legacy
-BYD
-BYD Alghanim
-BYD Lebanon
 BZAF TV قناة بزاف تيفي
 Ba Athman Electricity
 Ba Jaber For Tradeing
@@ -15030,9 +14927,6 @@ Bashiri
 Bashiti
 Bashkir
 Bashundara
-Basic
-Basic Abayat
-Basic Outlet
 Basics
 Basil Cold Store
 Basil luthier
@@ -15192,7 +15086,6 @@ Be Fit Sports Equipment
 Be One
 Be Play
 Be Relax
-Be Relax Spa
 Be The Top
 Be You
 Be relax
@@ -15339,8 +15232,6 @@ Beeah Shj
 Beegum
 Beer Shop Dakhla
 Beeran Kutty
-Bees & Honey
-Bees Kingdom
 Beest Choice
 Beeta
 Beethoven Electronics Centre
@@ -15630,8 +15521,6 @@ Beverly Hills POLO Club
 Beverly Hills Polo Club
 Beverly Hills Polo Club Outlet
 Bey2ollak
-Beyond Eris Solutions
-Beyond The Beach
 Bfound Dmcc
 Bft v/1735
 Bft/4619/1.10.16.
@@ -15980,9 +15869,6 @@ Bir Zam Zam Auto Spare Parts
 Birabat transformer
 Birabat transformer Company
 Bircode Soft for Information Technology
-Bird
-Bird Market
-Bird Souq
 Birex Solutions
 Biriyani Corner
 Birkenstock
@@ -16096,7 +15982,6 @@ Blanco & Blue
 Blann bazar company
 Blazer
 Blc
-Blend azad kamal
 Blends
 Blessed
 Blessed Migration Company
@@ -16109,12 +15994,8 @@ Bliss Bridal
 Bliss Inc
 Blnd Ibrahim Gardi
 Bloc f
-Block 9 COOP
-Block Darto Factory
-Block Roots
 Blodan
 Blood Center (Tahakoun A Dam)
-Bloom
 Blooming
 Blooming Outlet
 Blooming Rose
@@ -16268,15 +16149,11 @@ Bo Saeed
 Bo Walid Electronics
 Bo Yue
 Bo saad Trading Est.
-BoB
 BoConcept
 Board Of Supereme Audit
 Board of Tourism
 Board of Tourism Kurdistan
 Boat tour Dubai
-Bob Al Madeena
-Bob Magic Music
-Bob music
 Bob50
 Bobian Grocery
 Bobinage
@@ -16315,7 +16192,6 @@ Boisé
 Bojeen Institude
 Bokja
 Bolan Sanitary Ware
-Bold Like Us
 Bolero
 Bolly Wood
 Bollywood Bazaar
@@ -16662,9 +16538,6 @@ Boulangerie Épicerie
 Boulangerie-Patisserie
 Boulders Building Construction
 Boulengerie Patisserie Imouzzar
-Boulevard Gents Saloon
-Boulevard KSA
-Boulevard Salmiya Mall
 Boulmane Mohamed Épicier Tabac
 Boumalek
 Boumalek delice
@@ -16765,8 +16638,6 @@ Braieze Tower Building Materials
 Brainobrain International
 Brake Fire
 Bramig
-Branch Ahmed Mahyoub For Car Accessories
-Branch of the Public Telecommunications Corporation
 Brand
 Brand For Less
 Brand Molteno Fashion
@@ -16787,12 +16658,6 @@ Braun
 Braun & Kenwood Alrabiya
 Braun & Kenwood swefia
 Braun Jordan
-Bravo
-Bravo Design
-Bravo Line Fashion
-Bravo Shoes
-Bravo int
-Bravo shoes
 Bravoure
 Brayan Electromechanical Works
 Brazil Studio
@@ -16837,7 +16702,6 @@ Bridgestone
 Bridgestone - Al Obaidly بريدجستون العبيدلي
 Bridgestone Auto Care
 Bridgestone Njoom Alnahda
-Bridgeway Trading
 Bright & White Laundry
 Bright Arrow
 Bright Bridege Electricals
@@ -16908,9 +16772,6 @@ Briton Electronics
 Britstar Mobiles
 Broad Vision Tax Consultant
 Broadband Computer Trading
-Broadway
-Broadway Grocery LLC
-Broadway Hardware
 Brocard Ben chrif
 Brohi Gents Salon
 Broje Laundry
@@ -16930,16 +16791,6 @@ Brooks
 Brooks Brothers
 BroqMarkets
 Bros barber
-Brothers
-Brothers Bakery
-Brothers Elect. & Sanitary Inst.
-Brothers Grocery
-Brothers Haircutting Saloon
-Brothers Palace Salon
-Brothers Petals
-Brothers Print
-Brothers Vegetables & Fruits
-Brothers' Office
 Brotkorb
 Brotzeit German Bakery
 Brought Market grocery
@@ -17417,7 +17268,6 @@ C96
 CACE
 CAFO
 CAIRO TYPE WRITING & PHOTOCOPYING
-CAIS
 CANAMETAL sarl (pristataire en structure acier)
 CAPNI NGO
 CAR HOUSE UPHOLSTERY WORKS AND CAR ACCESSORIES
@@ -17430,7 +17280,6 @@ CASIO G-SHOCK
 CAT
 CAT International LLC
 CAke Bake
-CAsa Lusso Furniture
 CB Elie Bacha
 CBBC
 CBC
@@ -17465,7 +17314,6 @@ CHF Vitas Iraq
 CHRIS Hairdresser
 CHRONO El Ansari, El Ansari Auto
 CIC FORD
-CIO
 CIOVE
 CIRAMICA CLEOPATRA
 CIS
@@ -17509,10 +17357,6 @@ CONCORD ELECTRONICS
 CONFIDENCE SECURITY CONSULTANCY
 CONTROL SAFETY & FIRE EQUIPMENT LLC
 CONWOOD
-COOP
-COOP AGRO-ANIR
-COOP Ferzol
-COOP market
 COOPI Ngo
 COOkies grocery
 COPY WORLD STATIONERY & PHOTOCOPY
@@ -17559,7 +17403,6 @@ CTM
 CTM Inezgane
 CTM office
 CTM transport
-CTS travel & Tourism
 CURTAIN HOUSE
 CUTE LADY ABAYA & SHELA
 CYC COMPANY
@@ -17568,7 +17411,6 @@ Cabaly
 Cabana Rental & Towels
 Cabane
 Cabello Lounge
-Cabin 1 (PMO)
 Cabinet Dr Moustaine
 Cabinet TAOUHID de Topographie
 Cabinet d'Ophtalmologie Atlas
@@ -17692,7 +17534,6 @@ Calla Flowers
 Callaway
 Calligrapher & Stamps
 Calligraphie
-Calm Corner Textiles
 Caloni
 Calvin Klein
 Calvin Klein Jeans
@@ -17714,11 +17555,6 @@ Camel race track
 Camera world Co.
 Camerk or Qasr northern port
 Camillo Shoes
-Camp
-Camp AkT
-Camp Grocery
-Camp Shoes
-Camp Yapı Merkezi
 Campomatic
 Campus Director's Office
 Campus Services
@@ -17744,7 +17580,6 @@ Canary برادي تنجيد مفروشات
 Candini
 Candle Night Personal Care
 Candlelight Spa & beauty
-Candles Passion
 Cando
 Candy
 Candy Art
@@ -17768,7 +17603,6 @@ Cannes Construction
 Cannes Couture
 Cannes General Trading
 Cannon
-Cannondale
 Canon
 Canon Office Imaging Solutions
 Canteen
@@ -17899,7 +17733,6 @@ Caravana Luxury
 Caravanserai
 Carawan
 Carawan Sweets
-Carbon Wheels
 Carbonio Auto Spare Parts Trading
 Carbono
 Carcassonne Gold & Diamond
@@ -17908,7 +17741,6 @@ Cardial
 Cardiff Building Materials Trading Company
 Cardiff Salon
 Careefour
-Careem Captain Center
 Career Campus
 Career Development Center
 Careffour BIER
@@ -18055,27 +17887,6 @@ Cas 1364
 Cas 1386
 Cas 1387
 Cas 1388
-Casa 1274
-Casa Ala Bella
-Casa Bella
-Casa Blanca Ladies Saloon
-Casa Blanka Trading & Services Co.
-Casa Blue
-Casa Cucina
-Casa D'oro
-Casa Del Flora
-Casa Flora
-Casa Hassan
-Casa Moda
-Casa Nova
-Casa Ossa
-Casa Pepe
-Casa Port
-Casa Sanitary Ware & Paints Est.
-Casa Solde
-Casa Sun
-Casa Tech
-Casa del Habano
 CasaNova
 CasaPasta
 Casablanca Tailors
@@ -18459,12 +18270,6 @@ Chambre de l'agriculture de la region beni mellal khenifra الغرفة الفل
 Chambre d’agriculture du Souss-Massa-Draâ,
 Chammass
 Chamoun
-Champion
-Champion Cleaners
-Champion Cleaners Centre
-Champion Speed Auto Workshop
-Champion Tailoring
-Champion Yachts
 Champions Sport
 Champs Élysées
 Champs-Elysee
@@ -18502,9 +18307,6 @@ Charisma Kitchen Trading
 Charisma Man Salon
 Charity Village Fish
 Charity for Orphan Care
-Charles
-Charles & Keith
-Charles and Keith
 Charlotte
 Charlotte Sweets
 Charm Spa
@@ -18513,7 +18315,6 @@ Charme
 Charmereine Beauty Academy
 Charrana HTR Creativa تشارانا ها تي أر كرييتف
 Chartford Accounts Auditing
-Chata Travel
 Chateau De Gateaux
 Chateau Musar
 Chateau de distribution d'eau
@@ -18572,9 +18373,6 @@ Cherkawi
 Cherocky Hairdressing Saloon
 Cherradi Driss Tolier
 Cherri
-Cherry
-Cherry & Berry
-Cherry Computer
 Chery
 Chery Duhok
 Cheveux
@@ -18641,7 +18439,6 @@ Chic Modati
 Chic Wheel Balance
 Chic boutique
 Chic optic
-Chicago Ladies Salon
 Chicco
 Chiceken & Meat Products
 Chicken
@@ -18999,7 +18796,6 @@ Clarino
 Clarion Stationary
 Clariz
 Clark
-Claros
 Clash In Fashion
 Clasico
 Class
@@ -19061,16 +18857,8 @@ Clean Time
 Cleaning
 Cleaning Service & Packaging
 Cleaning Supplies Shop
-Clear
-Clear Cuts
-Clear Vision
-Clear Vision Optical
-Clear Voice Phone
-Clear Voice Phones
-Clear-Coat Mobile Outfitters
 Clearance Store
 Cleavers
-Cleo Gardens Mall
 Cleopatra
 Cleopatra Bazar
 Cleopatra Hairdressing Salon
@@ -19089,7 +18877,6 @@ Cleopatra’s Studio
 Cleopatre parfumerie
 Cles
 Cleveland
-Clever
 Click Art
 Click Computers
 Click Electronics
@@ -19143,9 +18930,6 @@ Co-operative Laundry
 Co.AL-Hadetha
 Coach
 Coash
-Coast Fasion
-Coast Laundry
-Coast Star Co. Events Planning
 Coastal Pearl Trading
 Coastliner company
 Cobbler
@@ -19292,9 +19076,6 @@ Color Plus
 Color Season Boutique
 Color Spot Printing Services
 ColorFab Digital Advertising LLC
-Colorado One Saloon
-Colorado Saloon
-Colorado كولورادو
 Colorcode Beauty saloon
 Colorful Flower
 Colorlines
@@ -19322,7 +19103,6 @@ Comarev
 Come & Play
 Come & Wash
 Come Back
-Comet Group Qatar
 Comfort
 Comfort Furniture
 Comfort Palace Trading
@@ -19375,8 +19155,6 @@ Communications and Media Commission, Dhi Qar Office
 Communications mast
 Communist Party
 Communist party committee
-Community Development Authority - Al Mina
-Community Police coman
 Comp Air
 Compact
 Compagnie Génerale des Parkings
@@ -19465,7 +19243,6 @@ Comserv General Trading
 Comtel
 Concentral Diagnostics
 Concentration Department (new)
-Concentric of traffic of East
 Concentrix
 Concept
 Concept Advertising LLC
@@ -19611,7 +19388,6 @@ Continental Traders Musical Instruments
 Continents Document Clearing
 Contishtal kitchen factory
 Contraco WLL - Muntazah
-Contracts Office
 Control
 Control Electrical Trading Accessories Co. LLC
 Control Technologies
@@ -19632,9 +19408,6 @@ Cool Plus
 Cool Sports
 Cool Tech
 Cool Tracks
-Coop
-Coop ColaiNord
-Coop supermarket
 Cooperativa Society
 Cooperative
 Cooperative Agricole Wahat Tighmet
@@ -19647,19 +19420,6 @@ Cooperative SOFFI eau de rose certifiée bio
 Cooperative Tapis Akhnif Lglaoui
 Cooperative Tighanimine Filahia
 Cooperative laitiere de Chkhachkha تعاونية جمع الحليب الشخاشخة
-Coopérative Agricole Salsabile
-Coopérative Artisanale de Fès
-Coopérative Idraren-Maison de Noyer
-Coopérative Issafnoudren- FRIGO D'ASNI
-Coopérative Marjana
-Coopérative Tamouzounte (Argan oil)
-Coopérative Yacout
-Coopérative agoundiz
-Coopérative alOulfa
-Coopérative de pêcheurs
-Coopérative féminine AFRA
-Coopérative féminine d'Argan
-Coopérative laitière Mabrouka
 Coordination Office
 Coordination Regionale de l'Entraide Nationale de la Region de Marrakech-Safi
 CopeComputers
@@ -19887,9 +19647,6 @@ Cremerie jawda
 Cremerie lailla
 Cremerie room Saad
 Crepe & Waffles
-Crescent
-Crescent Fruits and Vegitables
-Crescent Tailoring Centre
 Crew Cut
 Crisital Strass
 Cristal
@@ -20036,9 +19793,6 @@ Cyberspace Technologies L.L.C.
 Cycle 2000
 Cycle Repair
 Cyclekom
-Cycles Belghiti
-Cycles Koutoubia
-Cycles de la Jeunesse
 Cycling Time
 Cycliste
 Cyclo sport
@@ -20167,7 +19921,6 @@ DLG
 DLPS Abqiq Office
 DLink
 DMK Co. Trading
-DNA
 DNATA
 DNH General Trading
 DNO Oil Company
@@ -20190,9 +19943,6 @@ DPR Facilities Management
 DR DE kinésithérapie et d'amincissement
 DR Spécialiste en ophtalmologie
 DR autoglass
-DRC
-DRC Danish Refugee Council
-DRC office
 DRILLERZ LLC.
 DS7
 DS7 ExxonMobil
@@ -20329,10 +20079,6 @@ Daliya Grocery
 Daliya Trading CO
 Dalla Nail Ladies Beauty Center
 Dallah
-Dallas
-Dallas Furniture
-Dallas Gate Trading
-Dallas Ladies Salon
 Dallat Al Emarat Real Estate
 Dalloati
 Dally Molodk دللي مولودك
@@ -20787,10 +20533,7 @@ Dates and Wheat
 Dates of Madinah
 Dates shop in Mawaleh souq
 Datum
-David Bloch Gallery
-David Morris
 Davide
-David’s Salon
 Davine salon F
 Davos View Real-Estate
 Daw Al Shams Grocery
@@ -20825,7 +20568,6 @@ Dawoud Library
 Dawwar Al Madina
 Day & Night
 Day By Day
-Day Light
 Day Light Hair Cutting Saloon
 Day Light Supermarket
 Day Mart
@@ -20858,7 +20600,6 @@ Dayana Beauty Center
 Dayane Chocolate & sweets
 Dayar Automatic Laundry
 Dayer Safety
-Daylight
 Daym Al Saif Perfumes
 Dayra Space
 Daytona
@@ -21082,7 +20823,6 @@ Dent Doctor Bahrain
 Dentelle Beauty Saloon
 Dentiste
 Dentists Syndicate
-Denver Building Materials & Decor Trading
 Departament Of Finance
 Department Of Tourism
 Department of Agriculture
@@ -21132,9 +20872,6 @@ Derma Zone
 Dermatology & Laser Clinic
 Dermatology Laboratory, Ministry of Industry and Minerals
 Derwazat Al Ceramic
-Des Choux et des Idées
-Des Habouss
-Des couches Dalaa
 Descartes Vision
 Desco
 Desco Copy Center
@@ -21564,7 +21301,6 @@ Digi Sat
 Digi Sat Electronics
 Digi-Tec
 DigiTop
-Digit Weight Equipment
 Digital City
 Digital Culture Center
 Digital Data Systèm
@@ -21646,7 +21382,6 @@ Diner's
 Dinga Computers
 Dinia Ameublement
 Dinia Optique
-Dino's Diving Center & Safari
 Dior
 Diouf Al Safi Travel and Tourism Company
 Dip N Dip
@@ -21937,9 +21672,6 @@ Do it self shop
 DoZone
 Doaa
 Doaa Gents Tailoring
-Doc Nature
-Doc khaoulla Hbid
-Doc.co
 DocRankr
 Dockers
 Dockers Shoes
@@ -22634,10 +22366,6 @@ EDCOLebanon s.a.r.l
 EDDY Home & Electronics
 EDI
 EDIM Pro
-EDO
-EFS Facilities Services Group | Leading FM services provider
-EFS al ain office
-EFS al ain store
 EGCIE
 EGLO
 EGTIC
@@ -22678,7 +22406,6 @@ EMCE Trading
 EMCO Camp 1
 EMCO QF Laydown
 EMDAD Co. & El Siqaya Foundation
-EMI
 EMILIO
 EMIRATES HOTEL SUPPLIES
 EMPL
@@ -22760,7 +22487,6 @@ ETS Zahraoui
 EVA
 EVEAD GROUP
 EVI Paints and Coating
-EXCEL FIRE SYSTEMS
 EXCELLENCE4U
 EXCENT
 EXCLUSIVE COTTON HOUSE
@@ -22916,15 +22642,9 @@ Ebtehal
 Ebtesamat Al Khaleej
 Eccesswary
 Ecco
-Echo
-Echo Electronics
-Echo Fashion
-Echo Star Immigration Services
-Echo Towers
 Echrigui Said Mécanique Générale
 Eclair
 Eclips
-Eclipse
 Eco 101
 Eco Clean
 Eco Evergreen
@@ -22984,14 +22704,11 @@ Edge Haircut Saloon
 Edge Tailoring
 Edible
 Edicom s.A
-Edison Roastery
 Edita
 Edmark Intl
 Edmon
 Edmond Barbour Trading Tile Shop & Sanitaries
 Edole Des Hautes Etudes Commerciales
-Education Ministry Office
-Education center
 Educational Planning and Orientation Center (COPE)
 Educational supervision
 Educational training center - men
@@ -23483,41 +23200,6 @@ Elio
 Elio Hachem
 Elisabetta Franchi
 Elise’s staple
-Elite
-Elite Boutique
-Elite Car Rental Company
-Elite Ceramic
-Elite Decoration & Design
-Elite Electronics
-Elite Enterprises
-Elite Feeling Collection
-Elite Fit Out
-Elite Fresh
-Elite Garments General Trading
-Elite Gas Trading
-Elite Gents Salon
-Elite Gents Saloon
-Elite Hair Salon
-Elite Homes
-Elite Houses Co.
-Elite Infotech
-Elite International
-Elite Jewellery
-Elite Jewelry
-Elite Motors
-Elite Motors Mitsubishi
-Elite Nail Salon
-Elite Optics
-Elite Rose
-Elite Salon
-Elite Shine
-Elite Star Grocery
-Elite Star Optical
-Elite Stars Gents Salon
-Elite Stationary
-Elite Tailor
-Elite Torque Automobile Repairs LLC SPC
-Elite Vision General Trading
 Elixir Perfume
 Eljawhara
 Elki-palki
@@ -23797,8 +23479,6 @@ Emdad
 Emerald Mini Mart
 Emerald Spare Parts
 Emerates Towers Tailoring
-Emerge Management Training
-Emerge Supermarket
 Emergency & Public Safety Department
 Emergency & Public Safety Deptartment Al Neyadat Unit
 Emerson Process Management Distribution Ltd.
@@ -23941,7 +23621,6 @@ Emsons
 Emtiyaz 3 Phone
 EnGenius
 Enas Supermarket
-Encore Precisions General Trading
 Endless Designs
 Energie
 EnergoProjekt Entel L.L.C.
@@ -23967,7 +23646,6 @@ Eng.alaa Internet Network
 Eng/ Eslam Shalaby
 Engeneer councile
 Engeneering Office
-Engine Care Center
 Engineer (Surveillance Cameras)
 Engineer Jamal's office
 Engineer Karam El Shahawy's Office
@@ -24012,8 +23690,6 @@ Enoc
 Enoteca
 Enrollment
 Enrollment Services
-Ensemble Artisanal
-Ensemble artisanal
 Ensyr Supermarché
 Entertainment Technology
 Entirsty Trading Company
@@ -24182,7 +23858,6 @@ Es Saada
 Es02728 TASSHILAT IAICH
 Es02732 TASSHILAT BABABRIK
 Esay Way Travel
-Escada @ Emporium
 Escagrot
 Escalade
 Escape Games
@@ -24231,7 +23906,6 @@ Esposa
 Esposa Privé
 Esquire
 Esquire Fashion
-Esri R&D Center Sharjah
 Esrim (Ecole Supérieure Des Réseaux Informatiques Et De Management)
 Essa
 Essa Abdulah Grocery
@@ -24261,7 +23935,6 @@ Essaouira Spirit Water Sports Center Kite Surf Wind Sup
 Essence
 Essence & Magasin
 Essence of Beauty Salon
-Essential
 Essenza Interior & Trading
 Essenzi
 Est. Al-Henni Cargo
@@ -24423,16 +24096,8 @@ Evan Mobile & Computer
 Evan Office
 Evan vet company
 Evans
-Eve Beauty Studio
-Eve Grocery
 Even Black
 Event Management
-Events
-Ever Bright
-Ever Ready Trading Co.
-Ever Sparkle
-Ever Sparkle Ladies saloon
-Ever choice hypermarket
 Everest
 Everest Auto Parts
 Everest Cold Stores
@@ -24450,8 +24115,6 @@ Everett Trading Services
 Everfine Super Market (Nesto)
 Everfine Tools Trading
 Everfresh Bader Trading
-Evergreen
-Evergreen garage
 Everhot
 Eversafe Building Materials
 Every Day
@@ -24474,10 +24137,6 @@ ExPhone
 Exaa
 Examination of sight eye
 Exceed Language Center
-Excel
-Excel Assurance
-Excel Middle East
-Excel Tech
 Excellence
 Excellence Art Fashion
 Excellence Gate Construction
@@ -24522,8 +24181,6 @@ Expert comptable
 Experts International Recruitment Services
 Experts for Development and Real Estate Investment
 Expirence Typing
-Explore Arabia Trading and Services(Head Office)
-Explore Qatar
 Expo
 Expo Center
 Expo Phone
@@ -24707,9 +24364,6 @@ FSD Office
 FTA transport authority
 FUKUR office
 FULL OPTION FOR CAR REPAIR
-FUTURE MALL
-FUTURE SCHOOL
-FUTURE WILL CO.
 FYOR
 FYS Flowers
 Faabs and Curves
@@ -25522,9 +25176,6 @@ Fes bureau
 Fescari
 Feshwari
 Festinette
-Festival City
-Festival Plaza
-Festival Textiles
 Fethen Abdenbi Épicier Tabac
 Feu Vert
 Feverfew
@@ -25575,9 +25226,6 @@ Final 121
 Final Alsichael
 Final Shot
 Final Touch
-Finance
-Finance Department
-Finance House
 Financial Audit Authority
 Financial Control Department
 Financial Information
@@ -25651,14 +25299,12 @@ First Arabian Trading
 First Avenue Mall
 First Care Market
 First Ceramic
-First Choice
 First Choice Auto Parts
 First Choice Cars
 First Choice Tours
 First Class Business Men Services
 First Class Gents Tailors
 First Class Laundry
-First Day
 First Days for Kids
 First Emirates computers and mobile phone llc
 First Flight Couriers
@@ -25755,24 +25401,6 @@ Fixperts Meadows Souk
 Fiz Boutique
 Fizagarde
 Fizze
-Flamingo
-Flamingo Design
-Flamingo Flowers
-Flamingo Hairdressing Salon
-Flamingo Impex
-Flamingo Laundry
-Flamingo Mall
-Flamingo Park
-Flamingo tex style - Nizar sindian
-Flash
-Flash Auto Spare Parts
-Flash Car Accesories
-Flash Car Accessories
-Flash Gate Computers
-Flash Mobiles
-Flash Studio
-Flash bike messaed
-Flash mode
 Flat Moda
 Flats Rental Office
 Flavors Hypermarket
@@ -25781,15 +25409,10 @@ Fleuritel
 Fleuron
 Fleurs Boutique
 Fleurs Getaoui
-Flex Fixes Technical Services
-Flex Music
-Flex Trading Company
-Flex Travel & Tourism
 Flexible marmoucha
 Flight Centre
 Flipper
 Flipper Trading
-Flix Mobile
 Flomic freight&logistic LLC
 Flona Company
 Floor Mill 2000
@@ -25822,8 +25445,6 @@ Flotilla IoT
 Flour Girl Bakeries
 Flour Mill
 Flour taste
-Flourish Electronics & Sanitary Ware
-Flourish Soap
 Floush
 Flow Air And Power Solutions LLC
 Flower
@@ -26032,7 +25653,6 @@ Foron Daoud
 ForonRex
 Forooj Al Mansoura
 Fort Saeed Printing Press
-Forte suspension
 Fortress
 Fortress Hypermarket
 Fortuna
@@ -26040,7 +25660,6 @@ Fortune Building Materials Trading L.L.C
 Fortune Club
 Fortune Tours
 Forvis
-Forward Trading International
 Fosam Company
 Foshan Trading Company
 Fosiles
@@ -26090,10 +25709,8 @@ Four Makdessi Abdel Aziz
 Four Oasis
 Four Pa Omar Dami M'hamed
 Four Season
-Four Seasons
 Four Seasons Men Salon
 Four Seasons Spa
-Four Star
 Four Star Films Gulf LLC
 Four Star Laundry
 Four Star Saloon
@@ -26116,11 +25733,6 @@ Fourth Element
 Fourth municipal district
 Fourway Trading
 Fouzia Dad
-Fox
-Fox & Hounds
-Fox Safari
-Fox Trading Electrical & Plumbing LLC
-Fox Transport
 Foyer menager
 Foyzur Rahman Readymade
 FrachDari
@@ -26303,7 +25915,6 @@ Fruit and vegetables Market Besh
 Fruit juices
 Fruit secs
 Fruit shop
-Fruitful
 Fruits
 Fruits & Dates
 Fruits & Vegetables
@@ -26403,49 +26014,6 @@ Futian Company-Erbil
 Futooh Al Khair
 Futooh Al-Bsair for School Uniforms
 Futur Siège du Ministère Public
-Future
-Future Bookshop
-Future Brides Ladies Saloon
-Future Bright Electrical Trading
-Future Business Men Services
-Future Calligraphy & Drawing
-Future Car Showroom
-Future Cards
-Future Colors
-Future Commercial Services
-Future Computer Center
-Future Corner
-Future Exchange
-Future Eyes Office
-Future Form System
-Future Gate Markets
-Future Group Co.
-Future Home Tradings
-Future Laundry
-Future Light Lighting
-Future Mass
-Future Opticals
-Future Plastics
-Future Power
-Future Press
-Future Service
-Future Shoe Trading
-Future Sky medical
-Future Star Documents Clearance
-Future Stars
-Future Style Accessories
-Future Tech
-Future Tech for Lighting
-Future Technology
-Future Technology for Lighting
-Future Vision
-Future Vision Real Estate Investments
-Future Way Building Material Trading
-Future Way International Trading
-Future building
-Future computer
-Future saloon
-Future star
 Futurewave Technologies
 Futurtek
 Fyn Accounting & Bookkeeping
@@ -26535,8 +26103,6 @@ GLFA-132KV(W47)
 GMC
 GMC & Chevrolet Maintenance Center
 GMC Showroom
-GMP
-GMP Travel Services
 GMS Active
 GMT Watches & Jewellery
 GNC
@@ -26555,13 +26121,10 @@ GOSP TYPING
 GOZY
 GP Office for Internet Services & Surveillance Cameras
 GPA Copy Center
-GPS LVN
-GPS Maroc
 GRACE SUPER MARKET Branch-1
 GRAND hyper
 GRC
 GRC gypsum
-GREENLINE TRAVEL & TOURISM LLC
 GRHD-132KV
 GROUPE 3 ARCHITECTES
 GROUPE ADDOHA DAR NAKHELI
@@ -26629,32 +26192,6 @@ Galali Stationery
 Galas Autos
 Galatchi
 Galaxie Telecom
-Galaxy
-Galaxy Building Material
-Galaxy Business Link
-Galaxy Center
-Galaxy Digital Studio
-Galaxy Erbil company for trade marble & granite
-Galaxy Food Centre
-Galaxy Gents Salon
-Galaxy Laundry and Dry cleaners
-Galaxy Market
-Galaxy Mexa
-Galaxy Mode
-Galaxy Nour
-Galaxy Opticals
-Galaxy Phone
-Galaxy Sport
-Galaxy Sports
-Galaxy Sports Outlet
-Galaxy Stone Care
-Galaxy Supermarket
-Galaxy Tailoring
-Galaxy Way Gents Saloon
-Galaxy mobile office
-Galaxy sports
-Galaxy stationary
-Galaxy supermarket
 Galdari  Tire company
 Galerie
 Galerie Akchur
@@ -26678,7 +26215,6 @@ Galeries bouzoubaa
 Galfar Engineering and Contracting Office SAOG
 Gali zakho Tunnel
 Galiawa Group - Education
-Galileo Design General Trading
 Galina's beauty salon
 Galis
 Gallant Stationery
@@ -26856,13 +26392,10 @@ Gate Four
 Gate Mall
 Gate Salon
 Gate Warehouse Price
-Gate Way
 Gate of Long Vehicle Resin Plant
 Gate of Oasis Trading
 Gate wadi bani-Khalid Trad.
 Gateaux
-Gateway ICT Company
-Gateway Travels
 Gatherings
 Gato
 Gatolid
@@ -26922,8 +26455,6 @@ Gem Flower International Travel & Tourism LLC
 Gemat Al Riyadah Tailoring
 Gemeentehuis
 Gemei Electronics
-Gemini Building Materials
-Gemini Building Materials Mussafah
 Gems
 Gems World
 Gemy
@@ -26933,92 +26464,10 @@ Gendarmerie
 Gendarmerie Royale
 Gendarmerie Royale (santé)
 Genelia Cold Store
-General
-General Administration of Customs
-General Administration of Passports, Immigration and Nationality
-General Assembly Bahrain
-General Audio Leader
-General Authority For Youth And Sports Welfare
-General Authority Of Islamic Affairs And Endowments
-General Authority for Minors Affairs
-General Authority for Radio and Television staff housing
-General Authority of Islamic Addairs & Endowments
-General Authority of groundwater
-General Company for Agricultural Supplies
-General Company for Communication and Power Equipment
-General Company for Electrical and Electronic Industries - Al-Izz Site
-General Company for Food Trading – Babylon Branch
-General Company for Gas Filling & Services
-General Company for Steel Industries
-General Company of Middle Electricity Distribution
-General Consulate Of Afghanistan
-General Consulate of the State of Palestine
-General Cool
-General Department Store
-General Development Services l.l.c
-General Directorate Of Residency & Foreigners Affairs
-General Directorate for Education
-General Directorate of Arbil Agriculture
-General Directorate of Arbil Education
-General Directorate of Civil Defence Sharjah, Clients Service Centre
-General Directorate of Civil Defense
-General Directorate of Companies Registration
-General Directorate of Dohuk Electricity
-General Directorate of Education
-General Directorate of Education Madinah
-General Directorate of Education of Sulaymaneyah
-General Directorate of Forensic Science Evidence
-General Directorate of Haj & Omra
-General Directorate of Health
-General Directorate of Health Affairs in Riyadh Region
-General Directorate of Highway & Bridge - Dahuk
-General Directorate of Highway & Bridges
-General Directorate of Municipalities
-General Directorate of Narcotics Control
-General Directorate of Passports
-General Directorate of Persons with Disabilities
-General Directorate of Police
-General Directorate of Prisons
-General Directorate of Residency and Foreigners Affairs-Dubai
-General Directorate of Retirement
-General Directorate of Sport
-General Directorate of Tourism
-General Directorate of Traffic
-General Directorate of Traffic in Wasit
-General Directorate of Water Resources
-General Directorate of martyrs and Anfal
-General Directorate of telecommunications
-General Enterprises
-General Head Quarter of Armed Forces
-General Manager Office
-General Medical Authority in Jazan
-General Medical Stores
-General Network Game
-General Organisation For Social Insurance
-General Organization for Social Insurance
-General Pension and Social Security authority - Dubai br
-General People 's Congress
-General People’s Congress Head Quarter
-General Presidency of the Affairs of the two Holy Mosques
-General Real Estate Office
-General Road Grocery
-General Secretariat of Special Education
-General Tax Authority, Dhi Qar Branch
-General Trading
-General Women's Union
-General director health
-General directorate for Residence & foreign afairs Abu dhabi
-General directorate of Horizontal expansion and projects
-General identity of Erbil - West
-General manager
-General stores of the General Authority for Radio and Television
-General trading
 Generation
 Generations Bicycles
 Generations Moder Projects
 Generators
-Genesis
-Genesis Tailors
 Genet Beauty Saon
 Genet Tesema Ladies Beauty Salon
 Geneva Perfumes
@@ -27028,7 +26477,6 @@ Genie Real Estate and General Contracting Office
 Genious Communications
 Genium Electricals Trading
 Geniune Vape & Tobacco Trading
-Genius Computer Center
 Genny Jewellery
 Genod Al-Rahman Charity Association
 Gent Saloon
@@ -27057,9 +26505,6 @@ Gents barbar shop
 Gents salon
 Gents saloon
 Gents tailoring
-Genuine
-Genuine Auto Parts
-Genuine Parts
 Geo Chem
 Geodata
 Geoland company
@@ -27214,8 +26659,6 @@ Ghoosan Beauty Center
 Ghorghiz Ceram غرغيز سيرام
 Ghorghiz Cerame
 Ghoroob Al Shams Gents Salon
-Ghost
-Ghost Computer
 Ghoua Anouar Épicier et Tabac
 Ghoua El Houcine Épicier et Tabac
 Ghoua Rachid Épicier et Tabac
@@ -27331,7 +26774,6 @@ Glamour Salon
 Glamour Star
 Glamour Zone
 Glamour for clothes
-Glance World
 Glaring Importt & Export
 Glaring Star Tailoring
 Glass
@@ -27413,9 +26855,6 @@ Glory Beauty Salon
 Glory Studio
 Glory mechanical parts
 Glosante
-Glow Grooming Commercial Investment
-Glow Life
-Glow Up Estetica
 Glowbal
 Glulio Twist Outlet
 Gma Repair Shop
@@ -27436,9 +26875,6 @@ Go Sport
 Go Sports
 Go bus
 GoBus
-Goal Eye
-Goal Sport
-Goal sports aware
 Goan
 Goat Barber
 Gobal Gents Saloon
@@ -27711,10 +27147,6 @@ Goldicakes bakery & Restaurant
 Goldilocks
 Goldin Shine Boutique
 Goldland
-Golf Cars Center
-Golf Central Palm Hills
-Golf City Mall
-Golf Sport
 Gomla
 Gomla Market
 Gomla market
@@ -27764,7 +27196,6 @@ Goodies
 Goodrich Howayek
 Goodride
 Goodwill
-Goodwin
 Google Computer Office
 Google Internet Technology Office
 Google Mobile
@@ -27907,9 +27338,6 @@ Graphicshub
 Gras savoye
 Grassitup
 Graveyard qabristan
-Gravity Freight Movers
-Gravity Furniture
-Gravity Steel Fabrication
 Gray Mackenzie & Partners
 Gray McKenziie
 Grease Monkey
@@ -27967,7 +27395,6 @@ Green Garden Laundry Br1
 Green Gold
 Green Grocery
 Green Hill
-Green House
 Green House Organization for Development
 Green Hut
 Green Land
@@ -28018,14 +27445,10 @@ Green Workshop`
 Green World
 Green Zone Construction
 Green hornet
-Green house
 Green iraq comapny - lays chip's factory
 Green market
-GreenHouse Compact
 Greenco Supermarket
 Greengrocer
-Greenhouse
-Greenhouse Trading
 Greenland
 Greenland Compound
 Greenland International Enterprises
@@ -28035,8 +27458,6 @@ Greens Market
 Greens Mini Mart
 Greentherm
 Greenwood General Trading Company
-Grey & Red Gent's Salon
-Grey Mackinzie & Partners
 Griffin Fire Fighting & Security Co.
 Griffin Nagda & Co.
 Grill & Manual Bakery
@@ -28289,7 +27710,6 @@ Gullu Beauty Care
 Gulrage Jewelry
 Gurabi RAM back
 Gurtam DMCC
-Gusto Furniture
 Guven
 Guy Laroche
 Guzellik Beauty Salon
@@ -28331,7 +27751,6 @@ HACKER kitchen. germanMade.
 HACO Iraq Company
 HAG (High Accuracy Group)
 HAJJ & UMRAH
-HALA NET
 HALI
 HALIMA TRADING EST.
 HAMADI Maison حمادي منزل
@@ -28350,7 +27769,6 @@ HCED Iraq
 HCL Technologies
 HDGSK
 HELAL AL MADINA SUPERMARKET
-HELP CENTER
 HESHAM ELSEWEDY
 HFMO-220KV(Mobile station)
 HFP
@@ -28659,33 +28077,6 @@ Hakim
 Hakimi Traders
 Hakimuddin Saifuddin Trading Est.
 Hakkou Market
-Hala
-Hala & Gbala
-Hala Abayat
-Hala Accessorize
-Hala Arabia Travel & Tourism LLC
-Hala Auto Parts
-Hala Beauty Center
-Hala Beauté
-Hala Ber Fruits & Vegetables
-Hala Car
-Hala Hala Ladies Salon
-Hala Hypermarket Qurum
-Hala Mart
-Hala Mobile Office
-Hala Muscat
-Hala Phone
-Hala Plaza
-Hala Punctury
-Hala Sat Old Location Office
-Hala Sweets Irbid
-Hala Tayah
-Hala Technology
-Hala Travels
-Hala Turkey Group Travel , Foreigner’s Affairs & Commercial Consultant
-Hala Typing & Stamps
-Hala market nakeel
-Hala's Treat
 HalaSate international (mustafa spider)
 Halab Al Shaba
 Halab Al Shaba Meat Shop
@@ -29005,7 +28396,6 @@ Haratna Tailoring
 HarazZone
 Harb Supermarket
 Harbi
-Harbor Salon
 Harbour Middle East General Trading
 Harbour Star Trading
 Harby
@@ -29266,7 +28656,6 @@ Hazzazi for Shopping هزازي للتسوق
 Haïna
 Hdwak Tobacco Trading
 Head Line
-Head Quarter
 Headcut
 Headway Hairdressing Salon
 Heal Al Suwaidi Bakery
@@ -29324,7 +28713,6 @@ Hello Mobile Phones Trading
 Hello Phones
 Helmi Alsadi for smart phone maintenance
 Helmy Store
-Help Center Office
 Helpbit
 Helpers Trading Co.
 Helping Hand Organization
@@ -29493,7 +28881,6 @@ Higher Institute of Administration and Accounting
 Higher Institute of Nursing Professions and Health Techniques AGADIR
 Higher Institute of Telecommunications and Post
 Higher Technological Institute for Financial and Administrative Sciences
-Highland
 Highlife
 Hightech Media
 Hightech company
@@ -29600,7 +28987,6 @@ Hollywood Gents Saloon
 Hollywood Magic
 Hollywood Perfumes Center
 Hollywood Style
-Hologram Software co
 Homan
 Homayoon Travel
 Home
@@ -29623,7 +29009,6 @@ Home Door Laundry
 Home Fashion
 Home Food Stuff Grocery
 Home Fresh SUPERMARKET
-Home Land
 Home Market
 Home Need Grocery
 Home Needs Supermarket
@@ -29684,7 +29069,6 @@ Hong Kong Star
 Hong Ming Da Furniture Trading
 Hong Yang
 Hongqui Car Atawkilat
-Honor Cell Park
 Honorary Consulate of Cuba
 Honorary Consulate of Ireland
 Honorary Consulate of South Africa
@@ -29903,7 +29287,6 @@ Hunkemöller
 Hunland Al Mansoori
 Hunter
 Hunter & Hunter
-Hunter Douglas
 Hur Shadhid Jewellery
 Huraiz Abdulla Trading Co.
 Hurghada City Center
@@ -30066,7 +29449,6 @@ ICAD-220,400KV
 ICC Co.
 ICCES OFFICE
 ICF
-ICON Decorate
 ICRC
 ICRC - Baghdad Delegation
 ICRC Basra office
@@ -30110,7 +29492,6 @@ IL Mercato
 ILIAS C P
 IMALCO ST#17
 IMAR
-IMC
 IMCO Compound
 IMLIL LOCAL GUIDE
 IMN iraq
@@ -30139,8 +29520,6 @@ INSPECTION SECTION - BUILDING PERMITS DIVISION
 INSTRU - ON CALL TROUBLESHOOTING AND AUTOMATION SERVICES FOR INDUSTRIAL COMPANIES
 INStreet
 INTELCIA
-INTERCOM LIBAN
-INTERNATIONAL CONFIDENCE INVESTMENT LLC
 INTERSOS
 INTERSOS-office
 INWI
@@ -30202,7 +29581,6 @@ ITL World
 ITP Media Group FZ LLC
 ITPC
 ITRANE INDUSTRIES
-ITS
 ITSIZER
 ITTR for perfumes and Oud,
 IUCN ROWA
@@ -30290,9 +29668,6 @@ Iceberg Laundries
 Iceland Icecream
 Ichrak Sakane
 Icicle
-Icon
-Icon Electronic
-Icon Unique Fashion
 Iconic
 Iconic Marketing Management LLC
 Iconic Tools Trading
@@ -30317,7 +29692,6 @@ Ideal Standard Design Bathroom Centre
 Ideal Star
 Idealz
 Ideas ahmad supermarket
-Ideo Parfumeurs
 Idil Assurance
 Idiser Showron Ameublement
 Idol Perfumes
@@ -30404,7 +29778,6 @@ Immobilière Transaction
 Imo Gene Style
 Imobile Computing
 Imoudal
-Impact Real Estate Consultancy
 Impala
 Imperial
 Imperial Destination
@@ -30474,14 +29847,11 @@ Inca
 Inca & Co
 Incorta
 Independence Hairdressing Gents Salon
-Independent Oil Tools
 Index
 Index Oasis Electrical Trading
 Index Stationary
 Index Translation
 Index car Insurance
-India & Gulf Trading
-India Passport Application Centre
 Indian Academy
 Indian Art Palace
 Indian Consulate
@@ -30503,7 +29873,6 @@ Indian saloon
 Indiana Beauty Centre
 Indiana Building Materials
 Indigital
-Indigo Living
 Indo Arab Insurance & Reinsurance Brokers DMCC
 Indo Arab Travels
 Indo Infrastructure
@@ -30518,11 +29887,6 @@ Indsign
 Indulge Ladies Hair and Beauty Lounge
 Indus Auto Parts Co.
 Indus Pompes
-Industrial Plumbing Items
-Industrial Projections Contracting Co.
-Industrial Supplies Development Co.Ltd.
-Industrial Supplies Plus
-Industrial security and safety department
 Inezgane Voyages
 Inf_marcoting
 Infiniti
@@ -30637,21 +30001,10 @@ Institute Joujou
 Institute for Palestine Studies
 Institute of Arabic Languages
 Institute of Teaching Arabic to Speakers of other Languages
-Insurance Bahaj
-Insurance Brokers
-Insurance House
-Insurance building
 Int. Exh. for Modern Furniture Co.
 Integraed System for Trading
-Integrated Links
-Integrated Projects & Dubai
 Intel Electronics Trading Office
 Intelloop
-Inter
-Inter Craft Gallery
-Inter Liners General Trading
-Inter Medi Traffic
-Inter Sport
 Intercare
 Intercity
 Intercocina sarl
@@ -30668,46 +30021,6 @@ Intermilan Gents Salon
 Internal Decor Designer
 Internatiional Furniture
 Internatinal Marketing Service
-International Affairs Department
-International Agencies Company
-International Auto Electricals
-International Beauty Supplies
-International Business Tower
-International Cars Center
-International Committee of the Red Cross (ICRC)
-International Cont. & Trading Est.
-International Diesel Services
-International Digital Video Graphy
-International Display Systems
-International Electronics
-International Energy Forum
-International Engineers & Consultants
-International Federation of Iraqi Refugees
-International Financial Accountant
-International For Furniture
-International Freight Services
-International Fruits
-International Garage
-International Gift Shop
-International Gulf Trading Co.
-International Gulf Trading Company
-International Heavy Equipment (IHE)
-International Institute of Islamic Thought
-International Iron Steel
-International Migration Organization IOM
-International Opticals
-International Organization for Migration (IOM)
-International Printing Press
-International Printing Press L.L.C
-International Project Development Company WLL
-International Rubber
-International San Tours
-International Tools Welding Supply
-International Trading & Cont.
-International Union for Conservation of Nature
-International company for furniture
-International for Trade and Contracting - Fadico
-International relation public
 Internationals Translation Service Dubai
 Internet
 Internet AL-MAAD NET
@@ -30738,7 +30051,6 @@ Intra Build
 Intra-Industrie
 Invention Building Material
 Inventions
-Investment Management
 Invictus Star Technology
 Inwi
 Inzamam Trading
@@ -30816,22 +30128,14 @@ Iraqi-Chinese Center – Mahmoud Zankana
 Ird
 Ires Beauty Centre
 Irfan
-Iris
-Iris Gadgets
-Iris Optique
-Iris optique
 Iron of Clothing
 Iron works souk
 Ironing of Clothing
 Irrigation Department
 Irsa Contracting
 Irtehal Trading Centre
-Isa
-Isa Town Club
-Isa supermarket
 Isabel Le Beauty Center Women
 Isabella
-Isam Peugeot
 Isfahan Sweets
 Isfaman Decoration & Design
 Ishal Magic Gift and Mobile
@@ -31009,7 +30313,6 @@ JAC Motors
 JAD 662
 JAD 692
 JAFZA Service - Emirates Identity Authority
-JAGUAR NET
 JAK motors
 JANNAH
 JANUS global operations
@@ -31170,8 +30473,6 @@ Jaffer Ebrahim
 Jafliya grocery
 Jafry
 Jafza One
-Jaguar
-Jaguar Printing Press LLC
 Jahan
 Jahan Foundry
 Jahan Saffron
@@ -31305,9 +30606,6 @@ Janusan Cold Store
 Janwah Supermarket
 Jaopaya Beauty Salon
 Jaouda Aluminium
-Japan Auto Electricals
-Japan Embassy
-Japan Value Store
 Japanese training center
 Jaquar
 Jar Aiqamar
@@ -31440,7 +30738,6 @@ Jawhrat al Yamama
 Jawrahat Najed For Gold & Jewellery
 Jawza Trading
 Jax Jones
-Jay Louni
 Jaya Textiles
 Jayasree Travel & Tours
 Jayed
@@ -31710,8 +31007,6 @@ Jouna
 Jouri Mall
 Journal tabac
 Journals of University of Babylon
-Journey Toys
-Journey through time
 Journies Travel
 Joury Tours and Travel
 Jouy Beauty Center
@@ -31728,7 +31023,6 @@ Joyalikkas
 Joyalukkas
 Joyalukkas Jewellery
 Joyam accessories
-Joya’s Motorcycle
 Joyful Box
 Joyn Bakery
 Joyway
@@ -31822,7 +31116,6 @@ Jumeirah Plaza
 Jumeirah Terrace
 Jumerah hamood
 Jumeria Oasis
-Jumia
 Jumooh
 Jumooh Electronics
 Jumooh Mobile Phones
@@ -31979,7 +31272,6 @@ KMK Supermarket
 KNJ
 KNU Party Hq.
 KOICA Jordan
-KOKO VAPE
 KORE co.
 KOREK
 KP Chai
@@ -32145,7 +31437,6 @@ Kanoo travel L.L.C.
 Kanoq Travel
 Kansai Paint
 Kansal Paint
-Kansas Trading
 Kanwk One Vegetables & Fruits
 Kanz Al-Majid Company for Paper & Plastic Products
 Kanz Alharamen for Gold Jewelery
@@ -32321,7 +31612,6 @@ Kawkab
 Kawoosh Fashions
 Kawthar Sewing Machines Trading
 Kaya Skin Care Clinic
-Kayak
 Kayal Zorqa Saloon
 Kayan
 Kayan Ajlan
@@ -32351,7 +31641,6 @@ Kbc Consultancy
 Kech Store
 Kedai Roti
 Kedai Unta
-Keen Mobile center
 Kefaf Grocery
 Kefaya Gents Tailoring
 Kehkashan Tailoring
@@ -32857,9 +32146,6 @@ Kissariat Oujda قيسارية وجدة
 Kissariat panoramique
 Kissariyat Qays
 Kiswa Abaya
-Kit & Kaboodle
-Kit Car Corner
-Kit Kat
 Kitchen & Home Concept
 Kitchen Equipment Expert
 Kitchen King
@@ -32874,11 +32160,6 @@ Kitchens & More
 Kitchens Show
 Kitchens World
 Kitcherama
-Kite Cold Stores
-Kite School Hurghada
-Kite Tribe
-Kite Village
-Kite World Center, Safaga
 Kitea
 Kitea Agadir
 Kitea Geant
@@ -32922,8 +32203,6 @@ Kohen optique
 Kohinoor
 Kohler
 Koki
-Koko Vape
-Koko spécialiste berbère
 Kol Althmrat For Yemeni Honey
 Kolak Nazar Laundry
 Kolar Flour Mills
@@ -32957,8 +32236,6 @@ Kool Links
 Kooz Mart
 Koppas
 Kora
-Korea Auto Services
-Korea Market
 Korean Bakery
 Korean Food Centre
 Korean Stores
@@ -33368,7 +32645,6 @@ La Rosace
 La Rose
 La Rosée
 La Scala Outlet
-La Senza
 La Senza lingerie
 La Soltech
 La Source
@@ -34400,7 +33676,6 @@ Light Centre
 Light Coast
 Light Control
 Light Electrical
-Light House
 Light Laundry
 Light Magic Electrical Services
 Light Satellite 2
@@ -34413,14 +33688,10 @@ Light vehicle inspection center
 Light13
 LightHub Electricals
 Lightech
-Lighthouse Dive Centre
-Lighthouse Ladies Wear
-Lighthouse Liquor Store
 Lighting Centre
 Lighting shop
 Lightology
 Lightway
-Lightworks
 Ligne Roset
 Lihat
 Like
@@ -34460,7 +33731,6 @@ Lin Jin Jiu
 Lina Fashion
 Lina Hair Salon
 Lina Riad & Spa
-Lincoln
 Linda Blankets & Mattresses
 Lindt
 Line Style Decoration
@@ -34471,10 +33741,6 @@ Liners Beton
 Linglang Tire
 Linglong Tire
 Lingo
-Link
-Link DSL
-Link Done
-Link Fair Electronics
 Linkar Laundry
 Linkit
 Linne Chocolate- Salalah Plaza
@@ -34562,10 +33828,6 @@ Local improvement center in Saqqara
 Local market
 Local marketplace
 Locamed
-Location - للتسويق العقاري
-Location bureaux équipés
-Location de vêtements Traditionnelle
-Location des Matériels de Musique Alami Rachid
 Locust Control Center
 Loft
 Loft corporation
@@ -34596,21 +33858,6 @@ Lolita
 Lolita Bakery
 Lolla Beaty&Spa Center
 Lolla Beauty Centre
-London
-London Academy
-London Bakery
-London Beauty Saloon
-London Computer Networks
-London Consulting
-London Doner
-London Dry Cleaning
-London Gate Laundry
-London Glass Factory
-London Luxuries
-London Shopping Center
-London Star
-London Star Textiles
-London shop
 Lonestar Alpha Laboratories LLC (Central lab)
 Long River Trading
 Long Wind Trading
@@ -34882,10 +34129,6 @@ Lus
 Lusail Engine and Electricals
 Lusail Insurance Brokers
 Luscious
-Lush
-Lush Handmade Cosmetics
-Lush Loom Carpets & Curtains
-Lush nails
 Lusine Dress Ironing
 Lutf Alinsan
 Lutfi
@@ -35016,7 +34259,6 @@ MAF Furniture Shop Ajman
 MAG Commercial
 MAG NGO office
 MAG Organization
-MAGIC GOWN TAILORING & EMBROIDERY SHOP
 MAK Homes Real Estate
 MAKTABATI STATIONERY
 MAKTech 3d
@@ -35049,7 +34291,6 @@ MARSAK X-SERVICES
 MARTIN SOUVENIER Supermarket
 MARWA vêtements
 MARWAN  Al SAFEEYA
-MAS Trading & Marketing Co.
 MASA آلمنيوم
 MASE Retail Shop
 MASRAWY HAIR CUTTING SALOON FOR MEN
@@ -35090,7 +34331,6 @@ MEGA-15
 MEGAM
 MELONS NAILS SPA & MORE
 METCO
-METRO
 METTCO Company-Mosul
 METTCO Sulymaniha
 MEUBLES ELECTROMECANIQUES BOUGAMA
@@ -35129,8 +34369,6 @@ MIRFA MUNICIPALITY
 MIRQAB MALL
 MIRRORS Gents Salon
 MIRRORS L.L.C
-MIT
-MIT Energy
 MITS Meridian IT Solutions LLC
 MIZA
 MIne
@@ -35407,8 +34645,6 @@ Madrid Tea
 Madu
 Madurai Tamil Sandhai Grocery
 Maedaht Al Sama Cold Store
-Maestro
-Maestro Barber
 Mafateeh
 Mafaz Tyre Center
 Mafraq Governorate Tourism Directorate
@@ -35450,43 +34686,6 @@ Maghreb accessoires
 Maghrebail
 Maghréb Hassoub
 Magi
-Magic
-Magic Art Furnitures
-Magic Barber & Spa - Turkish
-Magic Beauty Lounge
-Magic Clean
-Magic Electronics
-Magic Emarald
-Magic Eye
-Magic Famous Auto Repair Shop
-Magic Gardens
-Magic Gents Salon
-Magic Hands Beauty Center
-Magic Homes
-Magic Jouet
-Magic Key
-Magic Kitchen Houseware & Art Gallery
-Magic Laundry
-Magic Medical Spa (Medspa) Center
-Magic Opticals
-Magic Planet
-Magic Power
-Magic Road
-Magic Scissors Saloon
-Magic Shoes
-Magic Sign
-Magic Star Laundry
-Magic Steam Laundry
-Magic Touch
-Magic Touch Auto Garage
-Magic Touch Fashions Trading
-Magic Trading Co.
-Magic Trading Company LLC
-Magic Washing
-Magic beauty
-Magic bureau
-Magic fourniture
-Magic paint
 Magical Express Dry
 Magilla
 Magimag
@@ -35497,8 +34696,6 @@ Magnait Abdulla General Trading
 Magnalite Electrical Contracting Co.
 Magne
 Magnit
-Magnolia Bakery
-Magnolia Boutique
 Magnum
 Magnum Plaza
 Magnum Trading & Technical Services
@@ -35786,11 +34983,6 @@ Makati Express Cargo
 Makawi Grocery
 Makbaz Riyan
 Makbout saleh alsayary
-Make Up For Ever
-Make Up Forever
-Make it Easy Documents Clearing
-Make up store
-Make-Up Atelier
 Makeover BEAUTY CENTER
 Maker the Popular Nuts
 Makeup
@@ -35802,7 +34994,6 @@ Makhchoun Rachid et Consorts Mécanique Générale
 Makhdoom Trading
 Makhliyath Al Hayath
 Makhzoumi Foundation
-Makina Technologies
 Making of Oman Foods
 Makita
 Makka
@@ -36140,7 +35331,6 @@ Manzil Plastic Trading
 Manzoor
 Manzura Bobonazardya General Trading
 Maouneh Market
-Map Real Estate
 MapCom
 Mapei (Authorised Reseller)
 Mapei for Chemical Construction
@@ -36400,7 +35590,6 @@ Marketing & Publications
 Marketing Office of the Model Cemetery, Salah Al-Issawi Office
 Marketing Travel & Tourism Salalah
 Marketplace of Dates
-Markets talh alwadi
 Markezia
 Markhiya Complex
 Marks & Spencer
@@ -36422,9 +35611,6 @@ Marmoor Al Arabia
 Marmul Travel & Tours
 Marmul Travel Agency
 Marmul commercial city market
-Maro Jeans
-Maro Mobile Phone
-Maro Snack
 Maroc Express
 Maroc Expresse
 Maroc Host
@@ -36521,11 +35707,6 @@ Marzooq Al Suwaidi Typing
 Marzouk Wood
 Marzouq Clothes
 Marzuk Grocery
-Mas Al-Janoub Contracting - Stadium Street
-Mas Al-Janoub Electricals
-Mas Cars
-Mas Optics
-Mas Telecom
 Masa Al Noor Ladies Salon
 Masa Syrian
 Masa bike
@@ -36786,8 +35967,6 @@ Maxma Company
 Maxmara Flowers
 Maxsemum Telcom
 Maxton Electronics Trading
-Maxwell Automatic Doors
-Maxwell Dubai
 Maxx
 Maxx mobile
 Maxxis
@@ -37152,10 +36331,6 @@ Mercerie Chez Ben Jalloun
 Mercerie Raiss
 Merci chic
 Merck
-Mercury
-Mercury Contracting Centre
-Mercury Marketing
-Mercury Phone & Computer
 Mercy
 Mercy Corp
 Mercy Couture
@@ -37189,7 +36364,6 @@ Meryana Secrets
 Mesbah Al Madeena Machinery
 Mesbanat al houda
 Meseret Nesbane Ladies Saloon
-Mesh Mesh
 Mesk Al Madina
 Mesk Elil
 Mesopotmia
@@ -37214,36 +36388,7 @@ Methaas Bakery & Desserts
 Methaq Takaful Insurance Company
 Methaq takaful insurance co
 Methax Sur Contracting
-Metro
-Metro Al Madina Supermarket
-Metro Automatic Laundry
-Metro Calibration Services
-Metro City Fashion
-Metro Curtains
-Metro Deluxe
-Metro Gents Salon
-Metro Gents Spa
-Metro International
-Metro Kirkuk Handhol 4 G-B
-Metro Kirkuk Handhol 5 G-B
-Metro Kirkuk handhol 6 G-B
-Metro Kirkuk handhol 7 G-B
-Metro Kirkuk- Hand-3 G-B
-Metro Kirkuk-Handhol 2 G-B
-Metro Line
-Metro Mac
-Metro Mall
-Metro Manila
-Metro Manila HYPERMARKET
-Metro Manila Supermarket
-Metro Market
-Metro Markets
-Metro Markets Supermarket
-Metro Phone
-Metro Supermarket
-Metro market
 Metroplus Sign
-Metropolis
 Metropolitan
 Metropolitan Star General Trading LLC
 Metros
@@ -37910,10 +37055,6 @@ Mobail
 Mobarak Alsamay for Car maintenance workshop
 Mobco International General Trading
 Mobel Decor Est.
-Mobi Home
-Mobi Style
-Mobi Zone
-Mobi tech
 Mobiblanc
 Mobidata
 Mobil 1 Center
@@ -38355,7 +37496,6 @@ Molod Gas & Oil Square
 Moloky market
 Molto care Disinfection services
 Moltocare
-Molton Brown
 Mom's Abaya shob
 Momayez
 Momd Shareef Laundry
@@ -38453,32 +37593,6 @@ Monuments of al-Muizz li-Din Allah Street
 Moo Dairy Farm
 Mood Smoking Office
 Moods
-Moon Auto
-Moon Day
-Moon Express Cargo
-Moon Face Office
-Moon Flower
-Moon Gate
-Moon Henna & Beauty Salon
-Moon Iqama
-Moon Jewellers
-Moon Land Boutique
-Moon Light
-Moon Light Furniture
-Moon Light Gents Salon
-Moon Light Watch and Perfume
-Moon Opticals
-Moon Phone
-Moon Plaza
-Moon Ray
-Moon Salon
-Moon Shine Studio
-Moon Star
-Moon Time Market
-Moon Valley Treasures
-Moon Walk General Trading
-Moon Yard Mall
-Moon star therapeutic massage center
 Moonlash Ladies Beauty Salon
 Moonlight Electricals
 Moonlight Library
@@ -38946,9 +38060,6 @@ Muqarnas Alameen Factory
 Muqataa
 Muqataa - Bureau d'Etat Civil - Kasbat el Mehdia
 Muqataa - Bureau d'Etat Civil de 4eme
-Murad Computer
-Murad Shahin Ladies Tailoring
-Murad aluminium casting
 Murafaat Miskin Shopping
 Murano Lighting LLC
 Murbati Furniture Show
@@ -39241,7 +38352,6 @@ NASA
 NASS for E- Payment
 NASSAR IMPORTING & TRADING CO. L.L.C.
 NASSLINK تكنلوجية المعلومات والاتصالات
-NATIONAL FOAM & FURNISHING FACTORY
 NATURAL CARE
 NATeA
 NAWAIER HAMA
@@ -39264,7 +38374,6 @@ NE Clean
 NE Store
 NE0583
 NEFERTITI CENTER
-NEW ELECTRICAL & MECH.CO. LLC
 NEWDENT Company for medical supplies
 NEXEN Tire shop
 NFC Egypt Store
@@ -39277,13 +38386,11 @@ NGI House
 NGO Directorate
 NHDA-132KV
 NHSC Shop
-NICE
 NID Shat alarab atlas
 NINWA TYPING & PHOTOCOPY
 NISSAN
 NISSAN SERVICE CENTRE
 NIT
-NIce Lady
 NIssan Genuine Parts
 NJ Fashion
 NK Hypermarket
@@ -39713,7 +38820,6 @@ Namareq pharmacy
 Namarik fes
 Namazi
 Nambeel Bin Nabhan Bin Mohammed Al Rawahi
-Name It
 Nami Saffron
 Namia Centre
 Namibia Embassy
@@ -39900,108 +39006,6 @@ Natco Alrazi Corp
 Nati Boutique
 Nati Trading
 Natie W Nthry Foodsturffs
-National
-National Adala Movement
-National Advanced Systems Co. Ltd. (NASCO)
-National Agricultural Equipment & Chemicals Co.
-National Ambulance LLC Head Office
-National Animal Production Company
-National Aquaculture Group - NAQUA Seafood
-National Archives of Egypt
-National Authority for Qualifications & Quality Assurance of Education & Training
-National Authority for Remote Sensing and Space Sciences
-National Auto
-National Automatic Bakery
-National Bonds
-National Bonds Corporation
-National Building Materials
-National Bureau of Statistics (NBS)
-National Car Company
-National Car Company Mazda Parts
-National Catering Company Limited
-National Center for Wildlife
-National Computer Services
-National Consultative Council
-National Contracting
-National Dispatch Center
-National Drilling Company
-National Employment Centre
-National Environment Services LLC
-National Exchange Company
-National Ferries Company
-National Finance & Excchange Co.
-National Finance & Exchange
-National Finance & Exchange Co.
-National Finance & Exchange Co. W.L.L.
-National Finance House
-National Fire Fighting Company
-National Fire and Safety
-National Flour Mills
-National Food Industries
-National Food Production Company
-National Garage
-National General Insurance
-National Guard Society - Main Supermarket
-National Holidays Travel
-National Hyper
-National Hypermarket
-National Industries Co.
-National Information Center
-National Information Center (Ministry of Interior)
-National Information Technology Security Solutions
-National Insecticides
-National Institute of Health
-National Insurance Company
-National Jewellers
-National King of Curtains & Decor
-National Laboratory for Energy and Minerals
-National Laundry
-National Laundry Co.
-National Library - for gifts, flowers and wedding cups
-National Mattress Factory
-National Media Council
-National Media Council Ajman
-National Motor Company
-National Motors Egypt
-National Oil Stop
-National Paint
-National Paints
-National Paints Next Generation tarding
-National Pension Authority Anbar Branch
-National Photo Center
-National Photo Centre
-National Photo Services
-National Printers
-National Printing Press
-National Renewable Energy Station MR-199
-National Salon
-National Security Directorate
-National Security Investigations
-National Service Projects Authority
-National Social Health Association الهيئة الوطنية الصحية الاجتماعية
-National Space Science and Technology Center
-National Sports
-National Stained Glass
-National Survey Authority
-National Tailors
-National Technical Services
-National Telecom Regulary Authority
-National Telecommunication Regulatory Authority NTRA
-National Telecommunications Regulatory Authority
-National Trading Co.
-National Travel Bureau
-National Veterinary Laboratory
-National Water Company
-National Water Company (NWC)
-National Zakhar Project
-National agency for the development of the Oasis and Argan zones
-National audit office
-National finance
-National institute for human rights
-National life& General Insurance
-National paints
-National taxi llc
-National water company - customer center
 Nationality & Cilvil Status Directorate Of Erbil
 Nationality & Civil Sttus Directorate of Erbil
 Nationality Passports & Residence Affairs
@@ -40115,7 +39119,6 @@ Nebras Al-Ataa General Trading Company
 Nec
 Necci
 Neck & Neck
-Nectar for Perfumes
 Nedar Office
 Nee Furnishing
 Nee Track Bicycle Trading
@@ -40217,225 +39220,15 @@ Net optic
 NetPhone co
 NetSoft
 Netco Typing
-Netherlands Today Helping Kurdistan
-Netherlands-Flemish Institute in Cairo
 Nets International Communication
 Netsanet Beauty Saloon
 Nettoyage a sec Amin
 Netvision Office for Internet
 Netway computers
-Network Digital MAM
-Network Office
-Neu Chatel Sweets
 NeuMart
 Neuhaus
 Nevesar Office
 Nevien supermarket
-New Age Media Solutions
-New Ajayeb Studio
-New Al Dera Auto Accessories
-New Al Dhaid Furniture
-New Al Jasar Grocery
-New Al Jeel Supermarket & Spices Mill
-New Al Madina Hypermarket
-New Al Madina Supermarket
-New Al Marej Furniture
-New Al Ruwaily Ladies Tailoring
-New Al Safoora Laundry
-New Al Shams Supermarket
-New Al Zakner Tailors
-New Alfamar International Car Showroom
-New All Majid Bakery
-New Arts
-New Ashkanany Supermarket
-New Atlas Trading
-New Bahrain Food Stuff
-New Bake
-New Bakers
-New Bakkar
-New Balance
-New Barbie Atelier
-New Blue Sky Trading Est.
-New Book Shop
-New Born
-New Boussole
-New Boussole Travel
-New Brand READYMADE
-New Chwar Chra
-New City Furniture
-New City Opticals
-New Colombo Salon
-New Cosmos Electrical
-New Day Sport
-New Delmon Stationery
-New Delta Papyrus
-New Demart Supermarket
-New Design
-New Diamond Furniture
-New Dimensions Contracting
-New Dohuk Industry Project Office
-New Drinks (beer and alcool)
-New East General Trading Est.
-New Efficient Computers
-New Electronics House
-New Emirates Automatic Bakery
-New Emirates Market
-New Era Book Shop - Al Furjan Pavillion
-New Era Supermarket
-New Era Travel & Tourism
-New Eyser Births and Deaths Office 2025
-New Falcon Supermarket
-New Family Mart
-New Family Store
-New Fanja Company
-New Fendi نيو فندي
-New Fon
-New Food World
-New Foodies
-New Future Garage
-New Generation Company and Supermaster Nokia Maintenance Centre
-New Generation Contracting
-New Gents Saloon
-New Glyfada Tailoring
-New Green Valley
-New Gulf Sea
-New Hamees Papyrus
-New Happy Baby
-New Happyland Supermarket
-New Hira
-New Home Furniture
-New Hope
-New Horizon
-New Horizon Uniforms
-New Horizons English learing Institute
-New House Complex
-New House For Chocolate
-New Ibtihaj General Trading
-New India workshop
-New Indian Sweets
-New Insaf Furniture
-New Janahi Electronics Sale & Service
-New Journey Building Materials Trading
-New Karawan Boutique
-New Khebar Gents Tailoring
-New Lazer Phone
-New Life
-New Life Steel Trading
-New Light House Trading
-New Line Laundry
-New Line TV
-New Look
-New Look Beauty Salon
-New Look Construction
-New Look London
-New Look One
-New Look Saloon
-New Madeena Hypermarket
-New Makha
-New Manila Supermarket
-New Market
-New Medical Technologie
-New Mellenium Sports
-New Middle East Typing
-New Millenium School
-New Mode Gents Salon
-New Modern
-New Moon Contracting
-New Mordern Bakery
-New More Computer
-New Mountain Music Instruments Trading Co.
-New Najaf Court
-New National Salon
-New Noor Laundry
-New Nouvelle Drugstore
-New Opera
-New Orange
-New Packaging Industry
-New Pap
-New Pasten Gents Tailor & Textile
-New Penny
-New Pick Fresh Supermarket
-New Planet Autoparts
-New Port Laundry & Dry Cleaning
-New Pressing Bouab Abderrahim
-New Qamar Grocery
-New Raiwah Laundry
-New Ramses Dahab Mall
-New Red Sea Aquarium
-New Regency Grocery
-New Relation Trading
-New Remedy
-New Rezwana Grocery
-New Rizwana
-New Royal Tourism
-New Saad Grocery
-New Saad Supermarket
-New Sahara Stores
-New Salem Laundry
-New Sat
-New Scarab Pyramids
-New Semmel's Office
-New Shining Point
-New Shoe Palace
-New Shop
-New Silverpot
-New Soori Botique
-New Special Kitchen
-New Star Doha Hair Cutting Saloon
-New Star Furniture Sale
-New Star International
-New Star Phone
-New Star Studio
-New Stars Bookshop
-New Steps Trading
-New Style Car Shining Accesories
-New Style Ladies Salon
-New Style Mobile Phonea
-New Style Office
-New Style Optical
-New Style Tailoring
-New Style imprimerie
-New Super Star Bicycle
-New Taj supermarket
-New Tawar Bakery
-New Tech. Computer
-New Tehran
-New Tel Communication
-New Thaman Supermarket
-New Time Salon
-New Top Fashion
-New Union Bakery
-New Victory Co.
-New Vision
-New Vision Optics
-New W Mart Supermarket
-New W Mart supermarket
-New Wave Salon
-New Waves
-New Waves Supermarket
-New Way Grocery
-New Way Trading & Co. W.L.L - Plumbing & Bldg. Materials
-New West Zone
-New Westzone Supermarket
-New World Travel & Tourism
-New World Workshop
-New Year Centre
-New Year Computer
-New York
-New York Auto Spare Parts
-New York DVD
-New Yorker
-New Yorkers
-New alansab enterprise trad.
-New and Renewable Energy NREA Organization
-New computer line(NCL)
-New day salon
-New golden city supermarket
-New look salon
-New sinyorita studio
-New tawfiq grocery llc
-New-Noras
-New-age Discount Centre
 NewNice
 NewStar
 NewTech ISP
@@ -40461,11 +39254,6 @@ Newspapers
 Newstyl
 Newstyle
 Newstyle wallpaper
-Newton
-Newton International School
-Newton Library
-Newton Phone
-Nex Tech
 Nexcel
 Nexen Tires
 Next
@@ -40477,10 +39265,6 @@ Next NEON
 Next for computers
 Nextcare
 Nextech Limited
-Nexus Group
-Nexus Gulf Oil
-Nexus Point for Marketing & Creative Sulotions
-Nexus Travel DMC
 Neyleen
 Nezha El Qorchi
 Nfocenter Training and Consulting
@@ -40488,28 +39272,6 @@ Niagra Trading
 Nibras Al Madina
 Nibras Al Muteena
 Nibras Smart Home
-Nice
-Nice Building Materials
-Nice Choice Tailoring & Textile Trading
-Nice Coffee Trading
-Nice Cut Salon
-Nice Day Gents Salon
-Nice Gents Salon
-Nice House Construction
-Nice Lady Abhayat shop
-Nice Lady Salon
-Nice Land Markets
-Nice Lighting
-Nice Nails
-Nice Paris Clothes
-Nice Power General Maintenance
-Nice Ship
-Nice Smell Trading
-Nice Spa Massage Center
-Nice Star Cold Store
-Nice Star Mobile
-Nice Tours
-Nice Wear
 Niceway
 Nichii
 Nicholas et Jeano Bekhazi
@@ -40652,13 +39414,6 @@ No limit
 No name
 Nobel
 Nobel Medical Centre
-Noble
-Noble Impression
-Noble Office
-Noble Opticals LLC
-Noble Prince Trading
-Noble Trading
-Noble Venture Grocery
 Nobles Junior Gallery
 Noblessa
 Nogoom Al-Tawhed w Al-Nour
@@ -40972,7 +39727,6 @@ Nuri Supermarket
 Nurj London Tyres Trading
 Nurseries Euphrates Agricultural Group
 Nursery & Agricultural Engineering Centre
-Nursing Syndicate, Diyala Branch
 Nurus-The Pearl
 Nusingay Abu Ahmad
 Nusingay Hogr
@@ -41075,11 +39829,9 @@ OPTIMIZA
 OPTIQUE BIR ANZARANE
 OPUS
 OQ Head Office
-ORCA Dive Club
 ORGA BEAUTY
 ORIENT TRAVEL
 ORMVAD
-OSCAR paints
 OSCO
 OSN
 OSOM International FZE
@@ -41103,34 +39855,6 @@ Oak Tree
 Oakdale Aurto Repair
 Oakley
 Oasais Camp Exxon Mobile
-Oasis
-Oasis (Al Waha) Mall
-Oasis Auto Parts
-Oasis Bakery
-Oasis Boookshop
-Oasis Cars
-Oasis Center (Al Waha)
-Oasis Centre
-Oasis City Grocery
-Oasis Constructio Equipment Rental
-Oasis Engineering Co.
-Oasis Friends Supermarket
-Oasis Grocery
-Oasis Laundry
-Oasis Mall
-Oasis Mall Suhar
-Oasis Minearal Water Company
-Oasis Mountain Trading
-Oasis Neon
-Oasis Office
-Oasis Phones
-Oasis Photo Equipments Trading
-Oasis Star Laundry
-Oasis Supermarket
-Oasis Toys
-Oasis Trading & Equipment Co. LLC
-Oasis Travel & Tourism
-Oasis tents
 Oasr Al Reef Grocery
 Oaswer Sandrella
 Oataman Auto
@@ -41186,7 +39910,6 @@ Oceanic
 Oceanic Laundry
 Octanorm Emirates
 Octasy
-Octave
 Octopus World Dahab Dive Center
 Odd Gents Salon
 OddBits
@@ -41290,7 +40013,6 @@ Oh girl salon F
 Oh my Car II
 Oh! My Pet
 Ohadou Accessories Auto
-Ohio Ladies Salon & Spa
 Oil & Gas Services
 Oil & Tyre Service
 Oil Change
@@ -41333,7 +40055,6 @@ Olayan Financing Company
 Olayan Food Division
 Old Alex Market
 Old Cars Club
-Old City
 Old Coast Travel & Tourism
 Old Grocery
 Old Jeans
@@ -41589,9 +40310,6 @@ Only you salon
 Ono for Man
 Onotha
 Ontel
-Onyx Computers
-Onyx Mobile
-Onyx general transporting
 Ooloof Tailoring
 Oonas Dive Center
 Ooredoo
@@ -41686,8 +40404,6 @@ Optics Jude
 Optics for Less
 Optik Collections
 Optima Sécurité
-Optimal Wings Transport
-Optimal light
 Optimonocle
 Optimum
 Optimum Copy Center
@@ -41766,12 +40482,6 @@ Orbit Office
 Orbit Saloon
 Orbit Technical and Technological Services
 Orbit Travel
-Orca
-Orca Dive Centre
-Orca Hamata
-Orchestra
-Orchestra Flowers
-Orchestra Megastore
 Orchid
 Orchid Auto Accessories
 Orchid Foodstuff Trading
@@ -41883,19 +40593,6 @@ Osan Furniture
 Osan Jewellery
 Oscado
 Oscado Saloon
-Oscar
-Oscar Build Material
-Oscar Company (Kitchens and Furniture)
-Oscar Furniture Co.
-Oscar International
-Oscar Leather
-Oscar Market
-Oscar New
-Oscar Paints
-Oscar Punctury
-Oscar Style
-Oscar Tailoring & Embroidery
-Oscar wallpapers
 Oscars Grand Cellar
 Oshadi Beauty Saloon
 Osia Hypermarket
@@ -41911,7 +40608,6 @@ Osman
 Osman Building Equipment Rental
 Osman Grocery
 Osmat Foodstuff
-Osmosis Kitebording
 Oso she
 Ossayli Ceramica
 Ostadi Supermarket
@@ -42044,7 +40740,6 @@ PALS
 PAN Emirates
 PAN Home
 PANO DECOR
-PARADIGM ARCHITECTS
 PARADISE PROPERTIES MANAGEMENT LLC OPC
 PASSION SIDE
 PAUL
@@ -42054,7 +40749,6 @@ PC Plus
 PC Storm
 PC Tech
 PC and Parts
-PCM
 PCS Switchgear Manufacturing
 PCT 6
 PDC Toyota Egypt Saddat Branch
@@ -42073,7 +40767,6 @@ PFDM
 PFF Group
 PHC Bablthbel
 PHONE7M
-PIA office
 PIL
 PIN
 PIN Erbil Office
@@ -42438,7 +41131,6 @@ Paris gallery HQ
 Park Avenue
 Park Avenue Mall
 Park Centre
-Park Land
 Park Mall
 Park Plaza
 Park n Shop Supermarket
@@ -42621,7 +41313,6 @@ Peacefulness Grocery
 Peach Grocer
 Peach Tree Super Market
 Peacock Carpet Centre
-Peak City Trading
 Pearl
 Pearl Al Shahama Laundry
 Pearl Awal Gulf
@@ -42785,8 +41476,6 @@ Pet World
 Pet World - The Springs Souk
 Pet shop
 Pet's Delight
-PetCare
-PetCare For Pets Trading
 Petals by Carmille
 Petit Bateau
 Petit Beurre
@@ -42864,9 +41553,6 @@ Pharmacie Yasmine صيدلية ياسمين
 Pharmacie de la gare routière
 Pharmacie volante
 Pharmacists Syndicate
-Pharmacy
-Pharmacy Salma Al Qosous
-Pharmacy department
 Pharmaherb
 Pharmatrade
 Pharon foods
@@ -42888,8 +41574,6 @@ Philippine Consulate General
 Philippine Embassy
 Philippine Island Market
 Philippine Restaurant
-Philippines Consulate
-Philippines Supermarket
 Philips
 Philips Company
 Philips Service Centre Ras Alkhour
@@ -42987,8 +41671,6 @@ Pina Pets
 Pinar Pastery
 Pinay
 Pinch market
-Pine Cone Grocery
-Pine Textiles
 PineNutsvip
 Pineapple Spa
 Pineapple Tree Boutique
@@ -43021,9 +41703,6 @@ Pinoy Pogi SALON
 Pinoy Supermarket
 Pinoy for Food Stuff
 Pintsch Bubenzer Middle East
-Pioneer
-Pioneer Car Service Center, Mussafah
-Pioneer DJ
 Pioneers of the Oasis Company
 Pioni
 Pipe Brothers
@@ -43071,7 +41750,6 @@ Pièces de ferraille
 Pièces liman
 Pièces maghrib couleur
 Pièces sohamaf
-Place Vendome
 Plain yogurt over couscous 4DH
 Plaisir mi Chocolat
 Plan Bey
@@ -43207,7 +41885,6 @@ Poissoniere
 Poissonnerie Bouzarktoune
 Poissonnerie Hassan
 Poissons & Fruits de Mar Bhaylisa
-Polaris
 Polestar Showroom
 Polette
 Police
@@ -43616,14 +42293,8 @@ Printing Innovation
 Printing Solutiong
 Printon
 Printshop
-Prisma
-Prisma Paints
 Prismatec WLL
 Priss Laundry
-Private Boutique
-Private Car
-Private Car Checking Zone
-Private Eye Clinic
 Prive Atelier
 Prive Mobiles
 Pro
@@ -43737,8 +42408,6 @@ Protection Civile
 Protectron Maroc
 Protek
 Protek Aluminium
-Proton
-Proton Electronics Trading - Fabin
 Protools Trading
 Prottia Supermarket
 Provalo Sweets
@@ -43775,19 +42444,6 @@ Ps1 Mapa Kamp alanı
 Ps1 Mapa Ofis alanı
 Ps3 Mapa
 Ptroly
-Public Authority for Consumer Protection
-Public Authority for Electricity and Water
-Public Auto Parts Co.
-Public Electricity Company
-Public Health Center
-Public Health Dept
-Public Notary
-Public Prosecution Department
-Public Relations
-Public Security Directorate HQ مديرية الأمن العام
-Public Security Training City
-Public Services for Armed Forces
-Public administration for civil affairs in Riyadh
 Puca
 Puchu Puchu Car Repair
 Puella salon
@@ -43797,7 +42453,6 @@ Puffery Bakery and Cafe
 Pull & Bear
 Pull & bear
 Pulman de sud
-Pulse India
 Puma
 Puma Outlet
 Pump store
@@ -43830,14 +42485,6 @@ Purification & Bottling of Drinkling Water
 Purity
 Purity lounge
 Purity salon
-Purple
-Purple Butterfly Beauty Salon & Spa
-Purple Gift
-Purple Island
-Purple Moon
-Purple Oyster
-Purple Phone
-Purple Properties
 Purpleline Beauty Salon
 Purunity
 Push & Pull
@@ -44332,9 +42979,6 @@ Quimaco
 Quincaillerie
 Quincaillerie Taourirt
 Quincallerie
-Quince
-Quince Company
-Quince company
 Quintero
 Quintessentially Egypt
 Quiz
@@ -44384,28 +43028,6 @@ RAHMA FER
 RAINBOW
 RAJAB HAIRDRESSING SALON
 RAJAB TRADING CO.LLC.
-RAK
-RAK Arabia Auto Services
-RAK COOPERATIVES SOCIETY
-RAK Ceramics
-RAK Ceramics HQ
-RAK Ceramics HQ Showroom
-RAK Chamber of Commerce and Industry
-RAK Coop
-RAK Economic Zone
-RAK Fix
-RAK Gas
-RAK Ghani
-RAK Insurance
-RAK Kludi Office
-RAK Mall
-RAK Media City
-RAK Motors
-RAK Precast
-RAK Tourism Authority
-RAK Transport Authority
-RAK Warehouse Leasing LLC
-RAK motors
 RAKEZ Service Center Al Hamra
 RALS Hypermarket
 RAM
@@ -44426,9 +43048,6 @@ RBL
 RC Gadgetz Hobby Shop
 RDNA
 RDeem
-REACH
-REACH Office
-REACH organization NGO
 RED HAT WORKSHOP
 RED ROSE PALACE TRADE
 RED Rose Stationary
@@ -44445,7 +43064,6 @@ REST MORE SPA
 RESTAURANT STOR
 RFC Digital
 RG home
-RGA Real Estate
 RGB Art Productions
 RIBATCOM SERVICES
 RIGT
@@ -44462,7 +43080,6 @@ RMA Watanya Assurance
 RMCO
 RMD Boards
 RMK Tyres
-RMR-Soft
 RND
 RNG Auditors
 RNN
@@ -44505,9 +43122,6 @@ RYAD PHO
 Raad Al-Hallaq Office
 Raalc
 Raayane
-Rab 966
-Rab Al Madeena Shopping
-Rab ersd
 Rabab
 Rababa Butcher
 Rabah
@@ -44551,7 +43165,6 @@ Racho Salon
 Racing Speed Auto Parts
 Rad Line
 Radaim
-Radar Supermarket
 Radeem Saloon
 Radha Bin Ismail Trading
 Radhi Ali Radhi Cold Store
@@ -44689,11 +43302,6 @@ Rajeev Travel & Tourism
 Rajkot Marine
 Raju Plaza
 Rajwa Trading
-Rak
-Rak Ceramics
-Rak Group
-Rak Motors
-Rak Palace
 Raka Al Khibrah Ladies Centre
 Rakaez Development Company for Elevators, Monitoring and Alarm Devices
 Rakan Colours
@@ -44802,9 +43410,6 @@ Randy Sale Trade of Food and Beverages
 Raneen - رنين
 Raneen Food Stuff
 Rang Company
-Range Developments
-Range Rover
-Range Style Fashions
 Rani Laundry
 Rania Beauty Salon صالون رانيا أحمد
 Rania Cerame
@@ -44908,7 +43513,6 @@ Rauf Company's office
 Rauf Sweets Trading
 Rauna Gate Construction
 Rauna Tower Construction
-Raven
 Ravin
 Ravsut Cement Company
 Raw Coffee Company
@@ -45007,8 +43611,6 @@ Re:Coded
 ReCare FM
 ReCare Facilities Management
 Rea Touch Beauty Centre
-Reach Employment
-Reach Shop
 Readers Bookshop
 Readymade & Garments Sale
 Readymade Gar & Perfumes
@@ -45181,14 +43783,12 @@ Reemo Contracting
 Reesha General Trading LLC (Foodstuff Wholesale B2B Company)
 Reeta Tailoring
 Reetaj Abaya & Sheila
-Ref and Aircon Materials
 Refaat Shopping Center
 Refan Travel And Tourism
 Refill Zone
 Refinery Beauty Lounge
 Reflection
 Reflection Lighting
-Reflex
 Refrehments
 Refresh Spa Beauty
 Refreshment Kiosk
@@ -45213,10 +43813,7 @@ Regency Travel
 Regency Travel & Tour
 Regency Travel & Tours
 Regenerate Lebanon
-Regent Airways
-Regent Oil Field Trading
 Reghef Sehe
-Regie autonome intercommunale de distribution d’eau et d’electricite de Fès
 Regime Crimes Liason Office
 Regina Gar
 Regina Jewelry
@@ -45232,7 +43829,6 @@ Regitration office of Hawamdiya
 Regus
 Rehab Al Noor
 Rehab Beauty Salon
-Rehabilitation Center Central Command
 Rehan Bookshop
 Rehan Construction and Properties
 Rehan Tyres
@@ -45264,7 +43860,6 @@ Reliance
 Reliance Electronics
 Reliance Gas Company, LLC
 Reliance Operations & Maintenance Services
-Reliant Car Care Centre
 Religious Guidance Office
 Rellato
 Reload
@@ -45285,15 +43880,12 @@ Remas Library
 Remawi
 Remax
 Rembrandt للفنون التشكيلية وكافة الأعمال الفنية
-Remedy Room
-Remedy's Pharmacy
 Remember me
 Remington Properties
 Remix Tech
 Remomero
 Remon Soliman | ريمون سليمان لانظمة المراقبة والانذار
 Remond Feghaly
-Remote Sensing Unit
 Remoush Optics
 Renad
 Renad Secrets Boutique
@@ -45347,8 +43939,6 @@ Republic of Mobile
 Rerotti
 Rerotti Gents
 Rerotti Ladies
-Res al omrane
-Res omrane
 ResModTec
 Resala
 Resala Charity
@@ -45378,30 +43968,6 @@ Restonic Trading
 Result PCR Covid Test
 Retab dates
 Retag Group 2
-Retail Commissary B803
-Retail Mart
-Retail Mart Hypermarket
-Retail Sale in Specialized Store of Various Household Appliances and Untensils
-Retail Sale in Specialized Stores of Electrical Equipments & Their Fittings
-Retail of Building Materials
-Retail of Building, Electrical, & Sanitary Materials
-Retail of Construction Material
-Retail of Construction Materials
-Retail of Cosmetics & Gifts
-Retail of Curtains & Furnishings
-Retail of Flowers & Plants
-Retail of Flowers, Plants
-Retail of Honey
-Retail of Household Appliances
-Retail of Household Items
-Retail of Jewellery
-Retail of Jewelry
-Retail of Meat Poultry
-Retail of Meat, Poultry & Fressh Chilled Chicken
-Retail of Miscellaneous Household Utensils
-Retail of Perfumes, Cosmetics & Bakhur
-Retail of Saitaryware and Fittings
-Retail of Sports Goods
 Retaj
 Retaj 2 Laundry
 Retaj Beauty Saloon
@@ -45870,9 +44436,6 @@ Rouge
 Rouh Al Inaqah Trading
 Rouhana Jewelry
 Rouhani Opticals
-Route 10
-Route direction
-Route mdiouna
 Roviya District Directorate
 Rowa Ladies Gallery
 Rowabi Al Manzaf
@@ -46344,8 +44907,6 @@ SAR: Centralized traffic control center
 SAR: Operations and timetable department
 SARA'S Bakery
 SARED AL-AJEELY AUTO REPAIR SHOP
-SAS Kitchens
-SAS Mart
 SASCO
 SASINTL CO. LTD.
 SAT transport
@@ -46400,7 +44961,6 @@ SGP Ladies Tailoring & Textiles Trading.
 SGS
 SHAHSAN TYPING & PHOTOCOPY
 SHAJRAH AL DHAR FOOD STUFF Salalah
-SHAKER GAMES
 SHAKLAND Supermarket
 SHALZ MALL
 SHAMALA
@@ -46575,7 +45135,6 @@ SNTTA Sharjah National Travel & Tourist Agency
 SNTTA Travel and Tours
 SODIC Head Office
 SOLITARe
-SONIC - NET مكتب
 SONO Windows & Doors
 SORAN NET
 SOREC
@@ -46607,7 +45166,6 @@ SQUARE TYPING SERVICES
 SR 1
 SR 2
 SR Express Plus Gents Salon
-SRA
 SRG Trading
 SRO: Human Ressources department
 SRR Building Material Trading
@@ -46637,7 +45195,6 @@ STITCHNATION
 STITOU LUZ
 STOP LOOK
 STORE
-STS Company
 STYLISH
 SUBARU
 SUBCA ELECTRONIC EQUIPMENT COMPANY LIMITED - LLC
@@ -46645,7 +45202,6 @@ SUIT CHIC
 SUNSHINE
 SUNTECH BUSINESS SOLUTIONS
 SUNY
-SUPER SPORT COMPANY
 SURE International Technology
 SV for Surveying Services
 SVW عالم الصفائح الحجرية
@@ -46734,7 +45290,6 @@ Sabhan Cars
 Sabhq Facades Ind. LLC
 Sabic
 Sabil Market
-Sabino Spa
 Sabir Car Repair Shop
 Sabir Cuir
 Sabir Furniture
@@ -46770,12 +45325,6 @@ Sacoor Brothers
 Sacoor Brothers Fashion
 Sacs de cuir naturel صناعة الحقاءب الجلدية
 Sad Salalah
-Sada Al Khaleej Trading & Cont. Service
-Sada Al Sout
-Sada Al-Mashreq Office
-Sada Media
-Sada Office
-Sada Phone Mobile Office
 SadaBahar Bakery
 Sadaf
 Sadaf Electronics
@@ -47917,7 +46466,6 @@ Santé bien vivre Agadir
 Sanya
 Sanya Fashions
 Sanymaco
-Sao Paulo
 Saoud Al Saadi Butchery
 Saoud Flowers
 Saphire Bijouterie
@@ -48017,9 +46565,6 @@ Saruchawa Agricultural Office
 Sarvam Yoga
 Sarvar Bakery
 Saryat Al Alam
-Sas Al nakhal Electrical Repairing
-Sas Hardware
-Sas Salon
 Sasan
 Sasan Boutique
 Sasan Fashions
@@ -48175,7 +46720,6 @@ Scali
 Scama
 Scama Ford
 Scamlah Jewllery
-Scanner House
 Scanya
 Scapa Navy
 Scarabe Bazar
@@ -48215,7 +46759,6 @@ Scope sky
 Scorpion
 Scorpion Fashion
 Scot Grocery
-Scotch & Soda
 Scott Mobile Phone
 Scouter Vape Store
 Scrap
@@ -48361,7 +46904,6 @@ See Max Car Accessories
 SeeMart
 Seeb
 Seeb Mall
-Seed Inspection and Certification Department / Dhi Qar Branch
 Seeda Tech Advertising LLC
 Seedar
 Seedar Al-Doha
@@ -48387,7 +46929,6 @@ Seher Al Madina Grocery
 Sehr AL Gharb Ladies Salon
 Sehr Al Layali
 Sehteq
-Sei Bella Beauty Center
 Seier Shades Salon
 Seiko
 Seiko Building
@@ -48426,10 +46967,6 @@ Sell Dates & Honey
 SellAnyCar
 SellAnyCar.com
 Sellami Oualid V. Vaisselles
-Selling & Packaging Gift & Souvenirs
-Selling New Parts for Vehicles
-Selling Vegetables, Fruits and Dates
-Selling fabrics & textiles
 Selman Sweets
 Selva
 Selvado
@@ -48656,8 +47193,6 @@ Shadi
 Shadi Shoes
 Shadi's Plant Nursery Shop
 Shado Center
-Shadow
-Shadow Mobile
 Shadows Savings
 Shads International Establishment
 Shafa Bakery
@@ -48749,7 +47284,6 @@ Shakeel Arabian Fashion
 Shakeel Studio
 Shakeel Trading
 Shakeel Trading Co
-Shaker Laundry
 Shakeri Electronic
 Shakeri Store
 Shakhawan Company
@@ -49054,9 +47588,6 @@ Sheikh Zayed Road
 Sheikh Zayed housing Programme.
 Sheikha
 Sheila Ladies Salon
-Shein Mr.
-Shein Najaf
-Shein femininity
 Shejon Elect. Sanitary Ware & Paints Trading
 Shekh group company
 Shekhan Education
@@ -49081,8 +47612,6 @@ Shendi Textiles
 Shenjie Hu
 Shenoy Jewellery
 Sheoura
-Shepherd
-Shepherd International
 Shequoq Supermarket
 Sher Ali Laundry
 Sher Jan & Khatoon Ashoor
@@ -49111,8 +47640,6 @@ Shibina Cold Store
 Shibl Super Market
 Shibli Typing Office
 Shick
-Shield Steel Fabricator
-Shield tactical
 Shields and Gifts
 Shier Office
 Shifa
@@ -49391,7 +47918,6 @@ Silcon
 Silent Night
 Silent Night Bed Centre
 Silica
-Silicon Central
 Silik Touch
 Silisty Beauty Center
 Silk & Satin
@@ -49779,7 +48305,6 @@ Sleep Original
 Sleep Products Gallery
 Sleman mobel
 Slemani Land for Real Estate
-Slice
 Slim Art shop
 Slim Vision Technology
 Slimming Maison
@@ -50010,118 +48535,6 @@ Societe artisan bakery
 Societe nationale d'entreprise d'equipement et de construction
 Society & Cultural Center
 Society Service Sociability
-Société ABS Protection Nice
-Société AMD Amassur Sanad Assurance
-Société AXA Assistance Maroc SA
-Société Abdelmoumen Mohamed
-Société Abderrahman Optic SARL
-Société Abi Horaira V. Voitures
-Société Abou Ziad Auto
-Société Achour Autos Pièces
-Société Afak Metal
-Société Africaine De Réassurance
-Société Agricole des Hauts Plateaux
-Société Al Baraka
-Société Aluminium
-Société Assurance Berrada
-Société Auto Sélect
-Société Bahij Pièces Autos
-Société Bel -- Oceane Institut de Beauté
-Société Benkirane
-Société Bensmaco SARL
-Société C.M.P.F assistance
-Société Cat Paris
-Société Cema Fes
-Société Cofagri Des Produits Agricoles
-Société Cycle 2020
-Société Dassouli Pneumatique
-Société Delvau V. Des Articles Cadeaux
-Société Diagnostique Lamnaour Mohammed
-Société Dinde Al Jaouda
-Société Dizig Épicier en demi - gros
-Société Dounia Pièces Autos
-Société Droguerie Oued . Sous
-Société El Aarej SARL- AU
-Société El Kouche Aluminium
-Société Elec Énergie
-Société Elle Ghazi Souali Service Elevage
-Société Extincteurs Incendie
-Société Extra Trav SARL
-Société Falah Pneumatique
-Société Fashion -- Optic Trachen
-Société Fassi Flex V . Matelas
-Société Fast Machine
-Société Fast Pièces Autos
-Société Filali Italchim SARL
-Société Fraternelle de Secours et Orpholinat du Personnel de la Sureté Nationale
-Société Froid Technologie
-Société G Info
-Société Gocom
-Société Gold Electro & Deco SARL
-Société Hamza Clim SARL
-Société Hamza Commerce Industriel
-Société High Quality
-Société IMEDICA Optic Sup Vision
-Société Imprimerie Papeterie El Kitab
-Société Iwaco
-Société Karaouiyine Bilding SARL- AU Droguerie Karaouiyine
-Société Khayri Climat
-Société Kénitra Aménagement et Développement
-Société LAMO SARL Distribution de Matériels Électriques et Travaux
-Société Les Jardins de Sebou
-Société Loukili Déco SARL
-Société Lyousr SARL V. Métals de Construction
-Société MD Destockage Bouka Bouchta
-Société Mahalkom Épicier Superette
-Société Marocaine d'Assurance à l'Exportation الشركة المغربية لتأمين الصادرات
-Société Marocaine de Contrôle Et Prévention
-Société Matériaux Ain Chkef Droguerie
-Société Mesllek
-Société Metraco D'électroménager
-Société Mobius V . Produits de Cuisine
-Société Mondial Hard
-Société Moufid Metal V . Matériaux de Construction
-Société Multi-Service Para Médicaux
-Société My Soft
-Société Naimco Filali SARL
-Société Neggaoui Pièces-Autos (SNPA)
-Société Nevada Pressing
-Société Noujoum Bab Allah
-Société Nourchic
-Société Open Clean Pressing Expresse
-Société Orientale des Travaux Topographiques TopOrient
-Société Papichoc Imprimerie
-Société Para Medshop
-Société Pati - Sweet
-Société Phoenix Aluminium SARL
-Société Pneumatique Al Fassia
-Société Pneumatique Auto Fes
-Société Pneumatique Saiss
-Société Proxy Plus
-Société Rafiki Hassar Réparation des Freins
-Société Raha Optic SARL
-Société Rosa Pièces Auto
-Société Régionale Multiservices Casablanca-Settat
-Société Saada Frères Accessoires
-Société Saiss Agrijap
-Société Sedk Assurances
-Société Sefrioui Auto Centre
-Société Service Karnak Couleur
-Société Sodibalus V. Des Batris Alma
-Société Sodirep Pièces Autos
-Société Taiiba Car
-Société Tamwine Lamarti
-Société Taza Maroc Confection
-Société Top Réparation Auto
-Société Topographie SOTAR
-Société Tétouan
-Société With Life Nature
-Société Zahra Dit Distribution
-Société Zerda Topographie
-Société adh Voyages
-Société l'Or Rouge
-Société laboratoire structure test dès essais
-Société nationale de crédit Sonac
 Socks Shop
 Sockscollection
 Socobano
@@ -50228,7 +48641,6 @@ Soltanti Abayat
 Solution
 Solution Typing
 Solution Typing Centre
-Solutions Valet Car Services
 Soly
 Soma
 Somalia Ladies Garen Tailoring
@@ -50258,7 +48670,6 @@ Sonia
 Sonia A
 Sonia Electronics
 Sonia's Beauty Salon
-Sonic Middle East General Trading
 Sonorisation R'Mila
 Sonovision
 Sons of Abu Alqasem
@@ -50463,20 +48874,7 @@ Spa Lounge
 Spa Massage
 Spa Riad Fes by Cinq Mondes
 Spa terre d'émeraude
-Space
-Space Age
-Space Arrow Trading & Services
-Space Coiff
-Space Garage
-Space Mall
-Space Saloon
-Space Travel
-Space Travel & Tourism
-Space Tyre Auto Service
 Spacetet Computer Center
-Spain Aluminium
-Spain Phone
-Spain Supermarket
 Spana Marrakech
 Spanish
 Spanish Embassy
@@ -50695,7 +49093,6 @@ Sportune Trading
 Spot
 Spot Free
 Spot Free Laundry
-Spot Light
 Spot Out
 Spotless Dry Cleaning
 Sprachinstitut fes
@@ -50718,7 +49115,6 @@ Sprint Copy
 Sprint information technology
 Spritz Lounge
 Sprout Ladies Saloon
-Squad Palma
 Square
 Square Business Centre
 Square Cut gents salon
@@ -50750,7 +49146,6 @@ St.Tropez
 Stadium Point
 Stadium Sports & Golf House
 Staff Development Center
-Stage
 Stage2
 Stage2 bike shop
 Stainless Steel
@@ -50989,7 +49384,6 @@ Stephanie
 Steps
 Ster Tower
 Sterla
-Sterling
 Steve Madden
 Steven Haddad
 Still
@@ -50998,9 +49392,6 @@ Stitchwall Tailors
 Stock Shop for European Cloths
 Stock Zone
 Stock bureaux du Maroc
-Stone Dry Cleaning
-Stone Gallery
-Stone oven bakery - bread 4SAR
 Stoneage Marble llc
 Stones International Real Estate Brokers
 Stones and eagles cafe
@@ -51282,9 +49673,6 @@ Sumer Real state Office
 Sumerian Media and Communications Authority
 Sumiko Stationery
 Sumitomo Tires
-Summer Cool
-Summer Land Tailoring Shop
-Summer Star
 Summit
 Summit Hotels & Hospitality
 Summit Real Estate Office
@@ -51394,23 +49782,7 @@ Sunny Supermarket
 Sunny Vale
 Sunon
 Sunrays Typing
-Sunrise
-Sunrise City
-Sunrise City Super Market
-Sunrise City Supermarket
-Sunrise City Supermarket 1
-Sunrise City Supermarket 2
-Sunrise Mall
-Sunrise Market
-Sunrise Office
-Sunrise Supermarket
-Sunrise Supermarket JLT
-Sunrise Travel
-Sunrise mobile phone & electronics
 Sunseeker
-Sunset Computers and Electronics
-Sunset Mall
-Sunset Marine Equipment
 Sunshine
 Sunshine Grocery
 Sunshine Laundry
@@ -51424,108 +49796,6 @@ Sup cod3
 Supeco
 Supeco - LaBelVie
 Supeco Market
-Super
-Super A2Z
-Super Arrow
-Super Arrow Mobile Shop
-Super Barbershop!
-Super Bonanza
-Super Bonanza Hyper Market
-Super Brand Mobile Phones
-Super Care
-Super Carreaux
-Super Cellar
-Super Choix
-Super Code Computer
-Super Computer Trading
-Super Computers Trading
-Super Cool Airconditioning
-Super Cut Salon
-Super Cuts Style
-Super Delux Automatic Laundry
-Super Delux General Trading
-Super Distribution
-Super Dolphin
-Super Engineering Industry LLC
-Super Fashion
-Super Fone
-Super Galant General Trading
-Super General
-Super General Company
-Super Granite & Marble
-Super Healthy Diet
-Super Internet Office
-Super Jet
-Super Jet bus tickets
-Super Joy Laundry
-Super King Laundry
-Super Laundry
-Super Laundry & Dry Cleaning
-Super Laundry and Dry Cleaning
-Super Marche
-Super Marche Addoha
-Super Marche Mogador
-Super Marche Tazarine
-Super Marché
-Super Marché Aissa
-Super Marché Del Moll
-Super Marché Riad
-Super Mario Electronics
-Super Mark
-Super Market
-Super Market Abdou
-Super Market Alakhawayn
-Super Market George Star
-Super Market Khalid
-Super Market Mezmer
-Super Market Njeim
-Super Market Saleem
-Super Market bliss
-Super Market, PC
-Super Marshaih
-Super Max
-Super Nexus General Trading
-Super Office
-Super One Market
-Super Phone Mobile Repair Office
-Super Plaza
-Super Print Services
-Super Quality Hearing Aid & Speech Therapy Center
-Super Residency 01
-Super Ruby Jewellers
-Super Sas Laundry
-Super Speed Computers
-Super Sport
-Super Spot Computer
-Super Star
-Super Star Gents Saloon
-Super Star Telecom
-Super Star Turkish Saloon
-Super Stationery
-Super Technical
-Super Tours
-Super Trim
-Super Trim Gents Salaon
-Super Trim Gents Salon
-Super Trim Men's Salon
-Super Trim Women's Salon
-Super Tyres
-Super U Ennakhil
-Super U Express
-Super VIP Real Estate
-Super Value Market
-Super Vision Opticals
-Super Wash
-Super bacala
-Super care laundry
-Super fly travel
-Super laundry
-Super market
-Super market el basha
-Super market zad - سوبر ماركت زاد
-Super markit abu jubran
-Super net Cargo
-Super pack
 SuperHost Vacation Homes Rental
 SuperJet
 SuperJus
@@ -51624,7 +49894,6 @@ Supplier of Aliexpress
 Supplies
 Supplies and Tenders Department
 Suppoorts Hub Typing
-Support Medical
 Supr@tours
 Supra
 Supra tours Travel
@@ -51632,15 +49901,6 @@ Suprati perfumes
 Supratour
 Supratours
 Supreen Bakery
-Supreme
-Supreme Audit Board (former)
-Supreme Cold Store
-Supreme Computer Trading
-Supreme Council for Family Affairs
-Supreme Council for Women
-Supreme Fashion Textiles
-Supreme Islamic Shia Council
-Supreme Opticals
 Supérette
 Supérette Achkide
 Supérette Kawtar
@@ -51782,7 +50042,6 @@ Symbols Consulting
 Symmetria
 Symonea Tanger
 Symphonie
-Symphony
 Sync Store
 Syndey Electronics & Electrical
 Syndicate Of Iraqi Teachers
@@ -51798,8 +50057,6 @@ Syrian Youth Saloon
 Syrian and Palestinian and Jordanian grocery
 Syrian house
 Syrine
-System Care Printing
-System Egypt LLC
 Systematic Computers
 Systematic Services
 Sécurité Automate
@@ -51853,18 +50110,14 @@ TATA TIO
 TAW-JEEH
 TAZ Auto Accessories
 TBS
-TCA shop
 TCL
 TCM Traditional Chinese Massage
-TCS DAHUA IRAQ
 TDH Erbil Office
 TE Central
 TE Central of Maadi
 TE data
 TEA 20
 TECH EYE
-TECHNICAL TRADING COMPANY LLC
-TECHNO CAST PRECAST
 TECNA
 TECS Technical Supplies International Co
 TEEJAN TRADING & CONTRACTING L.L.C. ABU DHABI
@@ -51938,7 +50191,6 @@ TSC Plus
 TSC Wholesale Center
 TSH General Trading
 TSI International FZC
-TSS
 TUI
 TUI office
 TURBO SPEED Computers
@@ -51951,7 +50203,6 @@ TVS Travels
 TWG Tea
 TWNCEAAC
 Ta Marbota
-Taa Taa
 Taaber tourism
 Taal
 Taas Properties
@@ -52173,7 +50424,6 @@ Taleb Sport
 Taleela Cold Store
 Taleen Convenient Store
 Taleen Office
-Talent Mohammed et cts Epicier
 Talentz Enterprises
 Talha Market
 Talha Marketing
@@ -52200,9 +50450,6 @@ Tamam Gents Tailoring
 Tamam Optics
 Tamania
 Tamanna Ladies Tailors
-Tamara
-Tamara Electrical
-Tamara Skateshop
 Tamaris 2 120718
 Tamaro
 Tamathor Grocery
@@ -52546,7 +50793,6 @@ Teba Furniture
 Teba destination
 TebaLink Information Techonlogy
 Tebrazzo Dubai
-Tec Sim Carpets
 Tecco Electric Establishment
 Tech Dat Group
 Tech Eye (MRF)
@@ -52564,48 +50810,10 @@ TechIT Support
 Techling Systems LLC.
 Techmart Bahrain S.P.C
 Techni Advertising Press
-Technical
-Technical & Administrative Training Institute
-Technical 3D (Stainless Steel)
-Technical Care Center
-Technical Care Computers
-Technical Center for Car Rims
-Technical Corporation For Vehicle Registration Services
-Technical Creativity Office
-Technical Glass & Aluminium
-Technical Laundry
-Technical Parts Company
-Technical Scissors
-Technical Scissors Co.
-Technical Scissors Company
-Technical Scissors Gents Saloon
-Technical Tools
-Technical Touch Saloon
-Technical Trading Centre
-Technical Trading Co.
-Technical Training Wing
-Technical Triangle Computer Office
-Technical and vocational training in the Eastern Region Office
-Technical visit center
 Technico Flor
 Techniline Electronics
 Technip Genesis Oil And Gas
 Technique Phone
-Techno
-Techno Blue Fujifilm
-Techno Blue Service Centre (Samsung & Asus)
-Techno Box
-Techno Car Glass
-Techno Clinic
-Techno Communications
-Techno Gulf
-Techno Hub 2
-Techno King
-Techno King Trading Company
-Techno Paints
-Techno Park
-Techno Scient
-Techno Tell
 TechnoRad Corporation
 Technoden Motors Garage
 Technofin Tyres
@@ -52614,10 +50822,6 @@ Technograph Trading Co.
 Technolog Service informatique
 Technologia Middle East
 Technological Services Centre
-Technology Development Committee (TDC)
-Technology General Trading Office
-Technology Mall
-Technology Spirit Company
 Techorbit
 Techorbit Trading
 Techpunto IT Solutions
@@ -52651,7 +50855,6 @@ Teka
 Tekce Real Estate
 Tekie Tareke General Trading
 Tekken Electronic Games Office
-Tekla Tech
 Tekno Print LLC, Umm Al Quwain
 Tel Baghdad Center - Zain Services
 Tel+Tabac alaoui
@@ -52743,8 +50946,6 @@ Tesla - Sheikh Zayed Rd
 Tesla Power
 Tesla for engineering and electrical services
 Tesneem Electrical & Sanitary
-Test Bay
-Testing lab
 Tetaj Hairdressing Saloon
 Tetco Electrical Equipment Trading
 Tetco Video
@@ -53281,7 +51482,6 @@ Tickets Check
 Tickets for Hassan II mosque and museum
 Tickets for Medinet Habu, Dayr al-Madīnah, Ramesseum, Valley of Nobles, and smaller sights
 Tickets for the dam (100EGP)
-Tide Dry Cleaners
 Tidness Nails
 Tie House
 Tie Shop
@@ -53340,7 +51540,6 @@ Tiour Al Jannah Tailoring
 Tip Top Star
 Tips and Toes
 Tips and Toes Saadiyat
-Tiptop Cosmetics LLC.
 Tire
 Tire Plus/Mercedes-Benz Warehouse
 Tire Repair
@@ -53475,8 +51674,6 @@ Tomas patisserie
 Tomini
 Tommy Bahama
 Tommy Hilfiger
-Tomorrow Phones Trading
-Tomorrow's World Electronics Company
 Toms
 Ton sur Ton
 Tone
@@ -53842,7 +52039,6 @@ Transatour, société de transport
 Transatours maroc
 Transco
 Transcom
-Transform Mobiles Phones Accessories
 Transgulf Cement Products
 Transgulf Enterprises
 Transind Company
@@ -53929,7 +52125,6 @@ TriLife
 Triangle Cold Store
 Triangle Organization
 Triathlon Hub
-Tribal Readymade Garments
 Tribcha Travel Transport Touristique
 Tribunal Militaire
 Tribunal Primère
@@ -53938,8 +52133,6 @@ Tribunal du Premier instance
 Tric
 Trico
 Trico International
-Trident Laundry
-Trident Medical Equipments Trading
 Tridin Capital Group
 Trikatel
 Trim
@@ -53973,10 +52166,6 @@ Trobone
 Troc'Mania
 Trocadero Saloon
 Trojan General Contracting
-Trolley
-Trolley Convenience Store
-Trolley Cordoba
-Trolley Market
 Trolly's Supermarket
 Trombati Hicham V . GSM
 Troos
@@ -53999,7 +52188,6 @@ True Bake
 True Filipino
 True Fit
 True Link Mobile
-True Media
 True Value
 True Vision
 TrueBays IT Software Trading LLC
@@ -54046,14 +52234,6 @@ Tugba
 Tuhur Creative Studios
 Tuleila Heat Insulation
 Tulie salon F
-Tulip
-Tulip Advertisers
-Tulip Flower
-Tulip Flower Center
-Tulip Flower Centre
-Tulip Flowers
-Tulip Flowers Tr
-Tulip Medical Supplies
 Tulips @ Emporium
 Tunes
 Tuneup Auto Services
@@ -54314,14 +52494,6 @@ Ukay Ukay Fashion
 Ukraine embassy
 Ulisse Bookshop
 Ulla Ladies Salon
-Ultimate
-Ultimate 360
-Ultimate Car Care
-Ultimate Furniture International
-Ultimate Hobby
-Ultimate Holidays
-Ultimate Trading, Contracting & Services
-Ultimate hardware solution
 Ultra Beauty
 Ultra Consulting
 Ultra Eco General Trading
@@ -54572,29 +52744,6 @@ Univers Malta
 Univers Paradiscount
 Univers de la Tradition Ou Maalal Abdelahad
 Univers prestige
-Universal
-Universal Auto Parts
-Universal Car Maintenance Al Khuwair
-Universal Cold store
-Universal Coldstores
-Universal Electrical Equipment
-Universal Enterprises Corporate
-Universal Food Centre
-Universal For Furniture
-Universal Incendie
-Universal Jeans
-Universal Laundry
-Universal Lighting
-Universal Lights Stationery & Gifts
-Universal Markets Est
-Universal Motors Agencies
-Universal Palace
-Universal Technical and Vocational Institute
-Universal Telecom FZCO
-Universal Travel
-Universal Travel & Tourism
-Universal cold store
-Universal electronics
 Universe Events
 Universe Travel & Tours
 Universia Trading Casablanca
@@ -54623,8 +52772,6 @@ Upholstering Car Seats
 Upholstery of Car Seats
 Uphosltery
 Upim
-Upkeep Cleaning Services
-Uplift
 Upper Cutz Salon
 Upscale Barber Shop Salon
 Uranus
@@ -54712,7 +52859,6 @@ V. Fruit Sec
 V. Fruits Secs et Tabac
 V. I. P.
 V. M . D'électricité
-V. Max
 V. Meubles Occasions
 V. Oeufs
 V. Olives
@@ -54796,7 +52942,6 @@ VFT Conseils
 VHS Tasheel Visa Center
 VIB
 VICTORIA'S SECRET PINK
-VILLAGE MARKETS
 VINCCI ABAYA & SHELA
 VIP Barber Shop
 VIP Class Gents Saloon
@@ -54827,7 +52972,6 @@ VKM Mobiles
 VLAN Store
 VLCC
 VLS Textiles Trading
-VMax
 VOIP
 VOIVan
 VOK DAMS Middle East
@@ -54842,7 +52986,6 @@ VS Trading
 VSC
 VTGooo Group Hurghada
 VTR Logistic
-VTS
 VW Garage
 VW, Audi, Skoda & Seat Spear parts
 VW, Audi, Skoda & Seat Workshop
@@ -54943,16 +53086,12 @@ Vasteras Gents Salon
 Vatche Studio
 Vateem Optician
 Vavas Fashion
-Vaya Jewellers
 Vector
 Vee Pee Trading
 Veel chng v/5
 Veena Shoes
 Veg & Fruits Stalls
 Veg. Corner
-Vega Body
-Vega Links Trading
-Vega café
 Vegas Cargo
 Vegetable & Fruit Market
 Vegetable Market
@@ -55182,16 +53321,12 @@ Veterinary Medicine Directorate - El Dakahleya
 Veto
 Veto LED
 Vevey
-Via Dolce
-Via Rodeo
-Via Spiga
 Viandari
 Viande Chef
 Viandes
 Viandine boucherie
 Vias had swalem
 Viatek
-Vibes Phones Electronics
 Vibgyor International Fz.
 Vibrant Security Services
 Vibrate
@@ -55214,15 +53349,6 @@ Victorian Salon
 Victorias Secret
 Victorias's Secret
 Victorie Insurance Sal
-Victory
-Victory Bikers
-Victory Contracting Est.
-Victory Information Office
-Victory Marine Services
-Victory Saloon
-Victory Team Grocery
-Victory Trader
-Victory team UAE
 Vidange
 Video Al Nasar
 Videocon
@@ -55248,32 +53374,6 @@ Villa 515
 Villa Home Accesories
 Villa Mirador
 Villa New
-Village Center 1
-Village Center 1A
-Village Center 1B
-Village Center 2
-Village Center 2A
-Village Center 2B
-Village Center 3A
-Village Center 3B
-Village Center 3C
-Village Center 4
-Village Center 4A
-Village Center 4B
-Village Center 5 area 1E
-Village Center 5A
-Village Center 5B
-Village Gents Saloon
-Village Hub Grocery
-Village Hypermarket
-Village Laundry
-Village Library, Second Branch
-Village Lights Bakery
-Village Pièces Autos
-Village Sport
-Village Supermarket
-Village corner for accessories, cosmetics, stationery and the bags
-Village mall
 Villeroy & Boch
 Vimar Group
 Vin Group Office
@@ -55789,7 +53889,6 @@ Warrior
 Warriors Academy
 Warsha44 Feddan
 Warshay harem
-Wasabi Electronics
 Wasal
 Wasal Grocery
 Wasam Real Estate Investment
@@ -56264,10 +54363,6 @@ Work book
 Work place Office
 Workers' Health Union
 Workers' Union, Kirkuk Branch
-Workshop
-Workshop Algradi for Electronic Engineer
-Workshop GMC
-Workshop for the addition of gas systems in Babylon
 Workshops area
 World Arayat
 World Best Travels & Tourism
@@ -56333,7 +54428,6 @@ Wrap N Go
 Wrap Style
 Wrapstar Custom
 Wsam office
-Wunderman Thompson
 Wydad Store
 X Five
 X Five Car Accessories
@@ -56653,7 +54747,6 @@ Yemeni Socialist Party - Hadhramaut office
 Yemenia Airlines
 Yemenia Airways
 Yemennia Airlines POS
-Yes Mart Grocery
 Yeshi
 Yessayan
 Yhamas & Jabir Trading
@@ -57122,15 +55215,6 @@ Zallal
 Zallaq Nen Salon
 Zallaq View Supermarket
 Zalmat Mohammed Mécanique Générale
-Zam
-Zam Zam
-Zam Zam Grocery
-Zam Zam Pardha
-Zam Zam Sweet Water
-Zam Zam Trading
-Zam zam
-Zam zam Typing and Photocopy
-Zam zam supermarket
 Zama
 Zamalek Police station
 Zamalek Pro Cam
@@ -57354,7 +55438,6 @@ Zone à d'activité
 Zones Corp Administration
 Zonik
 Zonobia Tobacco & Smoking Accessories
-Zoo Animals
 Zoom
 Zoom Art Production
 Zoom Auto Accessories
@@ -57374,8 +55457,6 @@ Zooma
 Zoon
 Zooz Shop
 Zorba Shoes
-Zoro Laundry
-Zoro Phone
 Zotye Auto
 Zoubi Fatima V. Vêtements Traditionnels
 Zoueki
@@ -57437,7 +55518,6 @@ aayash shopping centre
 abaq al naseem perfumes
 abattoirs municipaux
 abbasi mayor
-abc
 abd 3azar
 abd rahman schop
 abdeen home center
@@ -57521,9 +55601,6 @@ ahmef
 ain azliten tannery
 ain el saydeh
 ainy anak
-air cairo
-air choice
-air france
 airtravel enterprises
 aishe supermarket
 ait mouden kaltouma 2205
@@ -57780,7 +55857,6 @@ all in للتسويق الالكتروني
 all nuzha macca
 all sharq kompane
 allday
-alliance cosmetics & electronics
 allianz
 allianz sna
 allostore
@@ -57846,7 +55922,6 @@ amerli directorate
 amghar yaaza 2508
 amiyal al janoob
 amoaj
-ampm
 amsiln studio co-working space
 anapec
 anatolia store
@@ -57943,8 +56018,6 @@ awqad
 awqafi Choman
 awraq al zayton
 awwad auto parts
-axiom telecom
-axle repair
 aydin.paṣa
 ayoub car accessories
 aysha house
@@ -57954,7 +56027,6 @@ azad cars
 azane
 azhar yanbu
 azikler company / kütahya ceramic
-aziz fruits and vegetables
 azmi home in askan Riyadh
 azure boutique
 azzan
@@ -58076,7 +56148,6 @@ best home centre
 best house
 bestcolours ladies salon & spa
 betola massage
-beyond beach
 big cup 50egp
 big deal
 big sale
@@ -58101,7 +56172,6 @@ black and white beauty
 black coffee garden
 black flower
 black rose
-bloom DIGITAL SERVICES
 bludan (photo) studio
 blue market
 bluering
@@ -58203,7 +56273,6 @@ carrefour tanger
 carryfood supermarket
 carré gourmand
 cars tayer and oil services
-casa
 cash pay general trading
 casio g shock
 cataleya
@@ -58314,7 +56383,6 @@ commune rurale
 commune sidi ali belkacem
 commune urbaine
 communication department
-community police
 comp university
 compane elit
 company
@@ -58342,12 +56410,6 @@ control and anti-corruption authority yanbu
 control electrical accessories co. LLC
 control point Mosul sargarsn
 cool cut
-coop abreshmoun
-coop aramoun
-coop baqaata
-coop falougha
-coop malaab
-coop pescine
 cooperative d'Argan Dar  hafida and family
 cooperative femenine d'huile d'argan
 copart
@@ -58450,8 +56512,6 @@ directorate Agriculture of holy karbala
 directorate of health shaqlawa
 directorate of industry evolution
 directorate of insurance
-disney
-disney toys
 diva beauty salon حلوان
 diwani chawderi daraee
 dixit
@@ -58508,7 +56568,6 @@ ecole toriya sekkat
 ecomz
 eddaghour 2558
 eddy
-education department
 educational department
 eforea Spa & Health Club
 eforea spa
@@ -58545,8 +56604,6 @@ elharmin group
 elio
 eliocha
 elissio
-elite
-elite technology
 eljabiri meryam 2155
 elmadrasah
 elmasry
@@ -58566,7 +56623,6 @@ ensaf basket minimarket
 enwan aljamal ladies salon
 epicerie
 eqra
-escala
 eshop للشراء عبر النت
 essafi
 essaili 4008
@@ -58667,7 +56723,6 @@ filmworks llc
 filos
 final touch for decoration
 financil department
-find well
 fine mart
 fine way hypermarket
 fiordelli;Pro gym
@@ -58679,7 +56734,6 @@ first star construction general
 fish
 fish markat ajman
 fit and fix (bridgestone)
-flash back
 fleifel toaster
 florence
 flower boxes
@@ -58737,12 +56791,8 @@ fruits et légumes خضر و فواكه
 ftouh
 fuala qurum
 fulbridge
-future - المستقبل
-future for intarnt serves
-future window company
 g mart
 g4 store
-galaxy voyage
 galery oscar
 gallerie matta ajaltoun
 gallery Daher Home center
@@ -58763,9 +56813,6 @@ gastronomica
 gaz cartridge screw
 gazi super market
 geant
-general directorate passport of Arbil
-general managers of legal affairs
-general organization of social insures
 gentleman salon
 gents
 geo
@@ -58839,8 +56886,6 @@ haji hussein real estate
 haji hussin real estate
 haji salam real estate
 haji salam real estate co.
-hala and mazhaba ladies salon
-hala third commercial grocery
 halasat rp
 halawa لاكسسوارات االمحمول
 halawiyat el ikhwat
@@ -58995,7 +57040,6 @@ imaquen 5655
 imirli
 in & out
 inch
-india tex
 infinite men care
 infinity
 infinity mobile
@@ -59012,7 +57056,6 @@ institut pour le développement humain
 institute of Art
 instituto cervantes de beirut
 instut mimo
-insurance al khat
 intecsa Abu Dhabi Office
 interiors L.L.C.
 intermarche
@@ -59057,7 +57100,6 @@ janah store
 janat al zahraa
 janith khair
 jannat supermarket
-japan bearings
 jar el bahr
 jarir book store
 jasar alwafa
@@ -59298,7 +57340,6 @@ liquor shop
 llootes for Iranian food
 loai alzoubi
 local vegetables market
-locals 10EGP, foreigners 50EGP
 lofian
 loli
 lomar office
@@ -59479,9 +57520,6 @@ mersal group
 merzaque 2157
 meshal optical
 metco conpany
-metro FASHIONS
-metro kent
-metro mall
 microchoix
 middle oil company
 midland refineries company
@@ -59550,9 +57588,6 @@ mohanad home
 moisson
 moment
 monastery water circle
-money mart company
-moon mart
-moon telecom
 moroccan tea
 mosque
 mostafa
@@ -59642,10 +57677,6 @@ nasma al nujub
 nassabein cell
 nasser advertising agency
 nassib med 3194
-national
-national Olympic committee of Iraq /Kirkuk department
-national oilwell varco NOV
-national store
 natural solar energy
 naturalizer
 nawadiri supermarket
@@ -59660,12 +57691,6 @@ nejoum al zarqa gents salon
 nesma
 net rasa
 nethal
-new aebiran
-new balance
-new horizon English learning
-new sawiri store centre
-new show room
-new town company
 nexen tyres
 nid basrah
 nid iskendarya atlas
@@ -59756,9 +57781,6 @@ oriental overseas
 original key
 original marins
 osaka trading showroom
-oscar (vente de produits de beauté)
-oscar paints
-oscar pet shop
 osha
 oskar star phones and satellite
 osman phone
@@ -59869,14 +57891,12 @@ pressing sevilla
 pretty
 pretty;كراميش 2
 prime markets
-private work shop
 prker drilling office
 procida company
 professional car clinic
 professional clothing
 professional security system
 programmer center
-pronto
 proshade service
 protein mohamed
 proxi
@@ -59959,7 +57979,6 @@ reefah grocery
 reem bnth attq
 regal
 regency travel
-regent street
 rem
 remaxphone
 renault
@@ -59967,7 +57986,6 @@ reparation informatic et electronic
 representatives of ministry of education in erbil
 reservation 01010269706
 residency office
-retail management company
 rexrawe tazhna
 rhal broker
 rhayel cell
@@ -60007,7 +58025,6 @@ saad hazim alduberdany
 saadeddin Sweets
 sabbagah confectionary
 sabha cars suzuki agent
-sada alkalej
 sader market
 sadween trad rexin shop
 saeed hamad
@@ -60245,7 +58262,6 @@ souq baladia
 sous direction des douanes tanger
 spa
 spa town
-space travels
 spar
 spare parts
 spark for trading Ltd
@@ -60308,18 +58324,6 @@ sultan saad mini market
 sultan technology company
 sunglass hut
 sunny flower trips
-super engineering industry llc
-super exito
-super marcher
-super marché
-super marché kazyon
-super mark ghanatios
-super market
-super market El Tahra
-super market al Hdood
-super market bou khalil
-super market cigerette
-super wifi
 supermarket
 supermarket Alfalojah
 supermarket New Jeddah
@@ -60466,7 +58470,6 @@ toy box
 toyota
 toys city
 tp-link
-tpm al badaya 50558
 traboulsi
 train tickets, 60egp to Luxor
 transformbody ladies center
@@ -60475,13 +58478,10 @@ travaux publics
 triple A
 triple a
 trst
-truckstop shop
 trust
 trust supermarket
 trésorerie génerale du royaume
 ts décore
-tulip
-tulip hypermarket
 tunes mobile
 turkish
 tweety
@@ -60508,8 +58508,6 @@ united delivery service
 united location
 united pharmacists company
 univers
-universal market
-universal motors agencies
 university administration building
 univest
 uno engineering center
@@ -60589,9 +58587,6 @@ women'secret
 woofer
 woofs & meows
 work
-workshop
-workshop Abu abduallah
-workshop Qatif Aluminum and metal work
 workshops and markets
 world of technology
 world of vision solar systems
@@ -60684,7 +58679,6 @@ zoom market
 zoom mart
 zraat
 zyvo desert
-| Branch of Ministry of Tourism in Jazan
 «East» translation
 À L'Ancienne
 À Vos Marques
@@ -69693,7 +67687,6 @@ zyvo desert
 شركة M
 شركة STAR التركية للستائر
 شركة Xenon للبرمجيات
-شركة fox net لخدمات الانترنت
 شركة net speed
 شركة sky line
 شركة zmc
@@ -70689,7 +68682,6 @@ zyvo desert
 شوقي الغربي
 شوقەی دکتۆرەکان
 شوكولاتة 30
-شوكولاتة لور L'or
 شوكولاته المملكة
 شوكولاين
 شومان للعقار
@@ -71599,7 +69591,6 @@ zyvo desert
 فتحي للرياضة
 فجر الاسلام
 فجر الاسلام لخدمات المحمول
-فحص PVI للسيارات
 فحص الاجيات هزة
 فحص الشركات مصفح
 فحص كمبيوتر
@@ -75094,7 +73085,6 @@ zyvo desert
 مركاتو
 مركز
 مركز 45 للخضرة والفواكه
-مركز ABC السيراميك بركا
 مركز ICDL
 مركز MBC 4
 مركز icx لخدمات الانترنت
@@ -78153,7 +76143,6 @@ zyvo desert
 منظمة نور المجتبى للإغاثة
 منظمه ازدهارنا
 منظمه انقاذ الطفل فرع تكريت
-منظومة super wifi
 منظومة سيف أيرثلنك لخدمات الانترنت والشبكات
 منظومة نجاح الشمري
 منعش عقارات
