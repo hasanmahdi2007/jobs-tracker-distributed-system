@@ -16,21 +16,15 @@ public class LeverValidatorService {
                 .build();
     }
 
-    /**
-     * Checks if a company slug exists on Lever by querying its JSON endpoint.
-     * Returns true if the endpoint returns HTTP 200 OK.
-     */
     public Mono<Boolean> validateSlug(String slug) {
         String targetUrl = String.format("%s/%s?mode=json", LEVER_API_BASE, slug.trim());
 
         return webClient.get()
                 .uri(targetUrl)
-                .exchangeToMono(response -> {
-                    if (response.statusCode().is2xxSuccessful()) {
-                        return Mono.just(true);
-                    }
-                    return Mono.just(false);
-                })
-                .onErrorResume(e -> Mono.just(false));
+                .exchangeToMono(response -> 
+                    response.releaseBody()
+                            .thenReturn(response.statusCode().is2xxSuccessful())
+                )
+                .onErrorReturn(false);
     }
 }

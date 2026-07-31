@@ -148,6 +148,7 @@ INSERT INTO companies (name, ats_type, board_token, website_url) VALUES
 ('Bigblue', 'LEVER', 'bigblue', 'https://api.lever.co/v0/postings/bigblue'),
 ('Angel', 'LEVER', 'angel', 'https://api.lever.co/v0/postings/angel'),
 ('Neon', 'LEVER', 'neon', 'https://api.lever.co/v0/postings/neon'),
+('Shadow', 'LEVER', 'shadow', 'https://api.lever.co/v0/postings/shadow'),
 ('Avante', 'LEVER', 'avante', 'https://api.lever.co/v0/postings/avante'),
 ('Abt', 'LEVER', 'abt', 'https://api.lever.co/v0/postings/abt'),
 ('Gate', 'LEVER', 'gate', 'https://api.lever.co/v0/postings/gate'),

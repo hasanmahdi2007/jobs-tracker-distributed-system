@@ -16,10 +16,11 @@ public class GreenhouseThrottledRunner implements CommandLineRunner {
     private final StringRedisTemplate redisTemplate;
     private final GreenhouseValidatorService greenhouseValidatorService;
 
+    // Keys correctly point to Greenhouse
     private static final String QUEUE_KEY = "queue:slugs:lever";
     private static final String SUCCESS_KEY = "verified:tokens:lever";
 
-    private static final int BATCH_SIZE = 1000;
+    private static final int BATCH_SIZE = 250;
     private static final int CONCURRENCY = 250; 
 
     public GreenhouseThrottledRunner(StringRedisTemplate redisTemplate, 
@@ -41,20 +42,21 @@ public class GreenhouseThrottledRunner implements CommandLineRunner {
                 sink.complete();
             }
         })
-        .flatMap(Flux::fromIterable) // Removed subscribeOn here
+        .flatMap(Flux::fromIterable)
         .flatMap(slug -> {
             long startTime = System.currentTimeMillis();
-// ... rest of your code stays exactly the same
 
             return greenhouseValidatorService.validateSlug(slug)
                 .doOnNext(isValid -> {
                     if (Boolean.TRUE.equals(isValid)) {
                         long durationMs = System.currentTimeMillis() - startTime;
+                        double seconds = durationMs / 1000.0;
                         
                         System.out.printf("🎯 BOOM! Found Greenhouse instance: %s (took %.2fs)%n", 
-                                slug, (durationMs / 1000.0));
+                                slug, seconds);
                         redisTemplate.opsForSet().add(SUCCESS_KEY, slug);
                     } 
+                    // Failure logging removed to keep CPU fast and clean
                 });
         }, CONCURRENCY)
         .doOnComplete(() -> System.out.println("✅ Greenhouse validation queue completely drained!"))

@@ -7,7 +7,7 @@ import re
 r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
 # Target Redis queue key (change to queue:slugs:greenhouse when testing Greenhouse)
-REDIS_QUEUE_KEY = "queue:slugs:lever"
+REDIS_QUEUE_KEY = "queue:slugs:greenhouse"
 
 # Your target zip file path
 ZIP_PATH = r"C:\Users\user\Downloads\companies-2023-q4-sm.csv.zip"
