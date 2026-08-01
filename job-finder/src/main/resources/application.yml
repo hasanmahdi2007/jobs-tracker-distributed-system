@@ -39,6 +39,7 @@ app:
     lever:
       base-url: "https://api.lever.co/v0/postings"
       target-boards:
+        - shadow
         - mirror
         - spectrum
         - isee
