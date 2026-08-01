@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.core.publisher.SynchronousSink;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class GreenhouseThrottledRunner implements CommandLineRunner {
     private final StringRedisTemplate redisTemplate;
     private final GreenhouseValidatorService greenhouseValidatorService;
 
-    // Keys correctly point to Greenhouse
+    // Per your instruction, these are intentionally left as 'lever'
     private static final String QUEUE_KEY = "queue:slugs:lever";
     private static final String SUCCESS_KEY = "verified:tokens:lever";
 
@@ -42,11 +43,16 @@ public class GreenhouseThrottledRunner implements CommandLineRunner {
                 sink.complete();
             }
         })
-        .flatMap(Flux::fromIterable)
+        .flatMapIterable(list -> list) // OPTIMIZED: prevents unnecessary Flux object creation
         .flatMap(slug -> {
             long startTime = System.currentTimeMillis();
 
             return greenhouseValidatorService.validateSlug(slug)
+                .onErrorResume(e -> {
+                    // ADDED: Fault tolerance. Prevents one network timeout from crashing the whole 250-slug batch.
+                    System.err.printf("⚠️ Network error for slug %s: %s%n", slug, e.getMessage());
+                    return Mono.empty(); 
+                })
                 .doOnNext(isValid -> {
                     if (Boolean.TRUE.equals(isValid)) {
                         long durationMs = System.currentTimeMillis() - startTime;
@@ -56,7 +62,6 @@ public class GreenhouseThrottledRunner implements CommandLineRunner {
                                 slug, seconds);
                         redisTemplate.opsForSet().add(SUCCESS_KEY, slug);
                     } 
-                    // Failure logging removed to keep CPU fast and clean
                 });
         }, CONCURRENCY)
         .doOnComplete(() -> System.out.println("✅ Greenhouse validation queue completely drained!"))
