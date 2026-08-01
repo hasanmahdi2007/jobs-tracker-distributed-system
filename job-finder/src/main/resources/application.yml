@@ -969,8 +969,6 @@ app:
         - firstchoice
         - camp
         - greenhouse
-    lever:
-      base-url: "https://api.lever.co/v0/postings"
 
 # 5. Logging Configuration
 logging:

@@ -1,6 +1,7 @@
 package com.distributed.job_finder.schedulers;
 
 import com.distributed.job_finder.services.GreenhouseScraperService;
+import com.distributed.job_finder.services.LeverScraperService;
 import com.distributed.job_finder.services.TalenteraScraperService;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -14,22 +15,27 @@ public class JobScraperScheduler {
 
     private final GreenhouseScraperService greenhouseScraperService;
     private final TalenteraScraperService talenteraScraperService;
+    private final LeverScraperService leverScraperService;
 
     public JobScraperScheduler(GreenhouseScraperService greenhouseScraperService,
-                               TalenteraScraperService talenteraScraperService) {
+                               TalenteraScraperService talenteraScraperService,
+                               LeverScraperService leverScraperService) {
         this.greenhouseScraperService = greenhouseScraperService;
         this.talenteraScraperService = talenteraScraperService;
+        this.leverScraperService = leverScraperService;
     }
 
     /**
      * TEST TRIGGER: Runs exactly once when the application boots up.
-     * (Uncomment during testing if you want to verify both scrapers fire).
+     * Fires ONLY the Lever scraper.
      */
-    /*@PostConstruct
+    @PostConstruct
     public void runOnStartup() {
-        log.info("[TEST] Application booted. Firing initial scrape for all platforms...");
-        runAllScrapers().subscribe();
-    }*/
+        log.info("[TEST] Application booted. Firing initial scrape for LEVER ONLY...");
+        leverScraperService.scrapeAllConfiguredBoards()
+                .doOnError(e -> log.error("Error during initial Lever scrape: {}", e.getMessage()))
+                .subscribe();
+    }
 
     /**
      * PRODUCTION TRIGGER: Runs once every day at 03:00 AM.
@@ -49,7 +55,9 @@ public class JobScraperScheduler {
                 greenhouseScraperService.scrapeAllConfiguredBoards()
                         .doOnError(e -> log.error("Error during Greenhouse scrape: {}", e.getMessage())),
                 talenteraScraperService.scrapeAllConfiguredBoards()
-                        .doOnError(e -> log.error("Error during Talentera scrape: {}", e.getMessage()))
+                        .doOnError(e -> log.error("Error during Talentera scrape: {}", e.getMessage())),
+                leverScraperService.scrapeAllConfiguredBoards()
+                        .doOnError(e -> log.error("Error during Lever scrape: {}", e.getMessage()))
         );
     }
 }
