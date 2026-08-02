@@ -1,12 +1,7 @@
-CREATE DATABASE analytics_db;
-
--- Connect to analytics_db before running the rest
-\c analytics_db;
-
 DROP TABLE IF EXISTS api_telemetry_logs;
 
 CREATE TABLE api_telemetry_logs (
-    id BIGSERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(), -- <-- Updated to UUID
     correlation_id VARCHAR(255),
     method VARCHAR(10),
     path TEXT,

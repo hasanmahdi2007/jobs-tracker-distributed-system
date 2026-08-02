@@ -1,14 +1,15 @@
 package com.system.analytics_engine.entities;
 
 import jakarta.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "api_telemetry_logs")
 public class ApiRequestLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "correlation_id")
     private String correlationId;
@@ -48,8 +49,8 @@ public class ApiRequestLog {
     // GETTERS AND SETTERS
     // ==========================================
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
 
     public String getCorrelationId() { return correlationId; }
     public void setCorrelationId(String correlationId) { this.correlationId = correlationId; }

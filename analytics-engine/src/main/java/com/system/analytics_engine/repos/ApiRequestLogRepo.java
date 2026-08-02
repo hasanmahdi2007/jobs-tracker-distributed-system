@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface ApiRequestLogRepo extends JpaRepository<ApiRequestLog, Long> {
+public interface ApiRequestLogRepo extends JpaRepository<ApiRequestLog, UUID> {
     
     @Query("SELECT COUNT(l) FROM ApiRequestLog l")
     long countTotalRequests();

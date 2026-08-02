@@ -29,13 +29,13 @@ public class JobScraperScheduler {
      * TEST TRIGGER: Runs exactly once when the application boots up.
      * Fires ONLY the Lever scraper.
      */
-    @PostConstruct
-    public void runOnStartup() {
-        log.info("[TEST] Application booted. Firing initial scrape for LEVER ONLY...");
-        leverScraperService.scrapeAllConfiguredBoards()
-                .doOnError(e -> log.error("Error during initial Lever scrape: {}", e.getMessage()))
-                .subscribe();
-    }
+    // @PostConstruct
+    // public void runOnStartup() {
+    //     log.info("[TEST] Application booted. Firing initial scrape for LEVER ONLY...");
+    //     leverScraperService.scrapeAllConfiguredBoards()
+    //             .doOnError(e -> log.error("Error during initial Lever scrape: {}", e.getMessage()))
+    //             .subscribe();
+    // }
 
     /**
      * PRODUCTION TRIGGER: Runs once every day at 03:00 AM.
