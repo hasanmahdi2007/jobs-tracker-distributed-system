@@ -2,10 +2,13 @@ import { useState, useCallback } from 'react';
 
 export function useJobs() {
   const [jobs, setJobs] = useState([]);
+  // Track Spring Boot's pagination metadata
+  const [pageData, setPageData] = useState({ number: 0, totalPages: 0, totalElements: 0 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchJobs = useCallback(async (searchTerm, filters = {}) => {
+  // Add `page` as a parameter (defaulting to 0)
+  const fetchJobs = useCallback(async (searchTerm, filters = {}, page = 0) => {
     setLoading(true);
     setError(null);
     
@@ -16,25 +19,20 @@ export function useJobs() {
         throw new Error("Missing API Key! Check your .env file and restart Vite.");
       }
 
-      // Updated to include company and category!
       const queryParams = new URLSearchParams({
         search: searchTerm || '',
-        page: 0,
+        page: page, // Pass the page number to Spring Boot
         size: 20,
         ...(filters.location && { location: filters.location }),
         ...(filters.type && { type: filters.type }),
         ...(filters.sort && { sort: filters.sort }),
-        ...(filters.company && { company: filters.company }),   // <-- Added
-        ...(filters.category && { category: filters.category }) // <-- Added
+        ...(filters.company && { company: filters.company }),
+        ...(filters.category && { category: filters.category })
       });
-
-      console.log("Attempting to fetch with key:", hiddenApiKey.substring(0, 10) + "...");
 
       const response = await fetch(
         `http://localhost:8080/api/v1/jobs?${queryParams.toString()}`, 
-        { 
-          headers: { 'X-API-KEY': hiddenApiKey } 
-        }
+        { headers: { 'X-API-KEY': hiddenApiKey } }
       );
       
       if (!response.ok) {
@@ -42,7 +40,16 @@ export function useJobs() {
       }
       
       const data = await response.json();
+      
+      // Update jobs list
       setJobs(data.content || (Array.isArray(data) ? data : []));
+      
+      // Save pagination metadata from Spring Boot
+      setPageData({
+        number: data.number || 0,
+        totalPages: data.totalPages || 0,
+        totalElements: data.totalElements || 0
+      });
       
     } catch (err) {
       console.error("Fetch Error:", err);
@@ -52,5 +59,5 @@ export function useJobs() {
     }
   }, []);
 
-  return { jobs, loading, error, fetchJobs };
+  return { jobs, pageData, loading, error, fetchJobs };
 }

@@ -1,28 +1,39 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Briefcase, Filter, Building, Layers, TrendingUp, ChevronRight } from 'lucide-react';
+import { Search, MapPin, Briefcase, Filter, Building, Layers, TrendingUp, ChevronRight, ChevronLeft } from 'lucide-react';
 import { useJobs } from '../hooks/useJobs';
 import JobCard from '../components/JobCard';
 import JobSkeleton from '../components/JobSkeleton';
 import JobModal from '../components/JobModal';
 
 export default function Dashboard() {
-  const { jobs, loading, error, fetchJobs } = useJobs();
+  // Extract pageData from your updated hook
+  const { jobs, pageData, loading, error, fetchJobs } = useJobs();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({ 
     location: '', type: '', sort: 'recent', company: '', category: '' 
   });
   const [selectedJob, setSelectedJob] = useState(null); 
+  
+  // Track the current page (Spring Boot is 0-indexed)
+  const [currentPage, setCurrentPage] = useState(0);
 
+  // Fetch when filters or page changes
   useEffect(() => {
-    fetchJobs(searchTerm, filters);
+    fetchJobs(searchTerm, filters, currentPage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
+  }, [filters, currentPage]);
 
+  // Debounced fetch for search term
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      fetchJobs(searchTerm, filters);
+      // If we are searching, we should reset to page 0
+      if (currentPage !== 0) {
+        setCurrentPage(0);
+      } else {
+        fetchJobs(searchTerm, filters, 0);
+      }
     }, 500);
     return () => clearTimeout(delayDebounceFn);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,6 +41,7 @@ export default function Dashboard() {
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
+    setCurrentPage(0); // Reset to first page when applying new filters
   };
 
   return (
@@ -38,7 +50,9 @@ export default function Dashboard() {
       {/* Header Section */}
       <div className="mb-8">
         <h2 className="text-3xl font-black text-slate-900 tracking-tight">Discover Opportunities</h2>
-        <p className="text-slate-500 mt-1 text-sm font-medium">Browse and filter real-time job openings.</p>
+        <p className="text-slate-500 mt-1 text-sm font-medium">
+          Browse and filter {pageData.totalElements > 0 ? pageData.totalElements : 'real-time'} job openings.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -100,7 +114,7 @@ export default function Dashboard() {
                 type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search roles, companies, or keywords..."
                 className="w-full bg-transparent text-slate-900 text-sm font-medium outline-none placeholder-slate-400"
-                onKeyDown={(e) => e.key === 'Enter' && fetchJobs(searchTerm, filters)}
+                onKeyDown={(e) => e.key === 'Enter' && fetchJobs(searchTerm, filters, currentPage)}
               />
             </div>
           </motion.div>
@@ -110,14 +124,41 @@ export default function Dashboard() {
           {loading ? (
             <JobSkeleton />
           ) : (
-            <div className="grid gap-4">
-              {jobs.map((job, idx) => (
-                <JobCard key={job.atsJobId || job.id || idx} job={job} index={idx} onClick={() => setSelectedJob(job)} />
-              ))}
-              {!loading && jobs.length === 0 && !error && (
-                 <div className="text-center py-16 text-slate-400 text-sm font-medium border-2 border-dashed border-slate-200 rounded-2xl mt-4 bg-white/50">
-                   No open roles match your current parameters.
-                 </div>
+            <div className="flex flex-col gap-4">
+              <div className="grid gap-4">
+                {jobs.map((job, idx) => (
+                  <JobCard key={job.atsJobId || job.id || idx} job={job} index={idx} onClick={() => setSelectedJob(job)} />
+                ))}
+                {!loading && jobs.length === 0 && !error && (
+                   <div className="text-center py-16 text-slate-400 text-sm font-medium border-2 border-dashed border-slate-200 rounded-2xl mt-4 bg-white/50">
+                     No open roles match your current parameters.
+                   </div>
+                )}
+              </div>
+
+              {/* PAGINATION CONTROLS */}
+              {!loading && pageData.totalPages > 1 && (
+                <div className="flex items-center justify-between mt-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
+                    disabled={pageData.number === 0}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100 transition-colors"
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Previous
+                  </button>
+                  
+                  <span className="text-sm font-semibold text-slate-500">
+                    Page <span className="text-slate-900">{pageData.number + 1}</span> of {pageData.totalPages}
+                  </span>
+                  
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(pageData.totalPages - 1, p + 1))}
+                    disabled={pageData.number === pageData.totalPages - 1}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100 transition-colors"
+                  >
+                    Next <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               )}
             </div>
           )}
