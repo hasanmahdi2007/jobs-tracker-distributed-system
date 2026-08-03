@@ -6,8 +6,25 @@ import JobCard from '../components/JobCard';
 import JobSkeleton from '../components/JobSkeleton';
 import JobModal from '../components/JobModal';
 
+const COUNTRIES = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", 
+  "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", 
+  "Côte d'Ivoire", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)", 
+  "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", 
+  "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", 
+  "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", 
+  "Haiti", "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", 
+  "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", 
+  "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (formerly Burma)", 
+  "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", 
+  "Oman", "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", 
+  "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", 
+  "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", 
+  "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", 
+  "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
+
 export default function Dashboard() {
-  // Extract pageData from your updated hook
   const { jobs, pageData, loading, error, fetchJobs } = useJobs();
   
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,20 +32,15 @@ export default function Dashboard() {
     location: '', type: '', sort: 'recent', company: '', category: '' 
   });
   const [selectedJob, setSelectedJob] = useState(null); 
-  
-  // Track the current page (Spring Boot is 0-indexed)
   const [currentPage, setCurrentPage] = useState(0);
 
-  // Fetch when filters or page changes
   useEffect(() => {
     fetchJobs(searchTerm, filters, currentPage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, currentPage]);
 
-  // Debounced fetch for search term
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      // If we are searching, we should reset to page 0
       if (currentPage !== 0) {
         setCurrentPage(0);
       } else {
@@ -41,7 +53,7 @@ export default function Dashboard() {
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
-    setCurrentPage(0); // Reset to first page when applying new filters
+    setCurrentPage(0); 
   };
 
   return (
@@ -68,12 +80,20 @@ export default function Dashboard() {
               <div>
                 <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Location</label>
                 <div className="flex items-center gap-2 px-3 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl focus-within:border-sky-400 transition-colors">
-                  <MapPin className="w-4 h-4 text-slate-400" />
-                  <select value={filters.location} onChange={(e) => handleFilterChange('location', e.target.value)} className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700">
+                  <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                  <select 
+                    value={filters.location} 
+                    onChange={(e) => handleFilterChange('location', e.target.value)} 
+                    className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700 truncate"
+                  >
                     <option value="">All Locations</option>
-                    <option value="Remote">Remote</option>
-                    <option value="Dubai">Dubai, UAE</option>
-                    <option value="Riyadh">Riyadh, KSA</option>
+                    <option value="Remote">🌍 Remote (Anywhere)</option>
+                    <option disabled>──────────</option>
+                    {COUNTRIES.map(country => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

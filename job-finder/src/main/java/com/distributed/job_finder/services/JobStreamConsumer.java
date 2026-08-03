@@ -3,6 +3,7 @@ package com.distributed.job_finder.services;
 import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.entities.Job;
 import com.distributed.job_finder.repos.JobRepo;
+import com.distributed.job_finder.utils.LocationNormalizer;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,16 @@ public class JobStreamConsumer {
 
     private final JobRepo jobRepository;
     private final ReactiveRedisTemplate<String, JobDto> redisTemplate;
+    private final LocationNormalizer locationNormalizer; // Added this
 
     private static final String STREAM_KEY = "job:ingestion:stream";
     private static final String CONSUMER_GROUP = "job-workers-group";
 
     @Autowired
-    public JobStreamConsumer(JobRepo jobRepository, ReactiveRedisTemplate<String, JobDto> redisTemplate) {
+    public JobStreamConsumer(JobRepo jobRepository, ReactiveRedisTemplate<String, JobDto> redisTemplate, LocationNormalizer locationNormalizer) { // Injected here
         this.jobRepository = jobRepository;
         this.redisTemplate = redisTemplate;
+        this.locationNormalizer = locationNormalizer;
     }
 
     @PostConstruct
@@ -114,11 +117,14 @@ public class JobStreamConsumer {
     }
 
     private void saveOrUpdateJob(JobDto incomingJob) {
+        // Clean the location string right before saving
+        String cleanLocation = locationNormalizer.normalizeCountry(incomingJob.location());
+
         jobRepository.findByAtsJobIdAndCompanyId(incomingJob.atsJobId(), incomingJob.companyId())
             .ifPresentOrElse(
                 existingJob -> {
                     existingJob.setTitle(incomingJob.title());
-                    existingJob.setLocation(incomingJob.location());
+                    existingJob.setLocation(cleanLocation); // Used here
                     existingJob.setDepartment(incomingJob.department());
                     existingJob.setDescriptionText(incomingJob.description());
                     existingJob.setExperienceLevel(incomingJob.experienceLevel());
@@ -134,7 +140,7 @@ public class JobStreamConsumer {
                     newJob.setCompanyId(incomingJob.companyId());
                     newJob.setCompanyName(incomingJob.companyName());
                     newJob.setTitle(incomingJob.title());
-                    newJob.setLocation(incomingJob.location());
+                    newJob.setLocation(cleanLocation); // Used here
                     newJob.setDepartment(incomingJob.department());
                     newJob.setApplyUrl(incomingJob.url());
                     newJob.setDescriptionText(incomingJob.description());
