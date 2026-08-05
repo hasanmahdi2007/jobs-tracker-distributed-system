@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Briefcase, Filter, Building, Layers, ChevronRight, ChevronLeft, Clock, Zap, Globe, Code, GraduationCap } from 'lucide-react';
+import { Search, MapPin, Briefcase, Filter, Building, Layers, ChevronRight, ChevronLeft, Clock, Lightbulb, CheckCircle2, FileText } from 'lucide-react';
 import { useJobs } from '../hooks/useJobs';
 import JobCard from '../components/JobCard';
 import JobSkeleton from '../components/JobSkeleton';
@@ -65,15 +65,6 @@ export default function Dashboard() {
       if (exists) return prev;
       return [job, ...prev].slice(0, 4); 
     });
-  };
-
-  // NEW: Helper function to apply quick filters
-  const applyQuickSearch = (newFilters, newSearch = '') => {
-    setSearchTerm(newSearch);
-    setFilters(prev => ({ ...prev, ...newFilters }));
-    setCurrentPage(0);
-    // Smooth scroll to top of feed
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -244,55 +235,36 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Panel 2: Quick Searches (Functional Shortcuts) */}
-          <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-md sticky top-[400px]">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-4">
-              <Zap className="w-4 h-4 text-amber-400" /> Quick Searches
+          {/* Panel 2: Success Tips / Pre-Application Checklist */}
+          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-5 rounded-2xl border border-indigo-100 shadow-sm sticky top-[400px]">
+            <h3 className="text-sm font-bold text-indigo-900 flex items-center gap-2 mb-4">
+              <Lightbulb className="w-4 h-4 text-indigo-500" /> Success Tips
             </h3>
             
-            <div className="space-y-2.5">
-              <button 
-                onClick={() => applyQuickSearch({ location: 'Remote', category: 'Engineering' })}
-                className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-slate-600 transition-colors group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 rounded-lg bg-sky-500/20 text-sky-400">
-                    <Globe className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Remote Tech</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-400" />
-              </button>
-
-              <button 
-                onClick={() => applyQuickSearch({ category: 'Engineering', location: '', type: '' }, 'backend')}
-                className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-slate-600 transition-colors group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
-                    <Code className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Backend Engineering</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-400" />
-              </button>
-
-              <button 
-                onClick={() => applyQuickSearch({ type: 'Internship', location: '', category: '' })}
-                className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-slate-600 transition-colors group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400">
-                    <GraduationCap className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Internships</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-400" />
-              </button>
+            <div className="space-y-3">
+              <div className="flex gap-3">
+                <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                <p className="text-xs text-indigo-800 font-medium leading-relaxed">
+                  Tailor your resume keywords to match the exact department and role.
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                <p className="text-xs text-indigo-800 font-medium leading-relaxed">
+                  Ensure your GitHub or portfolio links are public and working.
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                <p className="text-xs text-indigo-800 font-medium leading-relaxed">
+                  Research the company culture before hitting the apply button.
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-slate-500 font-medium mt-4 text-center">
-              Click to instantly apply filters
-            </p>
+            
+            <button className="w-full mt-5 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 text-xs font-bold py-2.5 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2">
+              <FileText className="w-4 h-4" /> Free Resume Builder
+            </button>
           </div>
 
         </div>
