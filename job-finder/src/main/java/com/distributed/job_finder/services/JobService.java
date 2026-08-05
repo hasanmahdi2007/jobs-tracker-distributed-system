@@ -24,24 +24,34 @@ public class JobService {
 
     public Page<JobDto> getJobs(String search, String location, String type, String company, String category, String sort, int page, int size) {
         
-        // Dynamically build the sort order based on frontend request
-        Sort sortOrder;
-        if ("relevant".equalsIgnoreCase(sort)) {
-            sortOrder = Sort.by("title").ascending();
-        } else if ("salary_desc".equalsIgnoreCase(sort)) {
-            sortOrder = Sort.by("salaryMax").descending(); // Highest Salary
-        } else if ("salary_asc".equalsIgnoreCase(sort)) {
-            sortOrder = Sort.by("salaryMin").ascending(); // Lowest Salary
+        // check if user is just on the homepage without filters
+        boolean isBlankSearch = search.isEmpty() && location.isEmpty() && type.isEmpty() 
+                                && company.isEmpty() && category.isEmpty();
+
+        Page<Job> jobPage;
+
+        if (isBlankSearch && "diverse".equalsIgnoreCase(sort)) {
+            // homepage feed: pull interleaved jobs so 1 company doesn't hog the whole page
+            Pageable pageable = PageRequest.of(page, size); 
+            jobPage = jobRepo.findDiversifiedFeed(pageable);
         } else {
-            // Default to 'recent' (Newest first)
-            sortOrder = Sort.by("createdAt").descending();
+            // normal search feed
+            Sort sortOrder;
+            if ("relevant".equalsIgnoreCase(sort)) {
+                sortOrder = Sort.by("title").ascending();
+            } else if ("salary_desc".equalsIgnoreCase(sort)) {
+                sortOrder = Sort.by("salaryMax").descending(); 
+            } else if ("salary_asc".equalsIgnoreCase(sort)) {
+                sortOrder = Sort.by("salaryMin").ascending(); 
+            } else {
+                sortOrder = Sort.by("createdAt").descending();
+            }
+
+            Pageable pageable = PageRequest.of(page, size, sortOrder);
+            jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
         }
 
-        Pageable pageable = PageRequest.of(page, size, sortOrder);
-        
-        // Pass all parameters to the repository search query
-        Page<Job> jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
-
+        // map to dto
         return jobPage.map(job -> new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),

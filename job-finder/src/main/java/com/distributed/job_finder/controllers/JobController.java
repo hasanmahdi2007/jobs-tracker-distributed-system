@@ -27,7 +27,7 @@ public class JobController {
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String company,
             @RequestParam(required = false) String category,
-            @RequestParam(defaultValue = "recent") String sort,
+            @RequestParam(defaultValue = "diverse") String sort, // <-- Changed default to "diverse"
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {

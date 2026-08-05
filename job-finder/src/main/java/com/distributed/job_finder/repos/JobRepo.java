@@ -29,4 +29,18 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
                          @Param("company") String company,
                          @Param("category") String category,
                          Pageable pageable);
+
+    // The Interleaved Feed: Pulls top jobs from distinct companies using PostgreSQL Window Functions
+    // The countQuery is strictly required for Spring to return a Page<Job> from a native query
+    @Query(value = """
+            SELECT * FROM (
+                SELECT j.*, 
+                       ROW_NUMBER() OVER(PARTITION BY j.company_id ORDER BY j.posted_at DESC) as company_job_rank 
+                FROM jobs j
+            ) ranked_jobs 
+            ORDER BY company_job_rank ASC, posted_at DESC
+            """, 
+            countQuery = "SELECT COUNT(*) FROM jobs", 
+            nativeQuery = true)
+    Page<Job> findDiversifiedFeed(Pageable pageable);
 }
