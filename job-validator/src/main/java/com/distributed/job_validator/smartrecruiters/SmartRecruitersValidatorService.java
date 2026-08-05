@@ -2,8 +2,9 @@ package com.distributed.job_validator.smartrecruiters;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
+
+import java.util.Map;
 
 @Service
 public class SmartRecruitersValidatorService {
@@ -21,14 +22,22 @@ public class SmartRecruitersValidatorService {
         return webClient.get()
                 .uri("/{slug}/postings?limit=1", slug.trim())
                 .retrieve()
-                .bodyToMono(String.class)
-                .map(body -> body != null && body.contains("\"content\""))
-                .onErrorResume(WebClientResponseException.class, e -> {
-                    if (e.getStatusCode().is4xxClientError()) {
-                        return Mono.just(false); 
+                // Use a standard Java Map instead of JsonNode - no special imports needed!
+                .bodyToMono(Map.class)
+                .map(json -> {
+                    // SR returns 200 OK for FAKE companies! 
+                    // Verify the response has the totalFound key and the count is > 0
+                    if (json != null && json.containsKey("totalFound")) {
+                        Object total = json.get("totalFound");
+                        if (total instanceof Number) {
+                            return ((Number) total).intValue() > 0;
+                        }
                     }
-                    return Mono.<Boolean>error(e); 
+                    return false;
                 })
-                .onErrorReturn(false);
+                .onErrorResume(Exception.class, e -> {
+                    // Catches 403/404s AND Cloudflare HTML captchas (which fail to parse as a Map)
+                    return Mono.just(false); 
+                });
     }
 }

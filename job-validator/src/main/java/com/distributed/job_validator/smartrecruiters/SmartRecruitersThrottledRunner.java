@@ -21,8 +21,8 @@ public class SmartRecruitersThrottledRunner implements CommandLineRunner {
     private static final String QUEUE_KEY = "queue:slugs:smartrecruiters";
     private static final String SUCCESS_KEY = "verified:tokens:smartrecruiters";
 
-    private static final int BATCH_SIZE = 250;
-    private static final int CONCURRENCY = 200; // slightly lower than GH because SmartRecruiters rate-limits faster
+    private static final int BATCH_SIZE = 750;
+    private static final int CONCURRENCY = 300; // slightly lower than GH because SmartRecruiters rate-limits faster
 
     public SmartRecruitersThrottledRunner(StringRedisTemplate redisTemplate, 
                                           SmartRecruitersValidatorService validatorService) {
