@@ -36,6 +36,44 @@ spring:
 # 4. Custom Application Properties
 app:
   scraper:
+    smartrecruiters:
+      base-url: "https://api.smartrecruiters.com/v1/companies"
+      target-boards:
+        - broadbasedcommunications
+        - veritascollaborative
+        - yaggo
+        - montessorieducation
+        - agenceprovidence
+        - youngtechpharmaceuticals
+        - gigsaw
+        - hoytstruckcenter
+        - tservag
+        - recrumax
+        - lessemeurs
+        - numberly
+        - fluentgridlimited
+        - dedicatedcarehealthservices
+        - arindhaal
+        - animalandbirdhospitalofdelmar
+        - fmtconsultants
+        - designcircuitworks
+        - healpros
+        - referoo
+        - cygnusconsulting
+        - hypepotamus
+        - evolutionphysiotherapy
+        - esenseincorporated
+        - pttrihamasfinance
+        - scrumalliance
+        - virtualnetworx
+        - sumitomomitsuitrustbankusalimited
+        - bilytica
+        - harddiskdirect
+        - shopup
+        - matholdings
+        - hrcell
+        - bobeprocure
+        - rosemccrarypc
     lever:
       base-url: "https://api.lever.co/v0/postings"
       target-boards:

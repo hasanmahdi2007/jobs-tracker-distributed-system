@@ -91,6 +91,8 @@ $$;
 
 SELECT current_database();
 
+
+
 -- =========================================================================
 -- 1. INSERT: Talentera Portals
 -- =========================================================================
@@ -136,8 +138,7 @@ INSERT INTO companies (name, ats_type, board_token, website_url) VALUES
 ('Capital Market Authority (CMA)', 'TALENTERA', 'cma', 'https://cma.talentera.com'),
 ('MODON', 'TALENTERA', 'modon', 'https://modon.talentera.com'),
 ('Al Rashed', 'TALENTERA', 'alrashed', 'https://alrashed.talentera.com')
-ON CONFLICT (board_token) DO UPDATE 
-SET name = EXCLUDED.name, ats_type = EXCLUDED.ats_type;
+ON CONFLICT (board_token) DO NOTHING;
 
 
 -- =========================================================================
@@ -787,8 +788,8 @@ INSERT INTO companies (name, ats_type, board_token, website_url) VALUES
 ('Zinnia', 'GREENHOUSE', 'zinnia', 'https://boards.greenhouse.io/zinnia'),
 ('Zoro', 'GREENHOUSE', 'zoro', 'https://boards.greenhouse.io/zoro'),
 ('Zscaler', 'GREENHOUSE', 'zscaler', 'https://boards.greenhouse.io/zscaler')
-ON CONFLICT (board_token) DO NOTHING
-SET name = EXCLUDED.name, ats_type = EXCLUDED.ats_type;
+ON CONFLICT (board_token) DO NOTHING;
+
 
 
 -- =========================================================================
@@ -2591,5 +2592,47 @@ INSERT INTO companies (name, ats_type, board_token, website_url) VALUES
 ('Fieldfastener', 'LEVER', 'fieldfastener', 'https://api.lever.co/v0/postings/fieldfastener'),
 ('Solutiondesign', 'LEVER', 'solutiondesign', 'https://api.lever.co/v0/postings/solutiondesign'),
 ('Pillar', 'LEVER', 'pillar', 'https://api.lever.co/v0/postings/pillar')
-ON CONFLICT (board_token) DO NOTHING
-SET name = EXCLUDED.name, ats_type = EXCLUDED.ats_type;
+ON CONFLICT (board_token) DO NOTHING;
+
+
+
+-- =========================================================================
+-- 4. INSERT: SmartRecruiters Portals
+-- =========================================================================
+INSERT INTO companies (name, ats_type, board_token, website_url) VALUES 
+('Broadbased Communications', 'SMARTRECRUITERS', 'broadbasedcommunications', 'https://jobs.smartrecruiters.com/broadbasedcommunications'),
+('Veritas Collaborative', 'SMARTRECRUITERS', 'veritascollaborative', 'https://jobs.smartrecruiters.com/veritascollaborative'),
+('Yaggo', 'SMARTRECRUITERS', 'yaggo', 'https://jobs.smartrecruiters.com/yaggo'),
+('Montessori Education', 'SMARTRECRUITERS', 'montessorieducation', 'https://jobs.smartrecruiters.com/montessorieducation'),
+('Agence Providence', 'SMARTRECRUITERS', 'agenceprovidence', 'https://jobs.smartrecruiters.com/agenceprovidence'),
+('Young Tech Pharmaceuticals', 'SMARTRECRUITERS', 'youngtechpharmaceuticals', 'https://jobs.smartrecruiters.com/youngtechpharmaceuticals'),
+('Gigsaw', 'SMARTRECRUITERS', 'gigsaw', 'https://jobs.smartrecruiters.com/gigsaw'),
+('Hoyts Truck Center', 'SMARTRECRUITERS', 'hoytstruckcenter', 'https://jobs.smartrecruiters.com/hoytstruckcenter'),
+('Tservag', 'SMARTRECRUITERS', 'tservag', 'https://jobs.smartrecruiters.com/tservag'),
+('Recrumax', 'SMARTRECRUITERS', 'recrumax', 'https://jobs.smartrecruiters.com/recrumax'),
+('Les Semeurs', 'SMARTRECRUITERS', 'lessemeurs', 'https://jobs.smartrecruiters.com/lessemeurs'),
+('Numberly', 'SMARTRECRUITERS', 'numberly', 'https://jobs.smartrecruiters.com/numberly'),
+('Fluentgrid Limited', 'SMARTRECRUITERS', 'fluentgridlimited', 'https://jobs.smartrecruiters.com/fluentgridlimited'),
+('Dedicated Care Health Services', 'SMARTRECRUITERS', 'dedicatedcarehealthservices', 'https://jobs.smartrecruiters.com/dedicatedcarehealthservices'),
+('Arindhaal', 'SMARTRECRUITERS', 'arindhaal', 'https://jobs.smartrecruiters.com/arindhaal'),
+('Animal and Bird Hospital of Delmar', 'SMARTRECRUITERS', 'animalandbirdhospitalofdelmar', 'https://jobs.smartrecruiters.com/animalandbirdhospitalofdelmar'),
+('FMT Consultants', 'SMARTRECRUITERS', 'fmtconsultants', 'https://jobs.smartrecruiters.com/fmtconsultants'),
+('Design Circuit Works', 'SMARTRECRUITERS', 'designcircuitworks', 'https://jobs.smartrecruiters.com/designcircuitworks'),
+('Healpros', 'SMARTRECRUITERS', 'healpros', 'https://jobs.smartrecruiters.com/healpros'),
+('Referoo', 'SMARTRECRUITERS', 'referoo', 'https://jobs.smartrecruiters.com/referoo'),
+('Cygnus Consulting', 'SMARTRECRUITERS', 'cygnusconsulting', 'https://jobs.smartrecruiters.com/cygnusconsulting'),
+('Hypepotamus', 'SMARTRECRUITERS', 'hypepotamus', 'https://jobs.smartrecruiters.com/hypepotamus'),
+('Evolution Physiotherapy', 'SMARTRECRUITERS', 'evolutionphysiotherapy', 'https://jobs.smartrecruiters.com/evolutionphysiotherapy'),
+('eSense Incorporated', 'SMARTRECRUITERS', 'esenseincorporated', 'https://jobs.smartrecruiters.com/esenseincorporated'),
+('PT Trihamas Finance', 'SMARTRECRUITERS', 'pttrihamasfinance', 'https://jobs.smartrecruiters.com/pttrihamasfinance'),
+('Scrum Alliance', 'SMARTRECRUITERS', 'scrumalliance', 'https://jobs.smartrecruiters.com/scrumalliance'),
+('Virtual Networx', 'SMARTRECRUITERS', 'virtualnetworx', 'https://jobs.smartrecruiters.com/virtualnetworx'),
+('Sumitomo Mitsui Trust Bank USA Limited', 'SMARTRECRUITERS', 'sumitomomitsuitrustbankusalimited', 'https://jobs.smartrecruiters.com/sumitomomitsuitrustbankusalimited'),
+('Bilytica', 'SMARTRECRUITERS', 'bilytica', 'https://jobs.smartrecruiters.com/bilytica'),
+('Hard Disk Direct', 'SMARTRECRUITERS', 'harddiskdirect', 'https://jobs.smartrecruiters.com/harddiskdirect'),
+('Shopup', 'SMARTRECRUITERS', 'shopup', 'https://jobs.smartrecruiters.com/shopup'),
+('Mat Holdings', 'SMARTRECRUITERS', 'matholdings', 'https://jobs.smartrecruiters.com/matholdings'),
+('HRcell', 'SMARTRECRUITERS', 'hrcell', 'https://jobs.smartrecruiters.com/hrcell'),
+('Bob eProcure', 'SMARTRECRUITERS', 'bobeprocure', 'https://jobs.smartrecruiters.com/bobeprocure'),
+('Rose McCrary PC', 'SMARTRECRUITERS', 'rosemccrarypc', 'https://jobs.smartrecruiters.com/rosemccrarypc')
+ON CONFLICT (board_token) DO NOTHING;
