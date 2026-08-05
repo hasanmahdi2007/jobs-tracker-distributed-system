@@ -11,21 +11,23 @@ public class SmartRecruitersValidatorService {
     private final WebClient webClient;
 
     public SmartRecruitersValidatorService(WebClient.Builder webClientBuilder) {
-        // SmartRecruiters API endpoint for checking company postings
-        this.webClient = webClientBuilder.baseUrl("https://api.smartrecruiters.com/v1/companies").build();
+        this.webClient = webClientBuilder
+                .baseUrl("https://api.smartrecruiters.com/v1/companies")
+                .defaultHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+                .build();
     }
 
     public Mono<Boolean> validateSlug(String slug) {
         return webClient.get()
-                .uri("/{slug}/postings?limit=1", slug)
+                .uri("/{slug}/postings?limit=1", slug.trim())
                 .retrieve()
-                .toBodilessEntity() // We only care about the 200 HTTP status code, not the JSON body
-                .map(response -> response.getStatusCode().is2xxSuccessful())
+                .bodyToMono(String.class)
+                .map(body -> body != null && body.contains("\"content\""))
                 .onErrorResume(WebClientResponseException.class, e -> {
                     if (e.getStatusCode().is4xxClientError()) {
-                        return Mono.just(false); // 404 Not Found -> Invalid company slug
+                        return Mono.just(false); 
                     }
-                    return Mono.error(e); // Let timeouts propagate so the Runner doesn't mark it as failed
+                    return Mono.<Boolean>error(e); 
                 })
                 .onErrorReturn(false);
     }
