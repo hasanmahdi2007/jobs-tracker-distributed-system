@@ -2,6 +2,7 @@ package com.distributed.job_finder.services;
 
 import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.entities.Job;
+import com.distributed.job_finder.enums.JobSort; // <-- Import the new Enum
 import com.distributed.job_finder.repos.JobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,36 +23,38 @@ public class JobService {
         this.jobRepo = jobRepo;
     }
 
-    public Page<JobDto> getJobs(String search, String location, String type, String company, String category, String sort, int page, int size) {
+    // Notice we changed 'String sort' to 'JobSort sort' here!
+    public Page<JobDto> getJobs(String search, String location, String type, String company, String category, JobSort sort, int page, int size) {
         
-        // check if user is just on the homepage without filters
-        boolean isBlankSearch = search.isEmpty() && location.isEmpty() && type.isEmpty() 
-                                && company.isEmpty() && category.isEmpty();
-
         Page<Job> jobPage;
+        Pageable pageable;
 
-        if (isBlankSearch && "diverse".equalsIgnoreCase(sort)) {
-            // homepage feed: pull interleaved jobs so 1 company doesn't hog the whole page
-            Pageable pageable = PageRequest.of(page, size); 
-            jobPage = jobRepo.findDiversifiedFeed(pageable);
-        } else {
-            // normal search feed
-            Sort sortOrder;
-            if ("relevant".equalsIgnoreCase(sort)) {
-                sortOrder = Sort.by("title").ascending();
-            } else if ("salary_desc".equalsIgnoreCase(sort)) {
-                sortOrder = Sort.by("salaryMax").descending(); 
-            } else if ("salary_asc".equalsIgnoreCase(sort)) {
-                sortOrder = Sort.by("salaryMin").ascending(); 
-            } else {
-                sortOrder = Sort.by("createdAt").descending();
-            }
-
-            Pageable pageable = PageRequest.of(page, size, sortOrder);
-            jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
+        // Clean enterprise routing using the Enum
+        switch (sort) {
+            case RECENT:
+                pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+                jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
+                break;
+            case RELEVANT:
+                pageable = PageRequest.of(page, size, Sort.by("title").ascending());
+                jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
+                break;
+            case SALARY_DESC:
+                pageable = PageRequest.of(page, size, Sort.by("salaryMax").descending());
+                jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
+                break;
+            case SALARY_ASC:
+                pageable = PageRequest.of(page, size, Sort.by("salaryMin").ascending());
+                jobPage = jobRepo.searchJobs(search, location, type, company, category, pageable);
+                break;
+            case DIVERSE:
+            default:
+                // Pass an unsorted pageable to the Native Query so Hibernate doesn't interfere
+                pageable = PageRequest.of(page, size); 
+                jobPage = jobRepo.findDiversifiedFeed(search, location, type, company, category, pageable);
+                break;
         }
 
-        // map to dto
         return jobPage.map(job -> new JobDto(
                 job.getAtsJobId(),
                 job.getCompanyId(),

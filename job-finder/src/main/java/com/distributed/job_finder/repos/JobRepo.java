@@ -16,7 +16,7 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
 
     Optional<Job> findByAtsJobIdAndCompanyId(String atsJobId, UUID companyId);
 
-    // Search jobs by title/company, location, employment type, exact company, and department (category)
+    // 1. STANDARD SEARCH (Used for sorting by Salary, Relevance, etc.)
     @Query("SELECT j FROM Job j WHERE " +
            "(:search = '' OR LOWER(j.title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(j.companyName) LIKE LOWER(CONCAT('%', :search, '%'))) AND " +
            "(:location = '' OR LOWER(j.location) LIKE LOWER(CONCAT('%', :location, '%'))) AND " +
@@ -30,17 +30,35 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
                          @Param("category") String category,
                          Pageable pageable);
 
-    // The Interleaved Feed: Pulls top jobs from distinct companies using PostgreSQL Window Functions
-    // The countQuery is strictly required for Spring to return a Page<Job> from a native query
+    // 2. DIVERSE SEARCH (Interleaved feed that ALSO respects your filters!)
+    // The Interleaved Feed (Now perfectly mapped to your PostgreSQL schema)
     @Query(value = """
-            SELECT * FROM (
-                SELECT j.*, 
-                       ROW_NUMBER() OVER(PARTITION BY j.company_id ORDER BY j.posted_at DESC) as company_job_rank 
-                FROM jobs j
-            ) ranked_jobs 
-            ORDER BY company_job_rank ASC, posted_at DESC
+            SELECT j.* FROM jobs j
+            INNER JOIN (
+                SELECT id, 
+                       ROW_NUMBER() OVER(PARTITION BY company_id ORDER BY created_at DESC) as rnk 
+                FROM jobs
+                WHERE (:search = '' OR LOWER(title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(company_name) LIKE LOWER(CONCAT('%', :search, '%')))
+                  AND (:location = '' OR LOWER(location) LIKE LOWER(CONCAT('%', :location, '%')))
+                  AND (:type = '' OR employment_type = :type)
+                  AND (:company = '' OR company_name = :company)
+                  AND (:category = '' OR department = :category)
+            ) ranked ON j.id = ranked.id
+            ORDER BY ranked.rnk ASC, j.created_at DESC
             """, 
-            countQuery = "SELECT COUNT(*) FROM jobs", 
+            countQuery = """
+            SELECT COUNT(*) FROM jobs 
+            WHERE (:search = '' OR LOWER(title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(company_name) LIKE LOWER(CONCAT('%', :search, '%')))
+              AND (:location = '' OR LOWER(location) LIKE LOWER(CONCAT('%', :location, '%')))
+              AND (:type = '' OR employment_type = :type)
+              AND (:company = '' OR company_name = :company)
+              AND (:category = '' OR department = :category)
+            """, 
             nativeQuery = true)
-    Page<Job> findDiversifiedFeed(Pageable pageable);
+    Page<Job> findDiversifiedFeed(@Param("search") String search, 
+                                  @Param("location") String location, 
+                                  @Param("type") String type,
+                                  @Param("company") String company,
+                                  @Param("category") String category,
+                                  Pageable pageable);
 }

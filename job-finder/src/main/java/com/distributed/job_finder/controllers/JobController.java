@@ -1,6 +1,7 @@
 package com.distributed.job_finder.controllers;
 
 import com.distributed.job_finder.dtos.JobDto;
+import com.distributed.job_finder.enums.JobSort; // <-- Make sure this matches where you saved your Enum!
 import com.distributed.job_finder.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public class JobController {
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String company,
             @RequestParam(required = false) String category,
-            @RequestParam(defaultValue = "diverse") String sort, // <-- Changed default to "diverse"
+            @RequestParam(defaultValue = "DIVERSE") String sort, 
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
@@ -38,8 +39,17 @@ public class JobController {
         String safeCompany = (company == null || company.trim().isEmpty()) ? "" : company.trim();
         String safeCategory = (category == null || category.trim().isEmpty()) ? "" : category.trim();
 
-        // Pass all safe variables down to the service layer
-        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, safeType, safeCompany, safeCategory, sort, page, size);
+        // ENTERPRISE FIX: Safely parse the frontend string into your Enum
+        JobSort safeSortEnum;
+        try {
+            safeSortEnum = JobSort.valueOf(sort.toUpperCase());
+        } catch (IllegalArgumentException | NullPointerException e) {
+            // If the frontend sends ?sort=banana or lowercases it, fallback to DIVERSE instead of crashing
+            safeSortEnum = JobSort.DIVERSE;
+        }
+
+        // Pass all safe variables (including the clean Enum) down to the service layer
+        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, safeType, safeCompany, safeCategory, safeSortEnum, page, size);
         return ResponseEntity.ok(jobs);
     }
 
