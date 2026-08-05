@@ -7,7 +7,6 @@ import java.util.Map;
 @Component
 public class LocationNormalizer {
 
-    // Now designed for O(1) direct lookups
     private static final Map<String, String> CITY_TO_COUNTRY = new HashMap<>();
 
     static {
@@ -22,7 +21,14 @@ public class LocationNormalizer {
         CITY_TO_COUNTRY.put("nj", usa);
         CITY_TO_COUNTRY.put("san francisco", usa);
         CITY_TO_COUNTRY.put("bay area", usa);
-        // Add thousands more here...
+        
+        // --- FRANCE ---
+        String france = "France";
+        CITY_TO_COUNTRY.put("france", france);
+        CITY_TO_COUNTRY.put("paris", france);
+        CITY_TO_COUNTRY.put("nice", france);
+        CITY_TO_COUNTRY.put("lyon", france);
+        CITY_TO_COUNTRY.put("marseille", france);
 
         // --- UNITED KINGDOM ---
         String uk = "United Kingdom";
@@ -35,31 +41,40 @@ public class LocationNormalizer {
         CITY_TO_COUNTRY.put("beirut", lebanon);
     }
 
-    public String normalizeCountry(String rawLocation) {
+    /**
+     * Use this method right before saving the job to the database!
+     * It transforms "Paris" -> "Paris, France" so your SQL LIKE queries work.
+     */
+    public String normalizeLocationForDatabase(String rawLocation) {
         if (rawLocation == null || rawLocation.trim().isEmpty()) {
             return "Unknown";
         }
 
         String lowerLoc = rawLocation.toLowerCase().trim();
+        String detectedCountry = null;
 
-        // 1. Best Case: Fast O(1) exact match (e.g., they literally just typed "London")
+        // 1. Best Case: Fast O(1) exact match (e.g., they typed "London")
         if (CITY_TO_COUNTRY.containsKey(lowerLoc)) {
-            return CITY_TO_COUNTRY.get(lowerLoc);
-        }
-
-        // 2. Tokenized O(1) Lookup: Handle dirty strings like "Remote - San Francisco, CA"
-        // We split by commas, dashes, slashes, or pipes.
-        String[] tokens = lowerLoc.split("[,\\-/|]");
-        
-        for (String token : tokens) {
-            String cleanToken = token.trim();
-            // O(1) lookup on the extracted piece
-            if (CITY_TO_COUNTRY.containsKey(cleanToken)) {
-                return CITY_TO_COUNTRY.get(cleanToken);
+            detectedCountry = CITY_TO_COUNTRY.get(lowerLoc);
+        } else {
+            // 2. Tokenized O(1) Lookup: Handle dirty strings like "Remote - San Francisco, CA"
+            String[] tokens = lowerLoc.split("[,\\-/|]");
+            for (String token : tokens) {
+                String cleanToken = token.trim();
+                if (CITY_TO_COUNTRY.containsKey(cleanToken)) {
+                    detectedCountry = CITY_TO_COUNTRY.get(cleanToken);
+                    break;
+                }
             }
         }
 
-        // 3. Fallback if no parts of the string exist in the map
+        // 3. Append the country if it was found and isn't already in the string!
+        if (detectedCountry != null && !lowerLoc.contains(detectedCountry.toLowerCase())) {
+            // Transforms "Paris" into "Paris, France"
+            return rawLocation.trim() + ", " + detectedCountry;
+        }
+
+        // Fallback: Return raw string if no country match was found or if it already contained the country
         return rawLocation.trim();
     }
 }

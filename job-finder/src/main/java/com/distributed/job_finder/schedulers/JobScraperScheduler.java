@@ -3,6 +3,7 @@ package com.distributed.job_finder.schedulers;
 import com.distributed.job_finder.services.GreenhouseScraperService;
 import com.distributed.job_finder.services.LeverScraperService;
 import com.distributed.job_finder.services.TalenteraScraperService;
+import com.distributed.job_finder.services.SmartRecruitersScraperService;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,26 +17,29 @@ public class JobScraperScheduler {
     private final GreenhouseScraperService greenhouseScraperService;
     private final TalenteraScraperService talenteraScraperService;
     private final LeverScraperService leverScraperService;
+    private final SmartRecruitersScraperService smartRecruitersScraperService;
 
     public JobScraperScheduler(GreenhouseScraperService greenhouseScraperService,
                                TalenteraScraperService talenteraScraperService,
-                               LeverScraperService leverScraperService) {
+                               LeverScraperService leverScraperService,
+                               SmartRecruitersScraperService smartRecruitersScraperService) {
         this.greenhouseScraperService = greenhouseScraperService;
         this.talenteraScraperService = talenteraScraperService;
         this.leverScraperService = leverScraperService;
+        this.smartRecruitersScraperService = smartRecruitersScraperService;
     }
 
     /**
      * TEST TRIGGER: Runs exactly once when the application boots up.
-     * Fires ONLY the Lever scraper.
+     * Fires ONLY the SmartRecruiters scraper.
      */
-    // @PostConstruct
-    // public void runOnStartup() {
-    //     log.info("[TEST] Application booted. Firing initial scrape for LEVER ONLY...");
-    //     leverScraperService.scrapeAllConfiguredBoards()
-    //             .doOnError(e -> log.error("Error during initial Lever scrape: {}", e.getMessage()))
-    //             .subscribe();
-    // }
+    @PostConstruct
+    public void runOnStartup() {
+        log.info("[TEST] Application booted. Firing initial scrape for SMARTRECRUITERS ONLY...");
+        smartRecruitersScraperService.scrapeAllConfiguredBoards()
+                .doOnError(e -> log.error("Error during initial SmartRecruiters scrape: {}", e.getMessage()))
+                .subscribe();
+    }
 
     /**
      * PRODUCTION TRIGGER: Runs once every day at 03:00 AM.
@@ -57,7 +61,9 @@ public class JobScraperScheduler {
                 talenteraScraperService.scrapeAllConfiguredBoards()
                         .doOnError(e -> log.error("Error during Talentera scrape: {}", e.getMessage())),
                 leverScraperService.scrapeAllConfiguredBoards()
-                        .doOnError(e -> log.error("Error during Lever scrape: {}", e.getMessage()))
+                        .doOnError(e -> log.error("Error during Lever scrape: {}", e.getMessage())),
+                smartRecruitersScraperService.scrapeAllConfiguredBoards()
+                        .doOnError(e -> log.error("Error during SmartRecruiters scrape: {}", e.getMessage()))
         );
     }
 }
