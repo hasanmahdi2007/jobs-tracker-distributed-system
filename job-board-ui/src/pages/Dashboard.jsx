@@ -29,7 +29,7 @@ export default function Dashboard() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({ 
-    location: '', type: '', sort: 'recent', company: '', category: '' 
+    location: '', type: '', sort: 'diverse', company: '', category: '' 
   });
   const [selectedJob, setSelectedJob] = useState(null); 
   const [currentPage, setCurrentPage] = useState(0);
