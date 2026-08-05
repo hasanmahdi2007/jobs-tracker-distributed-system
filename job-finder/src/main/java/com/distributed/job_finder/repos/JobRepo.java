@@ -20,9 +20,9 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
     @Query("SELECT j FROM Job j WHERE " +
            "(:search = '' OR LOWER(j.title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(j.companyName) LIKE LOWER(CONCAT('%', :search, '%'))) AND " +
            "(:location = '' OR LOWER(j.location) LIKE LOWER(CONCAT('%', :location, '%'))) AND " +
-           "(:type = '' OR j.employmentType = :type) AND " +
+           "(:type = '' OR LOWER(j.employmentType) = LOWER(:type)) AND " + // <-- Case-insensitive Type
            "(:company = '' OR j.companyName = :company) AND " +
-           "(:category = '' OR j.department = :category)")
+           "(:category = '' OR LOWER(j.department) = LOWER(:category))")  // <-- Case-insensitive Category
     Page<Job> searchJobs(@Param("search") String search, 
                          @Param("location") String location, 
                          @Param("type") String type,
@@ -31,7 +31,6 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
                          Pageable pageable);
 
     // 2. DIVERSE SEARCH (Interleaved feed that ALSO respects your filters!)
-    // The Interleaved Feed (Now perfectly mapped to your PostgreSQL schema)
     @Query(value = """
             SELECT j.* FROM jobs j
             INNER JOIN (
@@ -40,9 +39,9 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
                 FROM jobs
                 WHERE (:search = '' OR LOWER(title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(company_name) LIKE LOWER(CONCAT('%', :search, '%')))
                   AND (:location = '' OR LOWER(location) LIKE LOWER(CONCAT('%', :location, '%')))
-                  AND (:type = '' OR employment_type = :type)
+                  AND (:type = '' OR LOWER(employment_type) = LOWER(:type)) 
                   AND (:company = '' OR company_name = :company)
-                  AND (:category = '' OR department = :category)
+                  AND (:category = '' OR LOWER(department) = LOWER(:category)) 
             ) ranked ON j.id = ranked.id
             ORDER BY ranked.rnk ASC, j.created_at DESC
             """, 
@@ -50,9 +49,9 @@ public interface JobRepo extends JpaRepository<Job, UUID> {
             SELECT COUNT(*) FROM jobs 
             WHERE (:search = '' OR LOWER(title) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(company_name) LIKE LOWER(CONCAT('%', :search, '%')))
               AND (:location = '' OR LOWER(location) LIKE LOWER(CONCAT('%', :location, '%')))
-              AND (:type = '' OR employment_type = :type)
+              AND (:type = '' OR LOWER(employment_type) = LOWER(:type))
               AND (:company = '' OR company_name = :company)
-              AND (:category = '' OR department = :category)
+              AND (:category = '' OR LOWER(department) = LOWER(:category))
             """, 
             nativeQuery = true)
     Page<Job> findDiversifiedFeed(@Param("search") String search, 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Briefcase, Filter, Building, Layers, TrendingUp, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Search, MapPin, Briefcase, Filter, Building, Layers, ChevronRight, ChevronLeft, Clock, Zap, Globe, Code, GraduationCap } from 'lucide-react';
 import { useJobs } from '../hooks/useJobs';
 import JobCard from '../components/JobCard';
 import JobSkeleton from '../components/JobSkeleton';
@@ -33,6 +33,8 @@ export default function Dashboard() {
   });
   const [selectedJob, setSelectedJob] = useState(null); 
   const [currentPage, setCurrentPage] = useState(0);
+  
+  const [recentJobs, setRecentJobs] = useState([]);
 
   useEffect(() => {
     fetchJobs(searchTerm, filters, currentPage);
@@ -54,6 +56,24 @@ export default function Dashboard() {
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
     setCurrentPage(0); 
+  };
+
+  const handleJobClick = (job) => {
+    setSelectedJob(job);
+    setRecentJobs(prev => {
+      const exists = prev.find(j => (j.atsJobId || j.id) === (job.atsJobId || job.id));
+      if (exists) return prev;
+      return [job, ...prev].slice(0, 4); 
+    });
+  };
+
+  // NEW: Helper function to apply quick filters
+  const applyQuickSearch = (newFilters, newSearch = '') => {
+    setSearchTerm(newSearch);
+    setFilters(prev => ({ ...prev, ...newFilters }));
+    setCurrentPage(0);
+    // Smooth scroll to top of feed
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -104,8 +124,10 @@ export default function Dashboard() {
                   <Briefcase className="w-4 h-4 text-slate-400" />
                   <select value={filters.type} onChange={(e) => handleFilterChange('type', e.target.value)} className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700">
                     <option value="">All Types</option>
-                    <option value="FULL_TIME">Full-Time</option>
-                    <option value="CONTRACT">Contract</option>
+                    <option value="Full-time">Full-Time</option>
+                    <option value="Part-time">Part-Time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
                   </select>
                 </div>
               </div>
@@ -117,7 +139,9 @@ export default function Dashboard() {
                   <select value={filters.category} onChange={(e) => handleFilterChange('category', e.target.value)} className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700">
                     <option value="">All Roles</option>
                     <option value="Engineering">Engineering</option>
-                    <option value="Product">Product</option>
+                    <option value="Product & Design">Product & Design</option>
+                    <option value="Sales & Marketing">Sales & Marketing</option>
+                    <option value="Human Resources">Human Resources</option>
                   </select>
                 </div>
               </div>
@@ -147,7 +171,12 @@ export default function Dashboard() {
             <div className="flex flex-col gap-4">
               <div className="grid gap-4">
                 {jobs.map((job, idx) => (
-                  <JobCard key={job.atsJobId || job.id || idx} job={job} index={idx} onClick={() => setSelectedJob(job)} />
+                  <JobCard 
+                    key={job.atsJobId || job.id || idx} 
+                    job={job} 
+                    index={idx} 
+                    onClick={() => handleJobClick(job)} 
+                  />
                 ))}
                 {!loading && jobs.length === 0 && !error && (
                    <div className="text-center py-16 text-slate-400 text-sm font-medium border-2 border-dashed border-slate-200 rounded-2xl mt-4 bg-white/50">
@@ -184,48 +213,88 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* RIGHT COLUMN: Consumer Market Insights (25%) */}
+        {/* RIGHT COLUMN: Interactive User Widgets (25%) */}
         <div className="lg:col-span-3 space-y-5">
+          
+          {/* Panel 1: Recently Viewed */}
           <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm sticky top-24">
-            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 mb-5">
-              <TrendingUp className="w-4 h-4 text-blue-500" /> Market Insights
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 mb-4">
+              <Clock className="w-4 h-4 text-slate-400" /> Recently Viewed
             </h3>
             
-            <div className="space-y-6">
-              <div>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Trending Roles</p>
-                <ul className="space-y-3">
-                  <li className="flex items-center justify-between group cursor-pointer">
-                    <span className="text-sm font-medium text-slate-700 group-hover:text-blue-600 transition-colors">Backend Engineer</span>
-                    <ChevronRight className="w-3 h-3 text-slate-300 group-hover:text-blue-500 transition-colors" />
-                  </li>
-                  <li className="flex items-center justify-between group cursor-pointer">
-                    <span className="text-sm font-medium text-slate-700 group-hover:text-blue-600 transition-colors">Product Manager</span>
-                    <ChevronRight className="w-3 h-3 text-slate-300 group-hover:text-blue-500 transition-colors" />
-                  </li>
-                  <li className="flex items-center justify-between group cursor-pointer">
-                    <span className="text-sm font-medium text-slate-700 group-hover:text-blue-600 transition-colors">Data Scientist</span>
-                    <ChevronRight className="w-3 h-3 text-slate-300 group-hover:text-blue-500 transition-colors" />
-                  </li>
-                </ul>
-              </div>
-
-              <div className="pt-5 border-t border-slate-100">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Top Hiring Companies</p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs font-medium text-slate-600">Careem</span>
-                  <span className="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs font-medium text-slate-600">Talabat</span>
-                  <span className="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs font-medium text-slate-600">Noon</span>
+            <div className="space-y-2">
+              {recentJobs.length === 0 ? (
+                <div className="text-center py-6 text-slate-400 text-xs font-medium border border-dashed border-slate-200 rounded-xl bg-slate-50/50">
+                  Jobs you click on will appear here for quick access.
                 </div>
-              </div>
-            </div>
-            
-            <div className="mt-6 pt-5 border-t border-slate-100">
-              <button className="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 text-xs font-bold py-2.5 rounded-xl transition-colors">
-                Set up Job Alerts
-              </button>
+              ) : (
+                recentJobs.map((job) => (
+                  <div 
+                    key={job.atsJobId || job.id} 
+                    onClick={() => setSelectedJob(job)}
+                    className="p-3 rounded-xl border border-transparent hover:border-slate-200 hover:bg-slate-50 cursor-pointer group transition-all"
+                  >
+                    <h4 className="text-sm font-bold text-slate-800 group-hover:text-sky-600 line-clamp-1 transition-colors">{job.title}</h4>
+                    <div className="flex items-center gap-2 mt-1.5 text-xs font-medium text-slate-500">
+                      <span className="flex items-center gap-1"><Building className="w-3 h-3" /> {job.companyName}</span>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
+
+          {/* Panel 2: Quick Searches (Functional Shortcuts) */}
+          <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-md sticky top-[400px]">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-4">
+              <Zap className="w-4 h-4 text-amber-400" /> Quick Searches
+            </h3>
+            
+            <div className="space-y-2.5">
+              <button 
+                onClick={() => applyQuickSearch({ location: 'Remote', category: 'Engineering' })}
+                className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-slate-600 transition-colors group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 rounded-lg bg-sky-500/20 text-sky-400">
+                    <Globe className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Remote Tech</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-400" />
+              </button>
+
+              <button 
+                onClick={() => applyQuickSearch({ category: 'Engineering', location: '', type: '' }, 'backend')}
+                className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-slate-600 transition-colors group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
+                    <Code className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Backend Engineering</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-400" />
+              </button>
+
+              <button 
+                onClick={() => applyQuickSearch({ type: 'Internship', location: '', category: '' })}
+                className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-slate-600 transition-colors group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400">
+                    <GraduationCap className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">Internships</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-400" />
+              </button>
+            </div>
+            <p className="text-xs text-slate-500 font-medium mt-4 text-center">
+              Click to instantly apply filters
+            </p>
+          </div>
+
         </div>
       </div>
 
