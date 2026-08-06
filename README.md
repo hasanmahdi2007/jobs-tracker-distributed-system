@@ -142,8 +142,8 @@ Running Locally
 Clone the repository:
 
 Bash
-git clone [https://github.com/hasanmahdi2007/jobs-tracker-distributed-system.git](https://github.com/hasanmahdi2007/jobs-tracker-distributed-system.git)
-cd jobs-tracker-distributed-system
+git clone https://github.com/hasanmahdi2007/my-distributed-system.git
+cd my-distributed-system
 Create a .env file in the root directory (do not commit this file) with your required database credentials:
 
 Code snippet
@@ -153,8 +153,6 @@ Boot the infrastructure (PostgreSQL, Redis) and the microservices via Docker Com
 
 Bash
 docker compose up -d
-Access the API Gateway at http://localhost:8080 and the React UI at http://localhost:3000.
-
 🗺️ Roadmap & Learnings
 Building this 5-service architecture was a massive undertaking focused on enterprise scalability. Key software engineering (SWE) principles applied include strictly enforced Separation of Concerns (SOC), robust domain-driven packaging, and fully decoupled event-driven messaging.
 
