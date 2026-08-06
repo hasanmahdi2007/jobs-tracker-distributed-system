@@ -2,10 +2,12 @@ package com.distributed.job_finder.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties(prefix = "app.scraper.smartrecruiters")
+@ConfigurationProperties(prefix = "app.scrapers.smartrecruiters")
 public class SmartRecruitersConfig {
 
     private String baseUrl = "https://api.smartrecruiters.com/v1/companies";
@@ -20,7 +22,7 @@ public class SmartRecruitersConfig {
     }
 
     public List<String> getTargetBoards() {
-        return targetBoards;
+        return this.targetBoards;
     }
 
     public void setTargetBoards(List<String> targetBoards) {

@@ -29,31 +29,21 @@ public class JobScraperScheduler {
         this.smartRecruitersScraperService = smartRecruitersScraperService;
     }
 
-    /**
-     * TEST TRIGGER: Runs exactly once when the application boots up.
-     * Fires ONLY the SmartRecruiters scraper.
-     */
-    // @PostConstruct
-    // public void runOnStartup() {
-    //     log.info("[TEST] Application booted. Firing initial scrape for SMARTRECRUITERS ONLY...");
-    //     smartRecruitersScraperService.scrapeAllConfiguredBoards()
-    //             .doOnError(e -> log.error("Error during initial SmartRecruiters scrape: {}", e.getMessage()))
-    //             .subscribe();
-    // }
+    // Runs once right after the app starts so we don't have to wait until 3 AM to test it
+    @PostConstruct
+    public void runOnStartup() {
+        log.info("[TEST] App booted. Firing initial scrape for ALL platforms...");
+        runAllScrapers().subscribe();
+    }
 
-    /**
-     * PRODUCTION TRIGGER: Runs once every day at 03:00 AM.
-     * Cron format: Second Minute Hour Day Month Weekday
-     */
+    // Runs every day at 3:00 AM in production
     @Scheduled(cron = "0 0 3 * * *")
     public void runDailyScrape() {
         log.info("[DAILY CRON] Firing scheduled daily scrape for all platforms...");
         runAllScrapers().subscribe();
     }
 
-    /**
-     * Combines all scraper pipelines into a single non-blocking reactive workflow.
-     */
+    // Glues all our scrapers together into one non-blocking reactive flow
     private Mono<Void> runAllScrapers() {
         return Mono.when(
                 greenhouseScraperService.scrapeAllConfiguredBoards()
