@@ -14,8 +14,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   redis-cache:
-    image: redis:7-alpine
-    container_name: distributed-redis
+    image: redis
+    container_name: gateway-redis
     ports:
       - "6379:6379"
 
