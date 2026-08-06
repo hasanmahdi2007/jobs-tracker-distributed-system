@@ -189,8 +189,8 @@ flowchart TD
 ### Running Locally
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/hasanmahdi2007/my-distributed-system.git](https://github.com/hasanmahdi2007/my-distributed-system.git)
-   cd my-distributed-system
+   git clone [https://github.com/hasanmahdi2007/jobs-tracker-distributed-system.git](https://github.com/hasanmahdi2007/jobs-tracker-distributed-system.git)
+   cd jobs-tracker-distributed-system
    ```
 2. Create a `.env` file in the root directory (do not commit this file) with your required database credentials:
    ```env
