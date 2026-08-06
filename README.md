@@ -25,77 +25,128 @@ flowchart TD
     classDef admin fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef validator fill:#ede7f6,stroke:#512da8,stroke-width:2px
 
+    %% --------------------------------------------------------
+    %% 1. ACTORS & ENTRYPOINT
+    %% --------------------------------------------------------
     NormalUser((Normal User / Browser))
     MachineClient((Machine / B2B Client)):::admin
 
-    subgraph GatewayCluster [1. API Gateway Cluster]
+    subgraph GatewayCluster [1. The API Gateway Cluster]
         LB{{Layer 7 Load Balancer}}
         GatewayNode[Spring Boot Gateway]:::gateway
     end
 
+    %% --------------------------------------------------------
+    %% 2. SECURITY & STATE
+    %% --------------------------------------------------------
     subgraph SecurityState [Security & In-Memory State]
         RedisAuth[(Redis: Auth Cache)]:::security
         RedisRate[(Redis: Token Bucket)]:::security
         ClientDB[(PostgreSQL: Clients DB)]:::db
     end
 
-    subgraph AnalyticsPipeline [3. Analytics Engine]
-        TelemetryQueue[[Redis Streams: telemetry:stream]]:::security
-        AnalyticsConsumer[Spring Boot Consumer]:::analytics
-        AnalyticsDB[(PostgreSQL: OLAP)]:::db
+    %% --------------------------------------------------------
+    %% 3. TELEMETRY & ANALYTICS
+    %% --------------------------------------------------------
+    subgraph AnalyticsPipeline [3. The Analytics Engine]
+        TelemetryQueue[[Redis Streams: telemetry stream]]:::security
+        AnalyticsConsumer[Spring Boot Ingestion Consumer]:::analytics
+        AnalyticsDB[(PostgreSQL: Analytics / OLAP)]:::db
     end
 
+    %% --------------------------------------------------------
+    %% 4. CORE BUSINESS BACKEND
+    %% --------------------------------------------------------
     subgraph JobFinder [2. Job Finder Service]
         RegistrationAPI[Client Registration API]:::core
         SearchAPI[Job Search API]:::core
-        IngestionWorker[Ingestion Worker]:::core
+        IngestionWorker[Ingestion Worker: WebClient]:::core
     end
 
+    %% --------------------------------------------------------
+    %% 5. EXTERNAL SYSTEMS & INGESTION QUEUE
+    %% --------------------------------------------------------
     subgraph External [External Systems]
-        ATS[External ATS: Greenhouse, Lever, Talentera, SmartRecruiters]:::external
+        ATS[External ATS APIs: Greenhouse, Lever, etc.]:::external
     end
 
     subgraph IngestionState [Messaging & Ingestion Queue]
-        IngestionQueue[[Redis Streams: job:ingestion:stream]]:::security
+        IngestionQueue[[Redis Streams: Job Events]]:::security
     end
 
+    %% --------------------------------------------------------
+    %% 6. PERSISTENCE LAYER
+    %% --------------------------------------------------------
     subgraph CoreDB [Persistence Layer]
-        JobDB[(PostgreSQL: jobs + tsvector)]:::db
+        JobDB[(PostgreSQL: companies & jobs + tsvector)]:::db
     end
 
+    %% --------------------------------------------------------
+    %% 7. JOB VALIDATOR PIPELINE
+    %% --------------------------------------------------------
     subgraph ValidatorCluster [0. Job Validator Pipeline]
         CompanyDB[(PostgreSQL: Raw Company Dataset)]:::db
         SlugGen[Slug Generator]:::validator
-        ValidatorRedis[(Redis: queue:slugs & verified)]:::security
+        ValidatorRedis[(Redis: queue slugs & verified tokens)]:::security
         ValRunner[Reactive ATS Validator Engine]:::validator
         PyCleaner[Python Dataset Cleaner]:::validator
     end
 
-    %% Flow Connections
-    NormalUser -->|GET /jobs - Public| LB
-    MachineClient -->|GET /jobs with API-Key| LB
-    LB --> GatewayNode
-    
-    GatewayNode -->|Auth & Rate Limit Lua| RedisRate
-    GatewayNode -->|Sync Search HTTP| SearchAPI
-    GatewayNode -.->|Async XADD Fire-and-Forget| TelemetryQueue
-    
-    SearchAPI -->|Native Window Query| JobDB
-    TelemetryQueue -->|Poll Batches| AnalyticsConsumer
-    AnalyticsConsumer --> AnalyticsDB
+    %% ========================================================
+    %% CONNECTIONS & FLOW
+    %% ========================================================
 
-    %% Validator Loop
-    CompanyDB --> SlugGen --> ValidatorRedis
-    ValRunner -->|Pop batches| ValidatorRedis
-    ValRunner -->|Fast 200 OK Check| ATS
-    ValRunner -->|Save valid tokens| ValidatorRedis
-    PyCleaner -->|Sanitize Dataset| CompanyDB
+    %% Normal users just search
+    NormalUser -->|1. HTTP GET /jobs/search - Public| LB
+    
+    %% Machines register for keys, then search
+    MachineClient -->|Day 1: POST /register - Request API Key| LB
+    MachineClient -->|Day 2: GET /jobs/search with X-API-Key| LB
 
-    %% Ingestion
-    ValidatorRedis -->|Verified tokens| IngestionWorker
-    IngestionWorker -->|Scrape| ATS
-    IngestionWorker -->|Push payload| IngestionQueue
-    IngestionQueue -->|Normalize & Upsert| JobDB
+    LB -->|Distribute Load| GatewayNode
+
+    %% Registration Flow for Machines
+    GatewayNode -->|Route Registration| RegistrationAPI
+    RegistrationAPI -->|Generate and Hash Key| ClientDB
+    RegistrationAPI -->|Return API Key| GatewayNode
+    GatewayNode -.->|Give Key to Machine| MachineClient
+
+    %% Security Flow 
+    GatewayNode -->|Check if request has API Key| RedisAuth
+    GatewayNode -->|If Normal User - Rate Limit by IP| RedisRate
+    GatewayNode -->|If Machine - Rate Limit by Token Tier and IP and authenticate api key| RedisRate
+
+    %% Synchronous API Flow
+    GatewayNode -->|Forward HTTP with X-Internal-Secret| SearchAPI
+    SearchAPI -->|PostgreSQL tsvector Full-Text Query| JobDB
+    SearchAPI -->|Return HTTP 200 JSON| GatewayNode
+    GatewayNode -->|Return JSON Response| NormalUser
+    GatewayNode -->|Return JSON Response| MachineClient
+
+    %% Telemetry Flow
+    GatewayNode -.->|Async XADD Fire and Forget| TelemetryQueue
+    TelemetryQueue -->|Poll Batches from Stream| AnalyticsConsumer
+    AnalyticsConsumer -->|Calculate Metrics and Bulk Insert| AnalyticsDB
+
+    %% ========================================================
+    %% JOB VALIDATOR & SCRAPING FLOW
+    %% ========================================================
+    
+    %% Validation Phase 
+    CompanyDB -->|V1. Fetch raw company names| SlugGen
+    SlugGen -->|V2. Generate token variations| ValidatorRedis
+    ValRunner -->|V3. Pop batches from queue| ValidatorRedis
+    ValRunner -->|V4. Fast HTTP GET 200 OK Check| ATS
+    ValRunner -->|V5. Save valid ATS tokens| ValidatorRedis
+    PyCleaner -.->|V6. Read validated targets| ValidatorRedis
+    PyCleaner -->|V7. Remove processed from dataset| CompanyDB
+    PyCleaner -->|V8. Repeat for next ATS| SlugGen
+
+    %% Ingestion Phase
+    ValidatorRedis -->|A. Feed verified tokens| IngestionWorker
+    IngestionWorker -->|B. Poll verified ATS endpoints| ATS
+    IngestionWorker -->|C. Publish raw job events| IngestionQueue
+    IngestionQueue -->|D. Consume, hash, and deduplicate| JobDB
 ```
 
 ---
@@ -146,9 +197,14 @@ flowchart TD
    POSTGRES_USER=postgres
    POSTGRES_PASSWORD=your_secure_password
    ```
-3. Boot the infrastructure (PostgreSQL, Redis) and the microservices via Docker Compose:
+3. Boot the infrastructure (PostgreSQL, Redis) via Docker Compose:
    ```bash
    docker compose up -d
+   ```
+4. Run the individual microservices via Maven (Example: Scraper target):
+   ```powershell
+   $env:POSTGRES_PASSWORD="your_secure_password"
+   mvn spring-boot:run '-Dspring-boot.run.arguments=--server.port=8089 --scraper.target=smartrecruiters'
    ```
 
 ---
