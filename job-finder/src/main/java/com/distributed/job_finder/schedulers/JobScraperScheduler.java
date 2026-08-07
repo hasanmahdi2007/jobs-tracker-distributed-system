@@ -1,13 +1,14 @@
 package com.distributed.job_finder.schedulers;
 
-import com.distributed.job_finder.services.GreenhouseScraperService;
-import com.distributed.job_finder.services.LeverScraperService;
-import com.distributed.job_finder.services.TalenteraScraperService;
-import com.distributed.job_finder.services.SmartRecruitersScraperService;
-import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.distributed.job_finder.services.GreenhouseScraperService;
+import com.distributed.job_finder.services.LeverScraperService;
+import com.distributed.job_finder.services.SmartRecruitersScraperService;
+import com.distributed.job_finder.services.TalenteraScraperService;
+
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -30,11 +31,11 @@ public class JobScraperScheduler {
     }
 
     // Runs once right after the app starts so we don't have to wait until 3 AM to test it
-    @PostConstruct
-    public void runOnStartup() {
-        log.info("[TEST] App booted. Firing initial scrape for ALL platforms...");
-        runAllScrapers().subscribe();
-    }
+    // @PostConstruct
+    // public void runOnStartup() {
+    //     log.info("[TEST] App booted. Firing initial scrape for ALL platforms...");
+    //     runAllScrapers().subscribe();
+    // }
 
     // Runs every day at 3:00 AM in production
     @Scheduled(cron = "0 0 3 * * *")
