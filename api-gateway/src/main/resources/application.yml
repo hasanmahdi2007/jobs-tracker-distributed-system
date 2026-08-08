@@ -48,6 +48,8 @@ spring:
     username: postgres
     password: ${POSTGRES_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
 
   # --- 4. ORM SETTINGS (JPA / Hibernate) ---
   jpa:
