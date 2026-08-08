@@ -1,17 +1,16 @@
 package com.hasan.gateway.services;
 
-import com.hasan.gateway.security.SecurityUtil;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.hasan.gateway.dtos.NewClientResponse;
 import com.hasan.gateway.entities.ApiKey;
 import com.hasan.gateway.entities.Client;
 import com.hasan.gateway.repos.ApiKeyRepo;
 import com.hasan.gateway.repos.ClientRepo;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.security.MessageDigest;
-import java.util.Base64;
-import java.util.UUID;
+import com.hasan.gateway.security.SecurityUtil;
 
 @Service
 public class ClientService {
@@ -47,9 +46,9 @@ public class ClientService {
         
         // Assign limits based on tier
         if ("PRO".equalsIgnoreCase(tierType)) {
-            apiKey.setRequestLimit(10000);
+            apiKey.setRequestLimit(3000);
         } else {
-            apiKey.setRequestLimit(1000);
+            apiKey.setRequestLimit(20);
         }
         
         apiKeyRepo.save(apiKey);

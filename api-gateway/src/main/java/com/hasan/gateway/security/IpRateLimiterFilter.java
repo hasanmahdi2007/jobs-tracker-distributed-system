@@ -1,7 +1,8 @@
 package com.hasan.gateway.security;
 
-import org.springframework.web.server.WebFilter;
-import org.springframework.web.server.WebFilterChain;
+import java.time.Instant;
+import java.util.List;
+
 import org.springframework.core.Ordered;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.ReactiveStringRedisTemplate;
@@ -9,10 +10,10 @@ import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
 
-import java.time.Instant;
-import java.util.List;
+import reactor.core.publisher.Mono;
 
 @Component
 public class IpRateLimiterFilter implements WebFilter, Ordered {
@@ -37,8 +38,8 @@ public class IpRateLimiterFilter implements WebFilter, Ordered {
                 exchange.getRequest().getRemoteAddress().getAddress().getHostAddress() : "unknown-ip";
 
         // 2. Set the global IP rules (e.g., 50 requests per second max from any single IP)
-        String capacity = "50"; 
-        String rate = "50"; 
+        String capacity = "10000"; 
+        String rate = "10000"; 
         String now = String.valueOf(Instant.now().getEpochSecond());
         String requested = "1";
 

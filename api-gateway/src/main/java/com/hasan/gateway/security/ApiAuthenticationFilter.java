@@ -1,20 +1,22 @@
 package com.hasan.gateway.security;
 
-import com.hasan.gateway.repos.ApiKeyRepo;
-import org.springframework.web.server.WebFilter;
-import org.springframework.web.server.WebFilterChain;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+
 import org.springframework.core.Ordered;
 import org.springframework.data.redis.core.ReactiveStringRedisTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-import org.springframework.http.HttpMethod;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+
+import com.hasan.gateway.repos.ApiKeyRepo;
+
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
-
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 
 @Component
 public class ApiAuthenticationFilter implements WebFilter, Ordered {
@@ -60,7 +62,7 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
                                 String tier = optionalKey.get().getClient().getTierType(); 
                                 
                                 // Format: "Capacity:Rate"
-                                String limits = "PRO".equalsIgnoreCase(tier) ? "100:20" : "20:5";
+                                String limits = "PRO".equalsIgnoreCase(tier) ? "3000:200" : "20:5";
 
                                 return redisTemplate.opsForValue()
                                         .set(cacheKey, limits, Duration.ofHours(24))
