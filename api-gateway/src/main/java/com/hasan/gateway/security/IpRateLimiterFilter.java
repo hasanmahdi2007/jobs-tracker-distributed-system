@@ -38,8 +38,8 @@ public class IpRateLimiterFilter implements WebFilter, Ordered {
                 exchange.getRequest().getRemoteAddress().getAddress().getHostAddress() : "unknown-ip";
 
         // 2. Set the global IP rules (e.g., 50 requests per second max from any single IP)
-        String capacity = "10000"; 
-        String rate = "10000"; 
+        String capacity = "3000"; 
+        String rate = "200"; 
         String now = String.valueOf(Instant.now().getEpochSecond());
         String requested = "1";
 

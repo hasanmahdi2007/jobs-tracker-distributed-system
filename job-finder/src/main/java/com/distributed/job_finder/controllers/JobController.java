@@ -1,13 +1,14 @@
 package com.distributed.job_finder.controllers;
 
 import com.distributed.job_finder.dtos.JobDto;
-import com.distributed.job_finder.enums.JobSort; // <-- Make sure this matches where you saved your Enum!
+import com.distributed.job_finder.enums.JobSort;
 import com.distributed.job_finder.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,34 +23,43 @@ public class JobController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<JobDto>> getAllJobs(
+    public ResponseEntity<List<JobDto>> getAllJobs(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String location,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String company,
             @RequestParam(required = false) String category,
             @RequestParam(defaultValue = "DIVERSE") String sort, 
-            @RequestParam(defaultValue = "0") int page,
+            
+            // KEYSET PAGINATION CURSORS
+            @RequestParam(required = false) String lastTitle,
+            @RequestParam(required = false) LocalDateTime lastCreatedAt,
+            @RequestParam(required = false) UUID lastId,
+            
             @RequestParam(defaultValue = "10") int size
     ) {
-        // Prevent database null crashes by defaulting unselected filters to empty strings
+        // default to empty string so the db query doesn't crash on nulls
         String safeSearch = (search == null || search.trim().isEmpty()) ? "" : search.trim();
         String safeLocation = (location == null || location.trim().isEmpty()) ? "" : location.trim();
         String safeType = (type == null || type.trim().isEmpty()) ? "" : type.trim();
         String safeCompany = (company == null || company.trim().isEmpty()) ? "" : company.trim();
         String safeCategory = (category == null || category.trim().isEmpty()) ? "" : category.trim();
 
-        // ENTERPRISE FIX: Safely parse the frontend string into your Enum
         JobSort safeSortEnum;
         try {
             safeSortEnum = JobSort.valueOf(sort.toUpperCase());
         } catch (IllegalArgumentException | NullPointerException e) {
-            // If the frontend sends ?sort=banana or lowercases it, fallback to DIVERSE instead of crashing
+            // fallback if frontend sends a weird string like ?sort=banana
             safeSortEnum = JobSort.DIVERSE;
         }
 
-        // Pass all safe variables (including the clean Enum) down to the service layer
-        Page<JobDto> jobs = jobService.getJobs(safeSearch, safeLocation, safeType, safeCompany, safeCategory, safeSortEnum, page, size);
+        // pass the cursors to the service so the db can jump straight to the right index
+        List<JobDto> jobs = jobService.getJobs(
+                safeSearch, safeLocation, safeType, safeCompany, 
+                safeCategory, safeSortEnum, 
+                lastTitle, lastCreatedAt, lastId, size
+        );
+        
         return ResponseEntity.ok(jobs);
     }
 
