@@ -1,14 +1,16 @@
 package com.distributed.job_finder.repos;
 
-import com.distributed.job_finder.dtos.JobDto;
-import com.distributed.job_finder.enums.JobSort;
-import io.r2dbc.spi.Row;
-import io.r2dbc.spi.RowMetadata;
+import java.util.UUID;
+
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
 
-import java.util.UUID;
+import com.distributed.job_finder.dtos.JobDto;
+import com.distributed.job_finder.enums.JobSort;
+
+import io.r2dbc.spi.Row;
+import io.r2dbc.spi.RowMetadata;
+import reactor.core.publisher.Flux;
 
 @Repository
 public class CustomJobRepositoryImpl implements CustomJobRepository {
@@ -41,9 +43,9 @@ public class CustomJobRepositoryImpl implements CustomJobRepository {
         if (search != null) sql.append(" AND search_vector @@ plainto_tsquery('english', :search)");
 
         if (isDiverse) {
-            sql.append(" ORDER BY created_at DESC, id ASC LIMIT 1000) ");
+            sql.append(" ORDER BY updated_at DESC, id ASC LIMIT 1000) ");
             sql.append("SELECT * FROM fast_feed ");
-            sql.append("ORDER BY ROW_NUMBER() OVER (PARTITION BY company_id ORDER BY created_at DESC), created_at DESC");
+            sql.append("ORDER BY ROW_NUMBER() OVER (PARTITION BY company_id ORDER BY updated_at DESC), updated_at DESC");
         } else {
             sql.append(getSortSql(sort));
         }
@@ -79,9 +81,8 @@ public class CustomJobRepositoryImpl implements CustomJobRepository {
 
     private String getSortSql(JobSort sort) {
         return switch (sort) {
-            case RECENT -> " ORDER BY created_at DESC, id ASC";
-            case RELEVANT -> " ORDER BY title ASC, id ASC"; 
-            default -> " ORDER BY created_at DESC, id ASC";
+            case RECENT -> " ORDER BY updated_at DESC, id ASC";
+            default -> " ORDER BY updated_at DESC, id ASC";
         };
     }
 }

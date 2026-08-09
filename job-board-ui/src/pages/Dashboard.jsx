@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Briefcase, Filter, Building, Layers, ChevronRight, ChevronLeft, Clock, Lightbulb, CheckCircle2, FileText } from 'lucide-react';
+import { Search, MapPin, Briefcase, Filter, Building, Layers, ChevronRight, ChevronLeft, Clock, Lightbulb, CheckCircle2, FileText, ArrowUpDown } from 'lucide-react';
 import { useJobs } from '../hooks/useJobs';
 import JobCard from '../components/JobCard';
 import JobSkeleton from '../components/JobSkeleton';
@@ -29,7 +29,7 @@ export default function Dashboard() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({ 
-    location: '', type: '', sort: 'diverse', company: '', category: '' 
+    location: '', type: '', sort: 'DIVERSE', company: '', category: '' 
   });
   const [selectedJob, setSelectedJob] = useState(null); 
   const [currentPage, setCurrentPage] = useState(0);
@@ -88,6 +88,23 @@ export default function Dashboard() {
             </h3>
             
             <div className="space-y-4">
+              
+              {/* NEW SORT DROPDOWN */}
+              <div>
+                <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Sort By</label>
+                <div className="flex items-center gap-2 px-3 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl focus-within:border-sky-400 transition-colors">
+                  <ArrowUpDown className="w-4 h-4 text-slate-400 shrink-0" />
+                  <select 
+                    value={filters.sort} 
+                    onChange={(e) => handleFilterChange('sort', e.target.value)} 
+                    className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700 truncate"
+                  >
+                    <option value="DIVERSE">Diverse (Recommended)</option>
+                    <option value="RECENT">Most Recent</option>
+                  </select>
+                </div>
+              </div>
+
               <div>
                 <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Location</label>
                 <div className="flex items-center gap-2 px-3 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl focus-within:border-sky-400 transition-colors">
@@ -112,7 +129,7 @@ export default function Dashboard() {
               <div>
                 <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Employment Type</label>
                 <div className="flex items-center gap-2 px-3 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl focus-within:border-sky-400 transition-colors">
-                  <Briefcase className="w-4 h-4 text-slate-400" />
+                  <Briefcase className="w-4 h-4 text-slate-400 shrink-0" />
                   <select value={filters.type} onChange={(e) => handleFilterChange('type', e.target.value)} className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700">
                     <option value="">All Types</option>
                     <option value="Full-time">Full-Time</option>
@@ -126,7 +143,7 @@ export default function Dashboard() {
               <div>
                 <label className="text-xs font-semibold text-slate-500 mb-1.5 block">Department</label>
                 <div className="flex items-center gap-2 px-3 py-2.5 bg-slate-50 border border-slate-200/80 rounded-xl focus-within:border-sky-400 transition-colors">
-                  <Layers className="w-4 h-4 text-slate-400" />
+                  <Layers className="w-4 h-4 text-slate-400 shrink-0" />
                   <select value={filters.category} onChange={(e) => handleFilterChange('category', e.target.value)} className="bg-transparent outline-none cursor-pointer w-full text-sm font-medium text-slate-700">
                     <option value="">All Roles</option>
                     <option value="Engineering">Engineering</option>
