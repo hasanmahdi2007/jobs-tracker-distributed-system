@@ -1,49 +1,50 @@
 package com.system.analytics_engine.entities;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Entity
 @Table(name = "api_telemetry_logs")
 public class ApiRequestLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "correlation_id")
+    @Column("correlation_id")
     private String correlationId;
 
-    @Column(name = "method", length = 10)
+    @Column("method")
     private String method;
 
-    @Column(name = "path", columnDefinition = "TEXT")
+    @Column("path")
     private String path;
 
-    @Column(name = "status")
+    @Column("status")
     private Integer status;
 
-    @Column(name = "latency_ms")
+    @Column("latency_ms")
     private Long latencyMs;
 
-    @Column(name = "ip", length = 45)
+    @Column("ip")
     private String ip;
 
-    @Column(name = "user_agent", columnDefinition = "TEXT")
+    @Column("user_agent")
     private String userAgent;
 
-    @Column(name = "req_bytes")
+    @Column("req_bytes")
     private Long reqBytes;
 
-    @Column(name = "res_bytes")
+    @Column("res_bytes")
     private Long resBytes;
 
-    @Column(name = "api_key")
+    @Column("api_key")
     private String apiKey;
 
-    @Column(name = "created_at", insertable = false, updatable = false)
-    private java.time.OffsetDateTime createdAt;
-
+    @Column("created_at")
+    private OffsetDateTime createdAt;
 
     // ==========================================
     // GETTERS AND SETTERS
@@ -82,6 +83,6 @@ public class ApiRequestLog {
     public String getApiKey() { return apiKey; }
     public void setApiKey(String apiKey) { this.apiKey = apiKey; }
 
-    public java.time.OffsetDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(java.time.OffsetDateTime createdAt) { this.createdAt = createdAt; }
+    public OffsetDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
 }

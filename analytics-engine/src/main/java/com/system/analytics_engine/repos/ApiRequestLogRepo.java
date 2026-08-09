@@ -1,24 +1,25 @@
 package com.system.analytics_engine.repos;
 
 import com.system.analytics_engine.entities.ApiRequestLog;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.r2dbc.repository.Query;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @Repository
-public interface ApiRequestLogRepo extends JpaRepository<ApiRequestLog, UUID> {
+public interface ApiRequestLogRepo extends ReactiveCrudRepository<ApiRequestLog, UUID> {
     
-    @Query("SELECT COUNT(l) FROM ApiRequestLog l")
-    long countTotalRequests();
+    @Query("SELECT COUNT(*) FROM api_request_logs")
+    Mono<Long> countTotalRequests();
 
-    @Query("SELECT COALESCE(AVG(l.latencyMs), 0) FROM ApiRequestLog l")
-    double getAverageLatency();
+    @Query("SELECT COALESCE(AVG(latency_ms), 0) FROM api_request_logs")
+    Mono<Double> getAverageLatency();
 
-    @Query("SELECT COUNT(l) FROM ApiRequestLog l WHERE l.status >= 400")
-    long countTotalErrors();
+    @Query("SELECT COUNT(*) FROM api_request_logs WHERE status >= 400")
+    Mono<Long> countTotalErrors();
 
-    @Query("SELECT COUNT(DISTINCT l.ip) FROM ApiRequestLog l")
-    long countUniqueIps();
+    @Query("SELECT COUNT(DISTINCT ip) FROM api_request_logs")
+    Mono<Long> countUniqueIps();
 }
