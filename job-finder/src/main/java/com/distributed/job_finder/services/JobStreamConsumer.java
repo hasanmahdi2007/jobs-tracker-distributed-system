@@ -1,22 +1,28 @@
 package com.distributed.job_finder.services;
 
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.stream.Consumer;
+import org.springframework.data.redis.connection.stream.ObjectRecord;
+import org.springframework.data.redis.connection.stream.ReadOffset;
+import org.springframework.data.redis.connection.stream.RecordId;
+import org.springframework.data.redis.connection.stream.StreamOffset;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.stereotype.Service;
+
 import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.entities.Job;
 import com.distributed.job_finder.repos.JobRepo;
 import com.distributed.job_finder.utils.LocationNormalizer;
+
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.connection.stream.*;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Service
@@ -85,32 +91,32 @@ public class JobStreamConsumer {
                     return Mono.just(0L);
                 }
 
-                List<RecordId> recordIds = new ArrayList<>();
-                long processed = 0;
-
-                for (ObjectRecord<String, JobDto> record : records) {
-                    try {
+                // Create a reactive pipeline to process all records
+                return Flux.fromIterable(records)
+                    .flatMap(record -> {
                         JobDto incomingJob = record.getValue();
                         if (incomingJob != null) {
-                            saveOrUpdateJob(incomingJob); 
+                            // 💥 FIX: Chain the Mono so it actually executes!
+                            return saveOrUpdateJob(incomingJob)
+                                .thenReturn(record.getId())
+                                .onErrorResume(e -> {
+                                    log.error("Failed to process job record ID: {}", record.getId(), e);
+                                    return Mono.just(record.getId()); // Still return ID to ack/delete it
+                                });
                         }
-                        recordIds.add(record.getId());
-                        processed++;
-                    } catch (Exception e) {
-                        log.error("Failed to process job record ID: {}", record.getId(), e);
-                        recordIds.add(record.getId()); 
-                    }
-                }
+                        return Mono.just(record.getId());
+                    })
+                    .collectList()
+                    .flatMap(recordIds -> {
+                        if (recordIds.isEmpty()) return Mono.just(0L);
 
-                if (recordIds.isEmpty()) {
-                    return Mono.just(0L);
-                }
+                        RecordId[] idArray = recordIds.toArray(new RecordId[0]);
 
-                RecordId[] idArray = recordIds.toArray(new RecordId[0]);
-
-                return redisTemplate.opsForStream().acknowledge(STREAM_KEY, CONSUMER_GROUP, idArray)
-                    .flatMap(acked -> redisTemplate.opsForStream().delete(STREAM_KEY, idArray))
-                    .thenReturn(processed);
+                        // Acknowledge and delete from Redis
+                        return redisTemplate.opsForStream().acknowledge(STREAM_KEY, CONSUMER_GROUP, idArray)
+                            .flatMap(acked -> redisTemplate.opsForStream().delete(STREAM_KEY, idArray))
+                            .thenReturn((long) recordIds.size());
+                    });
             })
             .onErrorResume(e -> {
                 log.error("Polling error: {}", e.getMessage());
@@ -118,41 +124,43 @@ public class JobStreamConsumer {
             });
     }
 
-    private void saveOrUpdateJob(JobDto incomingJob) {
-        // Preserves city name and appends country ("Paris, France") before DB insert
+    private Mono<Void> saveOrUpdateJob(JobDto incomingJob) {
         String cleanLocation = locationNormalizer.normalizeLocationForDatabase(incomingJob.location());
 
-        jobRepository.findByAtsJobIdAndCompanyId(incomingJob.atsJobId(), incomingJob.companyId())
-            .ifPresentOrElse(
-                existingJob -> {
-                    existingJob.setTitle(incomingJob.title());
-                    existingJob.setLocation(cleanLocation);
-                    existingJob.setDepartment(incomingJob.department());
-                    existingJob.setDescriptionText(incomingJob.description());
-                    existingJob.setExperienceLevel(incomingJob.experienceLevel());
-                    existingJob.setEmploymentType(incomingJob.employmentType());
-                    existingJob.setSalaryMin(incomingJob.salaryMin());
-                    existingJob.setSalaryMax(incomingJob.salaryMax());
-                    existingJob.setSalaryCurrency(incomingJob.salaryCurrency());
-                    jobRepository.save(existingJob);
-                },
-                () -> {
-                    Job newJob = new Job();
-                    newJob.setAtsJobId(incomingJob.atsJobId());
-                    newJob.setCompanyId(incomingJob.companyId());
-                    newJob.setCompanyName(incomingJob.companyName());
-                    newJob.setTitle(incomingJob.title());
-                    newJob.setLocation(cleanLocation);
-                    newJob.setDepartment(incomingJob.department());
-                    newJob.setApplyUrl(incomingJob.url());
-                    newJob.setDescriptionText(incomingJob.description());
-                    newJob.setExperienceLevel(incomingJob.experienceLevel());
-                    newJob.setEmploymentType(incomingJob.employmentType());
-                    newJob.setSalaryMin(incomingJob.salaryMin());
-                    newJob.setSalaryMax(incomingJob.salaryMax());
-                    newJob.setSalaryCurrency(incomingJob.salaryCurrency());
-                    jobRepository.save(newJob);
-                }
-            );
+        // We return the Mono chain so the caller can subscribe to it
+        return jobRepository.findByAtsJobIdAndCompanyId(incomingJob.atsJobId(), incomingJob.companyId())
+            .flatMap(existingJob -> {
+                // UPDATE SCENARIO
+                existingJob.setTitle(incomingJob.title());
+                existingJob.setLocation(cleanLocation);
+                existingJob.setDepartment(incomingJob.department());
+                existingJob.setDescriptionText(incomingJob.description());
+                existingJob.setExperienceLevel(incomingJob.experienceLevel());
+                existingJob.setEmploymentType(incomingJob.employmentType());
+                existingJob.setSalaryCurrency(incomingJob.salaryCurrency());
+                // In R2DBC, you must manually update the timestamp
+                existingJob.setUpdatedAt(java.time.LocalDateTime.now());
+                
+                return jobRepository.save(existingJob);
+            })
+            .switchIfEmpty(Mono.defer(() -> {
+                // INSERT SCENARIO
+                Job newJob = Job.builder()
+                        .atsJobId(incomingJob.atsJobId())
+                        .companyId(incomingJob.companyId())
+                        .companyName(incomingJob.companyName())
+                        .title(incomingJob.title())
+                        .location(cleanLocation)
+                        .department(incomingJob.department())
+                        .applyUrl(incomingJob.url())
+                        .descriptionText(incomingJob.description())
+                        .experienceLevel(incomingJob.experienceLevel())
+                        .employmentType(incomingJob.employmentType())
+                        .salaryCurrency(incomingJob.salaryCurrency())
+                        .build();
+
+                return jobRepository.save(newJob);
+            }))
+            .then(); // Convert Mono<Job> to Mono<Void> since we just want to know it finished
     }
 }
