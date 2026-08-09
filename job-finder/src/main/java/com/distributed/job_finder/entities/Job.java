@@ -7,8 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import com.distributed.job_finder.enums.JobStatus;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -47,11 +45,6 @@ public class Job {
     @Column("description_text")
     private String descriptionText;
 
-    // R2DBC maps Enums to Postgres strings/enums automatically. 
-    // Defaulting to ACTIVE replaces the need for @PrePersist.
-    @Builder.Default
-    private JobStatus status = JobStatus.ACTIVE;
-
     @Column("experience_level")
     private String experienceLevel;
 
@@ -62,12 +55,14 @@ public class Job {
     private String salaryCurrency;
 
     // Defaulting timestamps replaces the need for @PrePersist.
-    // For updates, you will need to manually set updatedAt = LocalDateTime.now() in your service layer before saving.
-    @Column("created_at")
-    @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column("last_seen_at")
+    private LocalDateTime lastSeenAt;
 
     @Column("updated_at")
+    private LocalDateTime updatedAt;
+    
+    // Converted to a standard String to avoid R2DBC ENUM mapping crashes
     @Builder.Default
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    @Column("status")
+    private String status = "ACTIVE";
 }

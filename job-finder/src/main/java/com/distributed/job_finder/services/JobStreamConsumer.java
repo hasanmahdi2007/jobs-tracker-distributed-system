@@ -1,12 +1,9 @@
 package com.distributed.job_finder.services;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.Consumer;
-import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.connection.stream.StreamOffset;
@@ -96,7 +93,6 @@ public class JobStreamConsumer {
                     .flatMap(record -> {
                         JobDto incomingJob = record.getValue();
                         if (incomingJob != null) {
-                            // 💥 FIX: Chain the Mono so it actually executes!
                             return saveOrUpdateJob(incomingJob)
                                 .thenReturn(record.getId())
                                 .onErrorResume(e -> {
@@ -131,16 +127,33 @@ public class JobStreamConsumer {
         return jobRepository.findByAtsJobIdAndCompanyId(incomingJob.atsJobId(), incomingJob.companyId())
             .flatMap(existingJob -> {
                 // UPDATE SCENARIO
-                existingJob.setTitle(incomingJob.title());
-                existingJob.setLocation(cleanLocation);
-                existingJob.setDepartment(incomingJob.department());
-                existingJob.setDescriptionText(incomingJob.description());
-                existingJob.setExperienceLevel(incomingJob.experienceLevel());
-                existingJob.setEmploymentType(incomingJob.employmentType());
-                existingJob.setSalaryCurrency(incomingJob.salaryCurrency());
-                // In R2DBC, you must manually update the timestamp
-                existingJob.setUpdatedAt(java.time.LocalDateTime.now());
                 
+                // 1. Check if the core data actually changed
+                boolean dataChanged = (existingJob.getTitle() != null && !existingJob.getTitle().equals(incomingJob.title())) ||
+                                      (existingJob.getLocation() != null && !existingJob.getLocation().equals(cleanLocation)) ||
+                                      (existingJob.getDescriptionText() != null && !existingJob.getDescriptionText().equals(incomingJob.description()));
+
+                if (dataChanged) {
+                    // It's a real update! Modify the data and bump the 'updatedAt' timestamp
+                    existingJob.setTitle(incomingJob.title());
+                    existingJob.setLocation(cleanLocation);
+                    existingJob.setDepartment(incomingJob.department());
+                    existingJob.setDescriptionText(incomingJob.description());
+                    existingJob.setExperienceLevel(incomingJob.experienceLevel());
+                    existingJob.setEmploymentType(incomingJob.employmentType());
+                    existingJob.setSalaryCurrency(incomingJob.salaryCurrency());
+                    
+                    existingJob.setUpdatedAt(java.time.LocalDateTime.now());
+                    log.debug("Job {} changed, updating data and timestamp.", existingJob.getId());
+                } else {
+                    // Nothing changed! Just bump 'lastSeenAt' to keep it alive from the sweeper
+                    log.debug("Job {} unchanged, only bumping last_seen_at.", existingJob.getId());
+                }
+
+                // Always bump lastSeenAt and ensure it is ACTIVE
+                existingJob.setLastSeenAt(java.time.LocalDateTime.now());
+                existingJob.setStatus("ACTIVE"); 
+
                 return jobRepository.save(existingJob);
             })
             .switchIfEmpty(Mono.defer(() -> {
@@ -157,10 +170,12 @@ public class JobStreamConsumer {
                         .experienceLevel(incomingJob.experienceLevel())
                         .employmentType(incomingJob.employmentType())
                         .salaryCurrency(incomingJob.salaryCurrency())
+                        .status("ACTIVE") // Ensure new jobs are ACTIVE
+                        // NOTE: We don't set updatedAt or lastSeenAt here, Postgres handles the DEFAULT
                         .build();
 
                 return jobRepository.save(newJob);
             }))
-            .then(); // Convert Mono<Job> to Mono<Void> since we just want to know it finished
+            .then(); 
     }
 }
