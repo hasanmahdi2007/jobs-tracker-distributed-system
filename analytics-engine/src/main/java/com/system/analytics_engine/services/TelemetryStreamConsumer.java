@@ -18,7 +18,6 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-// multiple instances should be created for more productivity
 @Service
 public class TelemetryStreamConsumer {
 
@@ -34,20 +33,19 @@ public class TelemetryStreamConsumer {
 
     @PostConstruct
     public void setup() {
-        // 1. Automatically create the Consumer Group when the app starts
         redisConnectionFactory.getReactiveConnection()
             .streamCommands()
             .xGroupCreate(
                 java.nio.ByteBuffer.wrap("telemetry:stream".getBytes()), 
                 "analytics-group", 
                 ReadOffset.from("0"), 
-                true // MKSTREAM: Create the stream if the Gateway hasn't sent data yet
+                true
             )
             .onErrorResume(e -> {
                 log.info("Consumer group 'analytics-group' already exists. Safe to proceed.");
                 return reactor.core.publisher.Mono.empty();
             })
-            .doOnSuccess(success -> startListening()) // 2. Once created, start collecting!
+            .doOnSuccess(success -> startListening())
             .subscribe();
     }
 
@@ -62,20 +60,18 @@ public class TelemetryStreamConsumer {
 
         log.info("Analytics Engine started listening to telemetry:stream for batches (Manual ACK enabled)...");
 
-        // 3. THE ACTUAL PRODUCTION BATCH COLLECTOR
-        // Using receive() instead of receiveAutoAck() to keep logs pending in Redis
         receiver.receive(
                 Consumer.from("analytics-group", "engine-instance-1"), 
                 StreamOffset.create("telemetry:stream", ReadOffset.lastConsumed())
         )
-        .bufferTimeout(50, Duration.ofSeconds(3)) // The collector: waits for 50 records OR 3 seconds
-        .publishOn(Schedulers.boundedElastic())   // The thread hand-off for safety
-        .doOnNext(this::processAndAckBatch)       // Transactional save and manual ACK
+        .bufferTimeout(50, Duration.ofSeconds(3))
+        .publishOn(Schedulers.boundedElastic())
+        .doOnNext(this::processAndAckBatch)
         .subscribe();
     }
 
     // ==========================================
-    // TRANSACTIONAL PROCESSING
+    // REACTIVE TRANSACTIONAL PROCESSING
     // ==========================================
 
     private void processAndAckBatch(List<MapRecord<String, String, String>> batch) {
@@ -83,32 +79,26 @@ public class TelemetryStreamConsumer {
             return;
         }
 
-        // Convert the raw Redis records into Java Entities
         List<ApiRequestLog> entities = batch.stream()
                 .map(this::convertRecordToEntity)
                 .toList();
 
-        try {
-            // Step 1: Attempt the Database Save
-            repository.saveAll(entities);
-            log.info("Successfully bulk inserted {} records into PostgreSQL.", entities.size());
+        // Reactive pipeline: Save to Postgres -> Collect -> Acknowledge in Redis
+        repository.saveAll(entities)
+                .collectList()
+                .flatMap(saved -> {
+                    log.info("Successfully bulk inserted {} records into PostgreSQL.", saved.size());
 
-            // Step 2: Extract the unique Redis IDs of the exact messages we just saved
-            String[] recordIds = batch.stream()
-                    .map(record -> record.getId().getValue())
-                    .toArray(String[]::new);
+                    String[] recordIds = batch.stream()
+                            .map(record -> record.getId().getValue())
+                            .toArray(String[]::new);
 
-            // Step 3: Manually Acknowledge ONLY after DB success
-            redisConnectionFactory.getReactiveConnection()
-                    .streamCommands()
-                    .xAck(java.nio.ByteBuffer.wrap("telemetry:stream".getBytes()), "analytics-group", recordIds)
-                    .subscribe(); 
-
-        } catch (Exception e) {
-            // If the DB crashes, we NEVER reach the ACK step.
-            // Redis safely keeps all logs in the Pending Entries List (PEL) to be retried later.
-            log.error("Database save failed! Logs remain in Redis PEL. Error: {}", e.getMessage());
-        }
+                    return redisConnectionFactory.getReactiveConnection()
+                            .streamCommands()
+                            .xAck(java.nio.ByteBuffer.wrap("telemetry:stream".getBytes()), "analytics-group", recordIds);
+                })
+                .doOnError(e -> log.error("Database save failed! Logs remain in Redis PEL. Error: {}", e.getMessage()))
+                .subscribe();
     }
 
     // ==========================================
