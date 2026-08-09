@@ -1,17 +1,13 @@
 package com.hasan.gateway.repos;
 
 import com.hasan.gateway.entities.ApiKey;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 import java.util.UUID;
-import java.util.Optional;
 
 @Repository
-public interface ApiKeyRepo extends JpaRepository<ApiKey, UUID> {
+public interface ApiKeyRepo extends ReactiveCrudRepository<ApiKey, UUID> {
     
-    // Spring generates the SQL to look up the API Key by its hash
-    @Query("SELECT a FROM ApiKey a JOIN FETCH a.client WHERE a.keyHash = :keyHash")
-    Optional<ApiKey> findByKeyHash(@Param("keyHash") String keyHash);
+    Mono<ApiKey> findByKeyHash(String keyHash);
 }

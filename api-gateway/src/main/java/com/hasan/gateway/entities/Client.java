@@ -1,33 +1,31 @@
 package com.hasan.gateway.entities;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "clients")
+@Table("clients")
 public class Client {
     
     @Id
-    @GeneratedValue 
     private UUID id;
 
-    @Column(name = "company_name", nullable = false)
+    @Column("company_name")
     private String companyName;
 
-    @Column(nullable = false, unique = true)
+    @Column("email")
     private String email;
 
-    @Column(name = "tier_type", nullable = false)
+    @Column("tier_type")
     private String tierType;
 
-    @Column(name = "created_at", updatable = false, nullable = false)
-    private ZonedDateTime createdAt;
+    @Column("created_at")
+    private ZonedDateTime createdAt = ZonedDateTime.now();
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = ZonedDateTime.now();
-    }
+    // --- EXPLICIT GETTERS & SETTERS ---
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
@@ -42,4 +40,5 @@ public class Client {
     public void setTierType(String tierType) { this.tierType = tierType; }
 
     public ZonedDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(ZonedDateTime createdAt) { this.createdAt = createdAt; }
 }

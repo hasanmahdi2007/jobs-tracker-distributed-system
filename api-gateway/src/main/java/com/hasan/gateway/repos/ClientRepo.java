@@ -1,12 +1,13 @@
 package com.hasan.gateway.repos;
 
 import com.hasan.gateway.entities.Client;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 import java.util.UUID;
-import java.util.Optional;
 
 @Repository
-public interface ClientRepo extends JpaRepository<Client, UUID> {
-    Optional<Client> findByEmail(String email);
+public interface ClientRepo extends ReactiveCrudRepository<Client, UUID> {
+    
+    Mono<Client> findByEmail(String email);
 }
