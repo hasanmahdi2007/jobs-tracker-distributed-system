@@ -11,7 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-@Order(-1) // <-- Your idea! This forces it to run first, before the controller.
+@Order(-1) 
 public class InternalGatewayFilter extends OncePerRequestFilter {
 
     private static final String INTERNAL_SECRET = "super-secret-internal-key-123!";
