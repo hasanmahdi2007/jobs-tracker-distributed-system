@@ -7,6 +7,7 @@ import com.distributed.job_finder.dtos.smartrecruiters.SmartRecruitersPageRespon
 import com.distributed.job_finder.dtos.smartrecruiters.SmartRecruitersPosting;
 import com.distributed.job_finder.repos.CompanyRepo;
 import com.distributed.job_finder.utils.JobDataParser;
+import com.distributed.job_finder.utils.LocationNormalizer; // <-- IMPORT
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
@@ -29,15 +30,18 @@ public class SmartRecruitersScraperService {
     private final WebClient webClient;
     private final ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate;
     private final CompanyRepo companyRepo;
-    private final SmartRecruitersConfig config; // <-- ADDED CONFIG
+    private final SmartRecruitersConfig config; 
+    private final LocationNormalizer locationNormalizer; // <-- ADDED
 
     private static final String JOB_INGESTION_STREAM = "job:ingestion:stream";
 
     @Autowired
     public SmartRecruitersScraperService(ReactiveRedisTemplate<String, JobDto> reactiveRedisTemplate,
                                          CompanyRepo companyRepo,
-                                         SmartRecruitersConfig config) { // <-- INJECTED CONFIG
+                                         SmartRecruitersConfig config,
+                                         LocationNormalizer locationNormalizer) {
         this.config = config;
+        this.locationNormalizer = locationNormalizer;
 
         org.springframework.web.reactive.function.client.ExchangeStrategies strategies =
                 org.springframework.web.reactive.function.client.ExchangeStrategies.builder()
@@ -45,7 +49,7 @@ public class SmartRecruitersScraperService {
                         .build();
 
         this.webClient = WebClient.builder()
-                .baseUrl(config.getBaseUrl()) // <-- USING CONFIG BASE URL
+                .baseUrl(config.getBaseUrl()) 
                 .exchangeStrategies(strategies)
                 .build();
 
@@ -53,7 +57,6 @@ public class SmartRecruitersScraperService {
         this.companyRepo = companyRepo;
     }
 
-    // <-- REMOVED THE PARAMETER, FETCHING FROM CONFIG NOW
     public Mono<Void> scrapeAllConfiguredBoards() {
         List<String> targetBoards = config.getTargetBoards();
         
@@ -65,11 +68,13 @@ public class SmartRecruitersScraperService {
         log.info("Starting scrape for {} SmartRecruiters boards...", targetBoards.size());
 
         return Flux.fromIterable(targetBoards)
-                .flatMap(boardToken ->
-                        Mono.fromCallable(() -> companyRepo.findByBoardTokenIgnoreCase(boardToken)
-                                        .orElseThrow(() -> new RuntimeException("Company not found in DB for board token: " + boardToken)))
-                                .subscribeOn(reactor.core.scheduler.Schedulers.boundedElastic())
-                                .flatMap(company -> fetchAndPushJobs(company.getId(), company.getName(), boardToken))
+                .flatMap(boardToken -> 
+                    // 1. Call the repo directly (it returns Mono<Company>)
+                    companyRepo.findByBoardTokenIgnoreCase(boardToken)
+                        // 2. Handle the "Not Found" case reactively
+                        .switchIfEmpty(Mono.error(new RuntimeException("Company not found in DB for board token: " + boardToken)))
+                        // 3. Chain to the fetch method
+                        .flatMap(company -> fetchAndPushJobs(company.getId(), company.getName(), boardToken))
                 , 3)
                 .then();
     }
@@ -78,9 +83,7 @@ public class SmartRecruitersScraperService {
         log.info("Fetching jobs from SmartRecruiters for board: {}", boardToken);
 
         return fetchAllPages(boardToken)
-                // THROTLLING: SmartRecruiters will 429 ban you if you hit the details endpoint too fast
                 .delayElements(Duration.ofMillis(25)) 
-                // CONCURRENCY: Fetch up to 4 job descriptions in parallel
                 .flatMap(posting -> enrichWithDetailsAndMap(boardToken, companyId, companyName, posting), 4)
                 .flatMap(this::pushToRedisStream, 16) 
                 .doOnComplete(() -> log.info("Finished fetching jobs for {}", boardToken))
@@ -91,14 +94,13 @@ public class SmartRecruitersScraperService {
                 .then();
     }
 
-    // --- The Big Tech Pagination Trick (Reactor .expand) ---
     private Flux<SmartRecruitersPosting> fetchAllPages(String boardToken) {
         return fetchPage(boardToken, 0)
                 .expand(page -> {
                     if (page.offset() + page.limit() < page.totalFound()) {
-                        return fetchPage(boardToken, page.offset() + page.limit()); // Get next page
+                        return fetchPage(boardToken, page.offset() + page.limit()); 
                     }
-                    return Mono.empty(); // Stop paginating
+                    return Mono.empty(); 
                 })
                 .flatMapIterable(page -> page.content() != null ? page.content() : List.of());
     }
@@ -129,12 +131,14 @@ public class SmartRecruitersScraperService {
     private JobDto buildJobDto(UUID companyId, String companyName, SmartRecruitersPosting posting, SmartRecruitersJobDetails details) {
         String description = extractDescription(details);
 
-        // SmartRecruiters gives us nice clean dictionary values, fallback to parser if they are missing
         String department = posting.department() != null ? posting.department().label() : JobDataParser.extractDepartment(posting.name());
         String experience = posting.experienceLevel() != null ? posting.experienceLevel().label() : JobDataParser.extractExperienceLevel(posting.name());
         String employment = posting.typeOfEmployment() != null ? posting.typeOfEmployment().label() : JobDataParser.extractEmploymentType(posting.name(), description);
         
-        // Build the apply URL mathematically
+        // <-- NORMALIZER APPLIED HERE
+        String rawLocation = formatLocation(posting.location());
+        String normalizedLocation = locationNormalizer.normalizeLocationForDatabase(rawLocation);
+
         String url = String.format("https://jobs.smartrecruiters.com/%s/%s", posting.company().identifier(), posting.id());
 
         return new JobDto(
@@ -142,14 +146,12 @@ public class SmartRecruitersScraperService {
                 companyId,
                 companyName,
                 posting.name(),
-                formatLocation(posting.location()),
+                normalizedLocation,
                 department,
                 url,
                 description,
                 experience,
                 employment,
-                null, 
-                null, 
                 "USD"
         );
     }

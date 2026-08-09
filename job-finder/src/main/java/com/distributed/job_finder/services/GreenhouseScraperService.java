@@ -16,6 +16,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import org.springframework.data.redis.connection.stream.RecordId;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -52,14 +53,18 @@ public class GreenhouseScraperService {
     }
 
     public Mono<Void> scrapeAllConfiguredBoards() {
+        List<String> targetBoards = config.getTargetBoards();
+
         log.info("Starting scrape for {} configured Greenhouse boards...", config.getTargetBoards().size());
 
-        return Flux.fromIterable(config.getTargetBoards())
+        return Flux.fromIterable(targetBoards)
                 .flatMap(boardToken -> 
-                    Mono.fromCallable(() -> companyRepo.findByBoardTokenIgnoreCase(boardToken)
-                            .orElseThrow(() -> new RuntimeException("Company not found in DB for board token: " + boardToken)))
-                            .subscribeOn(reactor.core.scheduler.Schedulers.boundedElastic())
-                            .flatMap(company -> fetchAndPushJobs(company.getId(), company.getName(), boardToken))
+                    // 1. Call the repo directly (it returns Mono<Company>)
+                    companyRepo.findByBoardTokenIgnoreCase(boardToken)
+                        // 2. Handle the "Not Found" case reactively
+                        .switchIfEmpty(Mono.error(new RuntimeException("Company not found in DB for board token: " + boardToken)))
+                        // 3. Chain to the fetch method
+                        .flatMap(company -> fetchAndPushJobs(company.getId(), company.getName(), boardToken))
                 , 3)
                 .then();
     }
@@ -93,8 +98,6 @@ public class GreenhouseScraperService {
                             jobDescription,
                             JobDataParser.extractExperienceLevel(jobTitle),
                             JobDataParser.extractEmploymentType(jobTitle, jobDescription),
-                            null, 
-                            null, 
                             "USD" 
                     );
                 })
