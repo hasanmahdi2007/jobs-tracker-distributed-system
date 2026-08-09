@@ -1,92 +1,73 @@
 package com.distributed.job_finder.entities;
 
-import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import com.distributed.job_finder.enums.JobStatus;
 
-@Entity
-@Table(name = "jobs", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_ats_company", columnNames = {"ats_job_id", "company_id"})
-})
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Table("jobs")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Job {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "ats_job_id", nullable = false)
+    @Column("ats_job_id")
     private String atsJobId;
 
-    @Column(name = "company_id", nullable = false)
+    @Column("company_id")
     private UUID companyId;
 
-    @Column(name = "company_name", nullable = false)
+    @Column("company_name")
     private String companyName;
 
-    @Column(name = "title", nullable = false)
     private String title;
-
-    @Column(name = "location")
+    
     private String location;
-
-    @Column(name = "department")
+    
     private String department;
 
-    @Column(name = "apply_url")
+    @Column("apply_url")
     private String applyUrl;
 
-    @Column(name = "description_text", columnDefinition = "TEXT")
+    @Column("description_text")
     private String descriptionText;
 
-    // --- ADDED MISSING COLUMNS BELOW ---
+    // R2DBC maps Enums to Postgres strings/enums automatically. 
+    // Defaulting to ACTIVE replaces the need for @PrePersist.
+    @Builder.Default
+    private JobStatus status = JobStatus.ACTIVE;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", columnDefinition = "job_status")
-    @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.NAMED_ENUM)
-    private JobStatus status;
-
-    @Column(name = "experience_level")
+    @Column("experience_level")
     private String experienceLevel;
 
-    @Column(name = "employment_type")
+    @Column("employment_type")
     private String employmentType;
 
-    @Column(name = "salary_min")
-    private Integer salaryMin;
-
-    @Column(name = "salary_max")
-    private Integer salaryMax;
-
-    @Column(name = "salary_currency")
+    @Column("salary_currency")
     private String salaryCurrency;
 
-    // -----------------------------------
+    // Defaulting timestamps replaces the need for @PrePersist.
+    // For updates, you will need to manually set updatedAt = LocalDateTime.now() in your service layer before saving.
+    @Column("created_at")
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-        if (this.status == null) {
-            this.status = JobStatus.ACTIVE;
-        }
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+    @Column("updated_at")
+    @Builder.Default
+    private LocalDateTime updatedAt = LocalDateTime.now();
 }

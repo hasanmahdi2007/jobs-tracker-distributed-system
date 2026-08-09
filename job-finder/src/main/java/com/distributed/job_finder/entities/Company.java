@@ -1,12 +1,14 @@
 package com.distributed.job_finder.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name = "companies")
+@Table("companies")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,21 +17,19 @@ import java.util.UUID;
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "ats_type", nullable = false)
+    @Column("ats_type")
     private String atsType;
 
-    @Column(name = "board_token", nullable = false)
+    @Column("board_token")
     private String boardToken;
 
-    @Column(name = "website_url")
+    @Column("website_url")
     private String websiteUrl;
 
-    @Column(name = "created_at", insertable = false, updatable = false)
+    @Column("created_at")
     private OffsetDateTime createdAt;
 }

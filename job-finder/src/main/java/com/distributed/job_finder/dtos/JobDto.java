@@ -13,7 +13,5 @@ public record JobDto(
     String description,
     String experienceLevel,
     String employmentType,
-    Integer salaryMin,
-    Integer salaryMax,
     String salaryCurrency
 ) {}
