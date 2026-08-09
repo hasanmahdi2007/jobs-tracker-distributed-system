@@ -1,5 +1,3 @@
-CREATE DATABASE gateway_db;
-
 DROP TABLE IF EXISTS api_keys CASCADE;
 DROP TABLE IF EXISTS clients CASCADE;
 
@@ -15,6 +13,7 @@ CREATE TABLE api_keys (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     client_id UUID NOT NULL,
     key_hash VARCHAR(255) UNIQUE NOT NULL,
+    tier VARCHAR(4) not null DEFAULT 'FREE',
     request_limit INTEGER NOT NULL,
     current_usage INTEGER DEFAULT 0,
     version BIGINT DEFAULT 0 NOT NULL,

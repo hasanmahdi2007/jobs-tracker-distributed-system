@@ -7,6 +7,7 @@ DROP TYPE IF EXISTS job_status CASCADE;
 
 -- Enable required extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS pg_trgm; -- Added for lightning-fast ILIKE searches
 
 -- Define custom ENUM for job lifecycle management
 CREATE TYPE job_status AS ENUM ('ACTIVE', 'STALE', 'EXPIRED', 'ARCHIVED');
@@ -58,6 +59,14 @@ CREATE INDEX idx_jobs_search_vector ON jobs USING GIN (search_vector);
 CREATE INDEX idx_jobs_active_created ON jobs(status, created_at DESC);
 CREATE INDEX idx_jobs_company_id ON jobs(company_id);
 CREATE INDEX idx_jobs_sweep_optimizer ON jobs(company_id, last_seen_at) WHERE status = 'ACTIVE';
+CREATE INDEX idx_jobs_country ON jobs (location);
+CREATE INDEX idx_jobs_global_keyset ON jobs(created_at DESC, id);
+
+-- NEW: Trigram Indexes to prevent Full-Table Scans during ILIKE '%wildcard%' queries
+CREATE INDEX idx_jobs_location_trgm ON jobs USING GIN (location gin_trgm_ops);
+CREATE INDEX idx_jobs_company_name_trgm ON jobs USING GIN (company_name gin_trgm_ops);
+CREATE INDEX idx_jobs_department_trgm ON jobs USING GIN (department gin_trgm_ops);
+CREATE INDEX idx_jobs_type_trgm ON jobs USING GIN (employment_type gin_trgm_ops);
 
 -- 4. Automated Search Vector Trigger
 CREATE OR REPLACE FUNCTION update_job_search_vector() RETURNS trigger AS $$
@@ -89,3 +98,4 @@ BEGIN
 END;
 $$;
 
+SELECT current_database();
