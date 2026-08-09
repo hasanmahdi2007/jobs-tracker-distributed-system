@@ -3,7 +3,6 @@ package com.hasan.gateway.services;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hasan.gateway.dtos.NewClientResponse;
 import com.hasan.gateway.entities.ApiKey;
@@ -11,6 +10,8 @@ import com.hasan.gateway.entities.Client;
 import com.hasan.gateway.repos.ApiKeyRepo;
 import com.hasan.gateway.repos.ClientRepo;
 import com.hasan.gateway.security.SecurityUtil;
+
+import reactor.core.publisher.Mono;
 
 @Service
 public class ClientService {
@@ -23,59 +24,53 @@ public class ClientService {
         this.apiKeyRepo = apiKeyRepo;
     }
 
-    @Transactional
-    public NewClientResponse registerClientAndGenerateKey(String companyName, String email, String tierType) {
-        
-        // 1. Create and save the new Client
+    public Mono<NewClientResponse> registerClientAndGenerateKey(String companyName, String email, String tierType) {
         Client client = new Client();
         client.setCompanyName(companyName);
         client.setEmail(email);
         client.setTierType(tierType);
-        clientRepo.save(client);
 
-        // 2. Generate a secure, raw API key
-        String rawApiKey = "sk_live_" + UUID.randomUUID().toString().replace("-", "");
+        // 1. Save Client non-blockingly, then chain the API key creation
+        return clientRepo.save(client)
+                .flatMap(savedClient -> {
+                    // 2. Generate a secure, raw API key
+                    String rawApiKey = "sk_live_" + UUID.randomUUID().toString().replace("-", "");
 
-        // 3. Hash the key securely
-        String hashedKey = SecurityUtil.hashKey(rawApiKey);
+                    // 3. Hash the key securely
+                    String hashedKey = SecurityUtil.hashKey(rawApiKey);
 
-        // 4. Create and configure the ApiKey entity
-        ApiKey apiKey = new ApiKey();
-        apiKey.setClient(client);
-        apiKey.setKeyHash(hashedKey);
-        
-        // Assign limits based on tier
-        if ("PRO".equalsIgnoreCase(tierType)) {
-            apiKey.setRequestLimit(3000);
-        } else {
-            apiKey.setRequestLimit(20);
-        }
-        
-        apiKeyRepo.save(apiKey);
+                    // 4. Create and configure the ApiKey entity (including denormalized tier)
+                    ApiKey apiKey = new ApiKey();
+                    apiKey.setClientId(savedClient.getId());
+                    apiKey.setKeyHash(hashedKey);
+                    apiKey.setTier(tierType); 
+                    apiKey.setRequestLimit("PRO".equalsIgnoreCase(tierType) ? 3000 : 20);
 
-        // 5. Return the RAW key so the user can copy it. 
-        return new NewClientResponse(client.getId(), rawApiKey);
+                    return apiKeyRepo.save(apiKey)
+                            .thenReturn(new NewClientResponse(savedClient.getId(), rawApiKey));
+                });
     }
 
-    public Client findById(UUID id) {
+    public Mono<Client> findById(UUID id) {
         return clientRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Client not found with id: " + id));
+                .switchIfEmpty(Mono.error(new RuntimeException("Client not found with id: " + id)));
     }
 
-    // 2. Update Tier
-    @Transactional
-    public Client updateTier(UUID id, String newTier) {
-        Client client = findById(id);
-        client.setTierType(newTier);
-        return clientRepo.save(client);
+    public Mono<Client> updateTier(UUID id, String newTier) {
+        return findById(id)
+                .flatMap(client -> {
+                    client.setTierType(newTier);
+                    return clientRepo.save(client);
+                });
     }
 
-    // 3. Delete by ID
-    @Transactional
-    public void deleteById(UUID id) {
-        if (!clientRepo.existsById(id)) {
-            throw new RuntimeException("Cannot delete: Client not found with id: " + id);
-        }
-        clientRepo.deleteById(id);
+    public Mono<Void> deleteById(UUID id) {
+        return clientRepo.existsById(id)
+                .flatMap(exists -> {
+                    if (!exists) {
+                        return Mono.error(new RuntimeException("Cannot delete: Client not found with id: " + id));
+                    }
+                    return clientRepo.deleteById(id);
+                });
     }
 }

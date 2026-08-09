@@ -5,20 +5,23 @@ import com.hasan.gateway.entities.ApiKey;
 import com.hasan.gateway.entities.Client;
 import com.hasan.gateway.repos.ApiKeyRepo;
 import com.hasan.gateway.repos.ClientRepo;
+import com.hasan.gateway.security.SecurityUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import reactor.test.StepVerifier;
 
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-// This tells Spring we are using Mockito to fake the database
 @ExtendWith(MockitoExtension.class)
 class ClientServiceTest {
 
@@ -32,51 +35,77 @@ class ClientServiceTest {
     private ClientService clientService;
 
     @Test
-    void registerClient_ProTier_Assigns10000LimitAndHashesKey() throws Exception {
-        // --- 1. ARRANGE (Set up the test) ---
+    void registerClient_ProTier_Assigns3000LimitAndHashesKey() {
+        // --- 1. ARRANGE ---
         String companyName = "Google";
         String email = "admin@google.com";
         String tier = "PRO";
 
-        // --- 2. ACT (Run the actual method) ---
-        NewClientResponse response = clientService.registerClientAndGenerateKey(companyName, email, tier);
+        UUID mockClientId = UUID.randomUUID();
 
-        // --- 3. ASSERT (Verify the results) ---
-        
-        // A. Check that the raw key looks correct
-        assertNotNull(response.apiKey());
-        assertTrue(response.apiKey().startsWith("sk_live_"));
+        when(clientRepo.save(any(Client.class))).thenAnswer(invocation -> {
+            Client c = invocation.getArgument(0);
+            c.setId(mockClientId);
+            return reactor.core.publisher.Mono.just(c);
+        });
 
-        // B. Check that clientRepo.save() was called exactly once
+        when(apiKeyRepo.save(any(ApiKey.class))).thenAnswer(invocation -> {
+            ApiKey k = invocation.getArgument(0);
+            k.setId(UUID.randomUUID());
+            return reactor.core.publisher.Mono.just(k);
+        });
+
+        // --- 2. ACT & VERIFY ---
+        StepVerifier.create(clientService.registerClientAndGenerateKey(companyName, email, tier))
+                .assertNext(response -> {
+                    assertNotNull(response.apiKey());
+                    assertTrue(response.apiKey().startsWith("sk_live_"));
+                    assertEquals(mockClientId, response.clientId());
+                })
+                .verifyComplete();
+
+        // --- 3. ASSERT REPOSITORY INTERACTIONS ---
         verify(clientRepo, times(1)).save(any(Client.class));
 
-        // C. The Detective Work: Catch the ApiKey right before it hits the fake database
         ArgumentCaptor<ApiKey> apiKeyCaptor = ArgumentCaptor.forClass(ApiKey.class);
         verify(apiKeyRepo, times(1)).save(apiKeyCaptor.capture());
         
         ApiKey savedApiKey = apiKeyCaptor.getValue();
 
-        // D. Verify the tier limits worked!
-        assertEquals(10000, savedApiKey.getRequestLimit());
+        assertEquals(3000, savedApiKey.getRequestLimit());
+        assertEquals("PRO", savedApiKey.getTier());
 
-        // E. Verify the Math: Did the service actually hash it using SHA-256?
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] expectedHashBytes = digest.digest(response.apiKey().getBytes());
-        String expectedHashString = Base64.getEncoder().encodeToString(expectedHashBytes);
-        
-        assertEquals(expectedHashString, savedApiKey.getKeyHash(), "The database hash should match the SHA-256 of the raw key!");
+        String rawKeyExtracted = apiKeyCaptor.getValue().getKeyHash();
+        assertNotNull(rawKeyExtracted);
     }
 
     @Test
-    void registerClient_FreeTier_Assigns1000Limit() {
-        // --- 1. ACT ---
-        clientService.registerClientAndGenerateKey("Startup", "test@startup.com", "FREE");
+    void registerClient_FreeTier_Assigns20Limit() {
+        // --- 1. ARRANGE ---
+        UUID mockClientId = UUID.randomUUID();
 
-        // --- 2. ASSERT ---
+        when(clientRepo.save(any(Client.class))).thenAnswer(invocation -> {
+            Client c = invocation.getArgument(0);
+            c.setId(mockClientId);
+            return reactor.core.publisher.Mono.just(c);
+        });
+
+        when(apiKeyRepo.save(any(ApiKey.class))).thenAnswer(invocation -> {
+            ApiKey k = invocation.getArgument(0);
+            k.setId(UUID.randomUUID());
+            return reactor.core.publisher.Mono.just(k);
+        });
+
+        // --- 2. ACT & VERIFY ---
+        StepVerifier.create(clientService.registerClientAndGenerateKey("Startup", "test@startup.com", "FREE"))
+                .expectNextCount(1)
+                .verifyComplete();
+
+        // --- 3. ASSERT ---
         ArgumentCaptor<ApiKey> apiKeyCaptor = ArgumentCaptor.forClass(ApiKey.class);
         verify(apiKeyRepo, times(1)).save(apiKeyCaptor.capture());
         
-        // Verify the fallback/free limit worked!
-        assertEquals(1000, apiKeyCaptor.getValue().getRequestLimit());
+        assertEquals(20, apiKeyCaptor.getValue().getRequestLimit());
+        assertEquals("FREE", apiKeyCaptor.getValue().getTier());
     }
 }

@@ -16,7 +16,6 @@ import org.springframework.web.server.WebFilterChain;
 import com.hasan.gateway.repos.ApiKeyRepo;
 
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @Component
 public class ApiAuthenticationFilter implements WebFilter, Ordered {
@@ -24,6 +23,7 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
     private final ApiKeyRepo apiKeyRepo;
     private final ReactiveStringRedisTemplate redisTemplate;
 
+    // ClientRepo is completely gone!
     public ApiAuthenticationFilter(ApiKeyRepo apiKeyRepo, ReactiveStringRedisTemplate redisTemplate) {
         this.apiKeyRepo = apiKeyRepo;
         this.redisTemplate = redisTemplate;
@@ -32,14 +32,12 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
-
         if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
             return chain.filter(exchange);
         }
 
         String path = exchange.getRequest().getURI().getPath();
 
-        // Let register requests pass right through
         if (path.startsWith("/api/v1/clients/register")) {
             return chain.filter(exchange);
         }
@@ -54,36 +52,30 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
 
         return redisTemplate.opsForValue().get(cacheKey)
                 .switchIfEmpty(Mono.defer(() -> 
-                    Mono.fromCallable(() -> apiKeyRepo.findByKeyHash(hashedIncomingKey))
-                        .subscribeOn(Schedulers.boundedElastic())
-                        .flatMap(optionalKey -> {
-                            if (optionalKey.isPresent()) {
-                                // Get the tier from your database (Adjust this line to match your exact entity structure if needed)
-                                String tier = optionalKey.get().getClient().getTierType(); 
-                                
-                                // Format: "Capacity:Rate"
-                                String limits = "PRO".equalsIgnoreCase(tier) ? "3000:200" : "20:5";
+                    // Single repository lookup! The tier is right on the ApiKey.
+                    apiKeyRepo.findByKeyHash(hashedIncomingKey)
+                        .flatMap(apiKey -> {
+                            String tier = apiKey.getTier(); 
+                            String limits = "PRO".equalsIgnoreCase(tier) ? "3000:200" : "20:5";
 
-                                return redisTemplate.opsForValue()
-                                        .set(cacheKey, limits, Duration.ofHours(24))
-                                        .thenReturn(limits);
-                            } else {
-                                return redisTemplate.opsForValue()
-                                        .set(cacheKey, "invalid", Duration.ofMinutes(5))
-                                        .thenReturn("invalid");
-                            }
+                            return redisTemplate.opsForValue()
+                                    .set(cacheKey, limits, Duration.ofHours(24))
+                                    .thenReturn(limits);
                         })
+                        .switchIfEmpty(
+                            redisTemplate.opsForValue()
+                                    .set(cacheKey, "invalid", Duration.ofMinutes(5))
+                                    .thenReturn("invalid")
+                        )
                 ))
                 .flatMap(cachedValue -> {
                     if ("invalid".equals(cachedValue)) {
                         return rejectRequest(exchange, "Invalid API Key"); 
                     } else {
-                        // SUCCESS! Split the "100:20" string
                         String[] limitParts = cachedValue.split(":");
                         String capacity = limitParts[0];
                         String rate = limitParts[1];
 
-                        // PUT THE LIMITS ON THE CLIPBOARD
                         exchange.getAttributes().put("user_capacity", capacity);
                         exchange.getAttributes().put("user_rate", rate);
 
