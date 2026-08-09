@@ -2,27 +2,23 @@ import { useState, useCallback } from 'react';
 
 export function useJobs() {
   const [jobs, setJobs] = useState([]);
-  // Track Spring Boot's pagination metadata
-  const [pageData, setPageData] = useState({ number: 0, totalPages: 0, totalElements: 0 });
+  // Replaced totalPages with a simple 'hasMore' boolean for infinite scroll / next buttons
+  const [pageData, setPageData] = useState({ number: 0, hasMore: true });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Add `page` as a parameter (defaulting to 0)
   const fetchJobs = useCallback(async (searchTerm, filters = {}, page = 0) => {
     setLoading(true);
     setError(null);
     
     try {
       const hiddenApiKey = import.meta.env.VITE_API_KEY;
-      
-      if (!hiddenApiKey) {
-        throw new Error("Missing API Key! Check your .env file and restart Vite.");
-      }
+      if (!hiddenApiKey) throw new Error("Missing API Key in .env file!");
 
       const queryParams = new URLSearchParams({
         search: searchTerm || '',
-        page: page, // Pass the page number to Spring Boot
-        size: 20,
+        page: page,
+        size: 10,
         ...(filters.location && { location: filters.location }),
         ...(filters.type && { type: filters.type }),
         ...(filters.sort && { sort: filters.sort }),
@@ -35,20 +31,18 @@ export function useJobs() {
         { headers: { 'X-API-KEY': hiddenApiKey } }
       );
       
-      if (!response.ok) {
-        throw new Error(`Gateway Error ${response.status}: Failed to fetch jobs.`);
-      }
+      if (!response.ok) throw new Error(`Gateway Error ${response.status}`);
       
+      // data is now a direct array: [ {job1}, {job2} ]
       const data = await response.json();
       
-      // Update jobs list
-      setJobs(data.content || (Array.isArray(data) ? data : []));
+      setJobs(data || []);
       
-      // Save pagination metadata from Spring Boot
+      // If we got exactly 10 items back, there is likely a next page.
+      // If we got less than 10, we've reached the end of the database!
       setPageData({
-        number: data.number || 0,
-        totalPages: data.totalPages || 0,
-        totalElements: data.totalElements || 0
+        number: page,
+        hasMore: data.length === 10 
       });
       
     } catch (err) {
