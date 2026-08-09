@@ -4,11 +4,10 @@ import com.distributed.job_finder.dtos.JobDto;
 import com.distributed.job_finder.enums.JobSort;
 import com.distributed.job_finder.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,50 +21,39 @@ public class JobController {
         this.jobService = jobService;
     }
 
+    // Now returns a raw Flux stream of jobs instead of a Page wrapper!
     @GetMapping
-    public ResponseEntity<List<JobDto>> getAllJobs(
+    public Flux<JobDto> getAllJobs(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String location,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String company,
             @RequestParam(required = false) String category,
             @RequestParam(defaultValue = "DIVERSE") String sort, 
-            
-            // KEYSET PAGINATION CURSORS
-            @RequestParam(required = false) String lastTitle,
-            @RequestParam(required = false) LocalDateTime lastCreatedAt,
-            @RequestParam(required = false) UUID lastId,
-            
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        // default to empty string so the db query doesn't crash on nulls
-        String safeSearch = (search == null || search.trim().isEmpty()) ? "" : search.trim();
-        String safeLocation = (location == null || location.trim().isEmpty()) ? "" : location.trim();
-        String safeType = (type == null || type.trim().isEmpty()) ? "" : type.trim();
-        String safeCompany = (company == null || company.trim().isEmpty()) ? "" : company.trim();
-        String safeCategory = (category == null || category.trim().isEmpty()) ? "" : category.trim();
+        String safeSearch = (search == null || search.trim().isEmpty()) ? null : search.trim();
+        String safeLocation = (location == null || location.trim().isEmpty()) ? null : location.trim();
+        String safeType = (type == null || type.trim().isEmpty()) ? null : type.trim();
+        String safeCompany = (company == null || company.trim().isEmpty()) ? null : company.trim();
+        String safeCategory = (category == null || category.trim().isEmpty()) ? null : category.trim();
 
         JobSort safeSortEnum;
         try {
             safeSortEnum = JobSort.valueOf(sort.toUpperCase());
         } catch (IllegalArgumentException | NullPointerException e) {
-            // fallback if frontend sends a weird string like ?sort=banana
             safeSortEnum = JobSort.DIVERSE;
         }
 
-        // pass the cursors to the service so the db can jump straight to the right index
-        List<JobDto> jobs = jobService.getJobs(
+        return jobService.getJobs(
                 safeSearch, safeLocation, safeType, safeCompany, 
-                safeCategory, safeSortEnum, 
-                lastTitle, lastCreatedAt, lastId, size
+                safeCategory, safeSortEnum, page, size
         );
-        
-        return ResponseEntity.ok(jobs);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<JobDto> getJobById(@PathVariable UUID id) {
-        JobDto job = jobService.getJobById(id);
-        return ResponseEntity.ok(job);
+    public Mono<JobDto> getJobById(@PathVariable UUID id) {
+        return jobService.getJobById(id);
     }
 }
