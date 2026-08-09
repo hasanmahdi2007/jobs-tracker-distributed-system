@@ -49,8 +49,8 @@ spring:
     password: ${POSTGRES_PASSWORD:password}
     pool:
       enabled: true
-      initial-size: 10
-      max-size: 70
+      initial-size: 2
+      max-size: 5
       max-acquire-time: 10s
       initialization-fail-fast: true
 
