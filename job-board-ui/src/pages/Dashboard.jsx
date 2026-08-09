@@ -74,7 +74,7 @@ export default function Dashboard() {
       <div className="mb-8">
         <h2 className="text-3xl font-black text-slate-900 tracking-tight">Discover Opportunities</h2>
         <p className="text-slate-500 mt-1 text-sm font-medium">
-          Browse and filter {pageData.totalElements > 0 ? pageData.totalElements : 'real-time'} job openings.
+          Browse and filter real-time job openings.
         </p>
       </div>
 
@@ -177,7 +177,7 @@ export default function Dashboard() {
               </div>
 
               {/* PAGINATION CONTROLS */}
-              {!loading && pageData.totalPages > 1 && (
+              {!loading && (pageData.number > 0 || pageData.hasMore) && (
                 <div className="flex items-center justify-between mt-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
                   <button
                     onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
@@ -188,12 +188,12 @@ export default function Dashboard() {
                   </button>
                   
                   <span className="text-sm font-semibold text-slate-500">
-                    Page <span className="text-slate-900">{pageData.number + 1}</span> of {pageData.totalPages}
+                    Page <span className="text-slate-900">{pageData.number + 1}</span>
                   </span>
                   
                   <button
-                    onClick={() => setCurrentPage(p => Math.min(pageData.totalPages - 1, p + 1))}
-                    disabled={pageData.number === pageData.totalPages - 1}
+                    onClick={() => setCurrentPage(p => p + 1)}
+                    disabled={!pageData.hasMore}
                     className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100 transition-colors"
                   >
                     Next <ChevronRight className="w-4 h-4" />
