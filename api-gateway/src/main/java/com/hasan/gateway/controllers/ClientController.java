@@ -11,6 +11,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1/clients")
@@ -22,42 +23,41 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    // 1. CREATE: The permanent home of the X-Admin-Key check
+    // 1. CREATE
     @PostMapping("/register")
-    public ResponseEntity<?> registerClient(
+    public Mono<ResponseEntity<?>> registerClient(
             @Valid @RequestBody RegistrationRequest request,
             @RequestHeader(value = "X-Admin-Key", required = false) String adminKey) {
 
         if (adminKey == null || !adminKey.equals("super-secret-admin-password-123!")) {
-            return ResponseEntity
+            return Mono.just(ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of("error", "Fatal: Only authorized backend servers can register new keys."));
+                    .body(Map.of("error", "Fatal: Only authorized backend servers can register new keys.")));
         }
 
-        NewClientResponse response = clientService.registerClientAndGenerateKey(
-                request.companyName(), request.email(), request.tierType());
-                
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return clientService.registerClientAndGenerateKey(
+                request.companyName(), request.email(), request.tierType())
+                .map(response -> ResponseEntity.status(HttpStatus.CREATED).body(response));
     }
 
     // 2. READ
     @GetMapping("/{id}")
-    public ResponseEntity<?> getClient(@PathVariable UUID id) {
-        Client clientData = clientService.findById(id);
-        return ResponseEntity.ok(clientData);
+    public Mono<ResponseEntity<Client>> getClient(@PathVariable UUID id) {
+        return clientService.findById(id)
+                .map(ResponseEntity::ok);
     }
 
     // 3. UPDATE
     @PutMapping("/{id}/tier")
-    public ResponseEntity<String> updateTier(@PathVariable UUID id, @RequestParam String newTier) {
-        clientService.updateTier(id, newTier);
-        return ResponseEntity.ok("Client " + id + " successfully upgraded to " + newTier + " tier.");
+    public Mono<ResponseEntity<String>> updateTier(@PathVariable UUID id, @RequestParam String newTier) {
+        return clientService.updateTier(id, newTier)
+                .map(client -> ResponseEntity.ok("Client " + id + " successfully upgraded to " + newTier + " tier."));
     }
 
     // 4. DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteClient(@PathVariable UUID id) {
-        clientService.deleteById(id);
-        return ResponseEntity.noContent().build(); 
+    public Mono<ResponseEntity<Void>> deleteClient(@PathVariable UUID id) {
+        return clientService.deleteById(id)
+                .then(Mono.just(ResponseEntity.noContent().build()));
     }
 }
