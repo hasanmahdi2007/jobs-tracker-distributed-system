@@ -47,8 +47,7 @@ CREATE TABLE jobs (
     
     -- Timestamps
     last_seen_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- PostgreSQL Full-Text Search Vector
     search_vector tsvector
@@ -99,3 +98,4 @@ END;
 $$;
 
 SELECT current_database();
+
