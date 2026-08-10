@@ -1,16 +1,17 @@
 package com.distributed.job_finder.services;
 
-import com.distributed.job_finder.dtos.JobDto;
-import com.distributed.job_finder.enums.JobSort;
-import com.distributed.job_finder.repos.JobRepo;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import com.distributed.job_finder.dtos.JobDto;
+import com.distributed.job_finder.enums.JobSort;
+import com.distributed.job_finder.repos.JobRepo;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
-import java.util.UUID;
 
 @Service
 public class JobService {
@@ -53,10 +54,9 @@ public class JobService {
                             if (jobList.isEmpty()) {
                                 return Flux.empty();
                             }
-                            // Clear old cache, push fresh top 250, set 60s TTL
+                            // Clear old cache, push fresh top 250 (Stays in RAM forever)
                             return redisTemplate.delete(cacheKey)
                                 .then(redisTemplate.opsForList().rightPushAll(cacheKey, jobList))
-                                .flatMap(added -> redisTemplate.expire(cacheKey, Duration.ofSeconds(60)))
                                 .thenMany(Flux.fromIterable(jobList))
                                 .skip(startIndex) // Slice exactly what the controller requested
                                 .take(size);
