@@ -218,7 +218,7 @@ graph TD
 4. Run the individual microservices via Maven (Example: Scraper target):
    ```powershell
    $env:POSTGRES_PASSWORD="your_secure_password"
-   mvn spring-boot:run '-Dspring-boot.run.arguments=--server.port=8089 --scraper.target=smartrecruiters'
+   mvn spring-boot:run'
    ```
 
 ---
