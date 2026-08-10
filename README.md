@@ -218,14 +218,21 @@ graph TD
 4. Run the individual microservices via Maven (Example: Scraper target):
    ```powershell
    $env:POSTGRES_PASSWORD="your_secure_password"
-   mvn spring-boot:run'
+   mvn spring-boot:run
    ```
 
 ---
 
-## 🗺️ Roadmap & Learnings
+## 🗺️ Roadmap & Architectural Insights
 
-Building this 5-service architecture was a massive undertaking focused on enterprise scalability. Key software engineering (SWE) principles applied include strictly enforced **Separation of Concerns (SOC)**, robust domain-driven packaging, and fully decoupled event-driven messaging. 
+Engineering this 5-service distributed system went far beyond standard application development, diving deep into the complexities of high-availability infrastructure and distributed state management. The core architectural challenges solved during development involved mitigating **cache stampedes (thundering herds)** under heavy concurrent load, preventing **thread starvation** via 100% non-blocking WebFlux/R2DBC pipelines, and protecting constrained database connection pools through an aggressive, multi-tiered Redis caching strategy. 
+
+By enforcing **universal UUID standardization** across all domains and decoupling high-volume ATS ingestion from user-facing search APIs via **Redis Streams message brokering**, this architecture demonstrates a production-ready approach to fault tolerance, asynchronous data synchronization, and enterprise-grade resilience.
+
+**Next Steps:**
+- [ ] Migrate infrastructure and deploy to AWS (ECS, RDS, ElastiCache).
+- [ ] Implement CI/CD pipelines via GitHub Actions.
+- [ ] Introduce Elasticsearch for advanced fuzzy matching.
 
 **Next Steps:**
 - [ ] Migrate infrastructure and deploy to AWS (ECS, RDS, ElastiCache).
