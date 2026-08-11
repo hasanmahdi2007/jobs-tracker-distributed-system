@@ -9,7 +9,7 @@ spring:
   r2dbc:
     r2dbc:
     url: r2dbc:postgresql://${DB_HOST:127.0.0.1}:5432/analytics_db
-    username: postgres # (or respective db n
+    username: postgres 
     password: ${POSTGRES_PASSWORD:password}
     pool:
       enabled: true
