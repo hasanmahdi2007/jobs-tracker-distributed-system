@@ -2,7 +2,9 @@ package com.distributed.job_finder.services;
 
 import com.distributed.job_finder.config.BambooHRConfig;
 import com.distributed.job_finder.dtos.JobDto;
+import com.distributed.job_finder.dtos.bamboohr.BambooHRJobDetail;
 import com.distributed.job_finder.dtos.bamboohr.BambooHRJobResponse;
+import com.distributed.job_finder.dtos.bamboohr.BambooHRJob;
 import com.distributed.job_finder.repos.CompanyRepo;
 import com.distributed.job_finder.utils.JobDataParser;
 import lombok.extern.slf4j.Slf4j;
@@ -52,20 +54,19 @@ public class BambooHRScraperService {
 
     public Mono<Void> scrapeAllConfiguredBoards() {
         List<String> targetBoards = config.getTargetBoards();
-        log.info("Starting scrape for {} configured BambooHR boards...", targetBoards.size());
+        log.info("Starting deep scrape for {} configured BambooHR boards...", targetBoards.size());
 
         return Flux.fromIterable(targetBoards)
                 .flatMap(boardToken -> companyRepo.findByBoardTokenIgnoreCase(boardToken)
                         .switchIfEmpty(Mono.error(new RuntimeException("Company not found in DB for board token: " + boardToken)))
                         .flatMap(company -> fetchAndPushJobs(company.getId(), company.getName(), boardToken))
-                , 3)
+                , 3) // Max 3 companies concurrently
                 .then();
     }
 
     private Mono<Void> fetchAndPushJobs(UUID companyId, String companyName, String boardToken) {
-        // Construct the BambooHR subdomain URL
         String bambooApiUrl = String.format("https://%s.bamboohr.com/careers/list", boardToken);
-        log.info("Fetching jobs from BambooHR for board: {}", boardToken);
+        log.info("Fetching job list from BambooHR for board: {}", boardToken);
 
         return webClient.get()
                 .uri(bambooApiUrl)
@@ -77,12 +78,30 @@ public class BambooHRScraperService {
                     }
                     return Flux.empty();
                 })
-                .map(bbJob -> {
+                // CRITICAL FIX: Chain the secondary detail request to get the description.
+                // We use a concurrency limit of 5 to avoid triggering IP rate limits on the detail endpoint.
+                .flatMap(bbJob -> fetchJobDetails(companyId, companyName, boardToken, bbJob), 5)
+                .delayElements(Duration.ofMillis(5))
+                .flatMap(jobDto -> pushToRedisStream(jobDto), 16)
+                .doOnComplete(() -> log.info("Finished deep fetching jobs for {}", boardToken))
+                .onErrorResume(error -> {
+                    log.warn("Skipping BambooHR board '{}' due to error: {}", boardToken, error.getMessage());
+                    return Flux.empty();
+                })
+                .then();
+    }
+
+    private Mono<JobDto> fetchJobDetails(UUID companyId, String companyName, String boardToken, BambooHRJob bbJob) {
+        String detailUrl = String.format("https://%s.bamboohr.com/careers/%s/detail", boardToken, bbJob.id());
+        String applyUrl = String.format("https://%s.bamboohr.com/careers/%s", boardToken, bbJob.id());
+
+        return webClient.get()
+                .uri(detailUrl)
+                .retrieve()
+                .bodyToMono(BambooHRJobDetail.class)
+                .map(detail -> {
                     String jobTitle = bbJob.jobOpeningName();
-                    String jobDescription = bbJob.description() != null ? bbJob.description() : "";
-                    
-                    // The standard URL format to apply for a specific BambooHR job
-                    String applyUrl = String.format("https://%s.bamboohr.com/careers/%s", boardToken, bbJob.id());
+                    String jobDescription = detail.description() != null ? detail.description() : "";
 
                     return new JobDto(
                             bbJob.id(),
@@ -98,14 +117,18 @@ public class BambooHRScraperService {
                             "USD"
                     );
                 })
-                .delayElements(Duration.ofMillis(5))
-                .flatMap(jobDto -> pushToRedisStream(jobDto), 16)
-                .doOnComplete(() -> log.info("Finished fetching jobs for {}", boardToken))
-                .onErrorResume(error -> {
-                    log.warn("Skipping BambooHR board '{}' due to error: {}", boardToken, error.getMessage());
-                    return Flux.empty();
-                })
-                .then();
+                // FAULT TOLERANCE: If the detail endpoint fails (e.g. timeout), still push the job but with an empty description
+                .onErrorResume(e -> {
+                    log.warn("Failed to fetch details for job {} at {}: {}", bbJob.id(), boardToken, e.getMessage());
+                    return Mono.just(new JobDto(
+                            bbJob.id(), companyId, companyName, bbJob.jobOpeningName(),
+                            bbJob.location() != null ? bbJob.location().getFullLocation() : "Remote / Unspecified",
+                            bbJob.departmentLabel(), applyUrl, "",
+                            JobDataParser.extractExperienceLevel(bbJob.jobOpeningName()),
+                            JobDataParser.extractEmploymentType(bbJob.jobOpeningName(), ""),
+                            "USD"
+                    ));
+                });
     }
 
     private Mono<RecordId> pushToRedisStream(JobDto jobDto) {
