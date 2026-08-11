@@ -1,13 +1,13 @@
 package com.distributed.job_finder.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 @Configuration
-@ConfigurationProperties(prefix = "app.scrapers.smartrecruiters")
+@ConfigurationProperties(prefix = "app.scrapers.talentera")
 public class TalenteraConfig {
 
     private String baseUrl;
