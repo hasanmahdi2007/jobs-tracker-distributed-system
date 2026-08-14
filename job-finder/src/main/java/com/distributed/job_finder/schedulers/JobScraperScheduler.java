@@ -9,6 +9,7 @@ import com.distributed.job_finder.services.LeverScraperService;
 import com.distributed.job_finder.services.SmartRecruitersScraperService;
 import com.distributed.job_finder.services.TalenteraScraperService;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -35,12 +36,21 @@ public class JobScraperScheduler {
     }
 
     // Runs once right after the app starts so we don't have to wait until 3 AM to test it
-    // @PostConstruct
-    // public void runOnStartup() {
-    //     log.info("[TEST] App booted. Firing initial scrape for ALL platforms...");
-    //     runAllScrapers().subscribe();
-    // }
+//     @PostConstruct
+//     public void runOnStartup() {
+//         log.info("[TEST] App booted. Firing initial scrape for ALL platforms...");
+//         runAllScrapers().subscribe();
+//     }
 
+    // Runs once right after the app starts specifically to test SmartRecruiters
+//     @PostConstruct
+//     public void runSmartRecruitersOnStartup() {
+//         log.info("[TEST] App booted. Firing initial scrape for SmartRecruiters ONLY...");
+//         smartRecruitersScraperService.scrapeAllConfiguredBoards()
+//                 .doOnError(e -> log.error("Error during startup SmartRecruiters scrape: {}", e.getMessage()))
+//                 .subscribe();
+//     }
+    
     // Runs every day at 3:00 AM in production
     @Scheduled(cron = "0 0 3 * * *")
     public void runDailyScrape() {
