@@ -50,16 +50,20 @@ CREATE TABLE jobs (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- PostgreSQL Full-Text Search Vector
-    search_vector tsvector
+    search_vector tsvector,
+    
+    -- ENFORCEMENT: Cross-ATS Deduplication
+    -- A company cannot have two active jobs with the exact same title in the exact same normalized location
+    CONSTRAINT unique_company_title_location UNIQUE (company_id, title, location)
 );
 
 -- 3. Indexes for Sub-Millisecond Search Performance
 CREATE INDEX idx_jobs_search_vector ON jobs USING GIN (search_vector);
-CREATE INDEX idx_jobs_active_created ON jobs(status, created_at DESC);
+CREATE INDEX idx_jobs_active_updated ON jobs(status, updated_at DESC); 
 CREATE INDEX idx_jobs_company_id ON jobs(company_id);
 CREATE INDEX idx_jobs_sweep_optimizer ON jobs(company_id, last_seen_at) WHERE status = 'ACTIVE';
 CREATE INDEX idx_jobs_country ON jobs (location);
-CREATE INDEX idx_jobs_global_keyset ON jobs(created_at DESC, id);
+CREATE INDEX idx_jobs_global_keyset ON jobs(updated_at DESC, id);
 
 -- NEW: Trigram Indexes to prevent Full-Table Scans during ILIKE '%wildcard%' queries
 CREATE INDEX idx_jobs_location_trgm ON jobs USING GIN (location gin_trgm_ops);
