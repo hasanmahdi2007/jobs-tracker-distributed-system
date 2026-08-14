@@ -43,7 +43,7 @@ CREATE TABLE jobs (
     ats_job_id VARCHAR(100),                  
     
     -- Lifecycle State
-    status job_status DEFAULT 'ACTIVE',
+    status VARCHAR(50) DEFAULT 'ACTIVE',
     
     -- Timestamps
     last_seen_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -102,4 +102,3 @@ END;
 $$;
 
 SELECT current_database();
-
