@@ -19,6 +19,8 @@ public interface JobRepo extends ReactiveCrudRepository<Job, UUID>, CustomJobRep
 
     Mono<Job> findByAtsJobIdAndCompanyId(String atsJobId, UUID companyId);
 
+    Mono<Job> findByCompanyIdAndTitleAndLocation(UUID companyId, String title, String location);
+
     // 1. RECENT SEARCH (Keyset Pagination)
     // Converted to Native PostgreSQL
     @Query("SELECT * FROM jobs WHERE " +
