@@ -124,10 +124,10 @@ public class JobStreamConsumer {
         String cleanLocation = locationNormalizer.normalizeLocationForDatabase(incomingJob.location());
 
         // We return the Mono chain so the caller can subscribe to it
-        return jobRepository.findByAtsJobIdAndCompanyId(incomingJob.atsJobId(), incomingJob.companyId())
+        // UPDATED: Now looks up by Company, Title, and Location to support Cross-ATS deduplication
+        return jobRepository.findByCompanyIdAndTitleAndLocation(incomingJob.companyId(), incomingJob.title(), cleanLocation)
             .flatMap(existingJob -> {
-                // UPDATE SCENARIO
-                
+
                 // 1. Check if the core data actually changed
                 boolean dataChanged = (existingJob.getTitle() != null && !existingJob.getTitle().equals(incomingJob.title())) ||
                                       (existingJob.getLocation() != null && !existingJob.getLocation().equals(cleanLocation)) ||
@@ -159,7 +159,7 @@ public class JobStreamConsumer {
             .switchIfEmpty(Mono.defer(() -> {
                 // INSERT SCENARIO
                 Job newJob = Job.builder()
-                        .atsJobId(incomingJob.atsJobId())
+                        .atsJobId(incomingJob.atsJobId()) // Still saving this for debugging!
                         .companyId(incomingJob.companyId())
                         .companyName(incomingJob.companyName())
                         .title(incomingJob.title())
