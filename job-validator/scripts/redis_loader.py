@@ -6,8 +6,8 @@ import re
 # Connect to local Redis instance
 r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
-# Target Redis queue key mapped to the SmartRecruitersThrottledRunner
-REDIS_QUEUE_KEY = "queue:slugs:smartrecruiters"
+# Target Redis queue key mapped to the bamboohrThrottledRunner
+REDIS_QUEUE_KEY = "queue:slugs:bamboohr"
 
 # Your target zip file path
 ZIP_PATH = r"C:\Users\user\Downloads\companies-2023-q4-sm.csv.zip"
