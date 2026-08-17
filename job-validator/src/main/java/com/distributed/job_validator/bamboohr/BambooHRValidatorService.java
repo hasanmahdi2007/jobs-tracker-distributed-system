@@ -23,7 +23,7 @@ public class BambooHRValidatorService {
                 .maxConnections(300)
                 .pendingAcquireMaxCount(1000)
                 .pendingAcquireTimeout(Duration.ofSeconds(3))
-                .maxIdleTime(Duration.ofSeconds(60))
+                .maxIdleTime(Duration.ofSeconds(10))
                 .maxLifeTime(Duration.ofMinutes(5))
                 .build();
 
