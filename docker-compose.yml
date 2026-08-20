@@ -1,23 +1,121 @@
 version: '3.8'
 
+# 1. Define a custom internal network for secure container-to-container communication
+networks:
+  jobs-network:
+    driver: bridge
+
+# 2. Define storage volumes so data isn't lost when containers stop
+volumes:
+  postgres_data:
+  redis_data:
+
 services:
+  # ==========================================
+  # INFRASTRUCTURE (Databases & Cache)
+  # ==========================================
   postgres-db:
     image: postgres:15-alpine
-    container_name: distributed-postgres
+    container_name: postgres-db
+    restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password} # Fallback if .env is missing
     ports:
-      - "5432:5432"
+      - "5432:5432" # Standard port for the professional pure-Docker setup
     volumes:
       - ./postgres-init:/docker-entrypoint-initdb.d
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jobs-network
 
   redis-cache:
-    image: redis
-    container_name: gateway-redis
+    image: redis:alpine
+    container_name: redis-cache
+    restart: always
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - jobs-network
 
-volumes:
-  postgres_data:
+  # ==========================================
+  # BACKEND MICROSERVICES
+  # ==========================================
+  api-gateway:
+    build:
+      context: ./api-gateway 
+    container_name: api-gateway
+    restart: on-failure
+    ports:
+      - "8080:8080" 
+    environment:
+      - DB_HOST=postgres-db
+      - REDIS_HOST=redis-cache
+      - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC # 1GB starting, 2GB max
+    depends_on:
+      - postgres-db
+      - redis-cache
+    networks:
+      - jobs-network
+
+  job-finder:
+    build:
+      context: ./job-finder
+    container_name: job-finder
+    restart: on-failure
+    environment:
+      - DB_HOST=postgres-db
+      - REDIS_HOST=redis-cache
+      - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC
+    depends_on:
+      - postgres-db
+      - redis-cache
+    networks:
+      - jobs-network
+
+  job-validator:
+    build:
+      context: ./job-validator
+    container_name: job-validator
+    restart: on-failure
+    environment:
+      - DB_HOST=postgres-db
+      - REDIS_HOST=redis-cache
+      - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC
+    depends_on:
+      - postgres-db
+      - redis-cache
+    networks:
+      - jobs-network
+
+  analytics-engine:
+    build:
+      context: ./analytics-engine
+    container_name: analytics-engine
+    restart: on-failure
+    environment:
+      - DB_HOST=postgres-db
+      - REDIS_HOST=redis-cache
+      - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC
+    depends_on:
+      - postgres-db
+      - redis-cache
+    networks:
+      - jobs-network
+
+  # ==========================================
+  # FRONTEND (Optional placeholder)
+  # ==========================================
+  frontend-ui:
+    build:
+      context: ./frontend
+    container_name: frontend-ui
+    restart: on-failure
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - api-gateway
+    networks:
+      - jobs-network
