@@ -53,7 +53,8 @@ services:
     environment:
       - DB_HOST=postgres-db
       - REDIS_HOST=redis-cache
-      - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC # 1GB starting, 2GB max
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC 
     depends_on:
       - postgres-db
       - redis-cache
@@ -68,6 +69,7 @@ services:
     environment:
       - DB_HOST=postgres-db
       - REDIS_HOST=redis-cache
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
       - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC
     depends_on:
       - postgres-db
@@ -83,6 +85,8 @@ services:
     environment:
       - DB_HOST=postgres-db
       - REDIS_HOST=redis-cache
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - SCRAPER_TARGET=${SCRAPER_TARGET:-greenhouse}
       - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC
     depends_on:
       - postgres-db
@@ -98,6 +102,7 @@ services:
     environment:
       - DB_HOST=postgres-db
       - REDIS_HOST=redis-cache
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
       - JAVA_TOOL_OPTIONS=-Xms1g -Xmx2g -XX:+UseG1GC
     depends_on:
       - postgres-db
@@ -113,9 +118,3 @@ services:
       context: ./frontend
     container_name: frontend-ui
     restart: on-failure
-    ports:
-      - "3000:3000" 
-    depends_on:
-      - api-gateway
-    networks:
-      - jobs-network
