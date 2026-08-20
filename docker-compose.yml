@@ -22,7 +22,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password} # Fallback if .env is missing
     ports:
-      - "5433:5432" # Standard port for the professional pure-Docker setup
+      - "${LOCAL_DB_PORT:-5432}:5432"
     volumes:
       - ./postgres-init:/docker-entrypoint-initdb.d
       - postgres_data:/var/lib/postgresql/data
