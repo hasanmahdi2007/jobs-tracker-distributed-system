@@ -1,0 +1,29 @@
+# ==========================================
+# STAGE 1: BUILD (The Heavy Lifter)
+# ==========================================
+FROM maven:3.9-eclipse-temurin-21 AS builder
+WORKDIR /app
+
+# Step 1: Copy ONLY the pom.xml first
+COPY pom.xml .
+
+# Step 2: Download dependencies (Docker caches this step!)
+RUN mvn dependency:go-offline -B
+
+# Step 3: Copy your actual Java code
+COPY src ./src
+
+# Step 4: Compile the code into a JAR file
+RUN mvn clean package -DskipTests
+
+# ==========================================
+# STAGE 2: RUN (The Lightweight Runner)
+# ==========================================
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+# Step 5: Snatch the finished JAR file from Stage 1
+COPY --from=builder /app/target/*.jar app.jar
+
+# Step 6: The command that runs when the container starts
+ENTRYPOINT ["java", "-jar", "app.jar"]
