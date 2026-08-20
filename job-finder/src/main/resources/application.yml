@@ -23,7 +23,7 @@ spring:
   # 3. Redis Configuration (For your Ingestion Stream)
   data:
     redis:
-      host: localhost
+      host: ${REDIS_HOST:localhost} 
       port: 6379
       timeout: 5000
 

@@ -6,19 +6,16 @@ spring:
     name: job-validator
   data:
     redis:
-      host: localhost
+      host: ${REDIS_HOST:localhost}
       port: 6379
       timeout: 2000ms
 
 scraper:
-  target: greenhouse  # Options: greenhouse, lever, workable, talentera
+  target: ${SCRAPER_TARGET:greenhouse}  # Options: greenhouse, lever, workable, talentera
 
 logging:
   level:
-    # Your custom logs
     com.distributed.job_validator: INFO
-    # Suppress WebClient internal logs
     org.springframework.web.reactive.function.client.WebClient: WARN
-    # Suppress Netty SSL/TLS Handshake Timeout stack traces
     reactor.netty.http.client.HttpClientConnect: ERROR
     reactor.netty.http.client.HttpClient: ERROR

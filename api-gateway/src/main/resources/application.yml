@@ -24,7 +24,7 @@ spring:
       
       routes:
         - id: job-finder-route
-          uri: http://localhost:8083
+          uri: http://job-finder:8083
           predicates:
             - Path=/api/v1/jobs/**
           filters:
@@ -43,7 +43,6 @@ spring:
 
   # --- 3. MAIN DATABASE (Non-Blocking R2DBC) ---
   r2dbc:
-    r2dbc:
     url: r2dbc:postgresql://${DB_HOST:127.0.0.1}:5432/gateway_db
     username: postgres
     password: ${POSTGRES_PASSWORD:password}

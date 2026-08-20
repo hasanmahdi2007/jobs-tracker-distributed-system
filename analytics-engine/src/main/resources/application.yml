@@ -7,7 +7,6 @@ spring:
 
   # Non-blocking R2DBC Database Connection
   r2dbc:
-    r2dbc:
     url: r2dbc:postgresql://${DB_HOST:127.0.0.1}:5432/analytics_db
     username: postgres 
     password: ${POSTGRES_PASSWORD:password}
