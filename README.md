@@ -196,31 +196,39 @@ graph TD
 ## 🚀 Getting Started
 
 ### Prerequisites
-* Docker & Docker Compose
-* Java 17+
-* Node.js & npm
+* **Docker & Docker Compose** (The entire backend architecture, database, and cache are fully containerized. No local Java, Maven, or PostgreSQL installation is required).
+* **Git** (To clone the repository).
 
-### Running Locally
-1. Clone the repository:
+### Running Locally (Pure Docker Setup)
+1. **Clone the repository:**
    ```bash
    git clone [https://github.com/hasanmahdi2007/jobs-tracker-distributed-system.git](https://github.com/hasanmahdi2007/jobs-tracker-distributed-system.git)
    cd jobs-tracker-distributed-system
    ```
-2. Create a `.env` file in the root directory (do not commit this file) with your required database credentials:
-   ```env
-   POSTGRES_USER=postgres
-   POSTGRES_PASSWORD=your_secure_password
-   ```
-3. Boot the infrastructure (PostgreSQL, Redis) via Docker Compose:
+
+2. **Configure environment variables:**
+   The system uses an environment file to securely inject database credentials and map ports. Copy the provided template and set your own secure password. *(Note: If port `5432` is already in use by a local PostgreSQL installation, you can safely change `LOCAL_DB_PORT` in this file without breaking internal microservice routing).*
    ```bash
-   docker compose up -d
-   ```
-4. Run the individual microservices via Maven (Example: Scraper target):
-   ```powershell
-   $env:POSTGRES_PASSWORD="your_secure_password"
-   mvn spring-boot:run
+   cp .env.example .env
    ```
 
+3. **Build and launch the distributed system:**
+   Execute the following command. Docker Compose will automatically run the multi-stage Maven builds for all microservices, spin up the Redis and PostgreSQL infrastructure, and launch the entire suite on an isolated internal network.
+   ```bash
+   docker compose up --build -d
+   ```
+
+4. **Monitor the system logs (Optional):**
+   To watch the Spring Boot applications boot up and verify the Redis stream connections in real-time:
+   ```bash
+   docker compose logs -f
+   ```
+
+5. **Graceful Shutdown:**
+   When finished, spin down the containers while preserving your database volumes:
+   ```bash
+   docker compose down
+   ```
 ---
 
 ## 🗺️ Roadmap & Architectural Insights
