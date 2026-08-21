@@ -10,9 +10,6 @@ spring:
       port: 6379
       timeout: 2000ms
 
-scraper:
-  target: ${SCRAPER_TARGET:greenhouse}  # Options: greenhouse, lever, workable, talentera
-
 logging:
   level:
     com.distributed.job_validator: INFO
