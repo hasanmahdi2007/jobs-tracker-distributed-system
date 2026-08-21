@@ -1,29 +1,31 @@
 # ==========================================
-# STAGE 1: BUILD (The Heavy Lifter)
+# STAGE 1: BUILD (The Node.js Lifter)
 # ==========================================
-FROM maven:3.9-eclipse-temurin-21 AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 
-# Step 1: Copy ONLY the pom.xml first
-COPY pom.xml .
+# Step 1: Copy ONLY package.json and package-lock.json first
+COPY package*.json ./
 
 # Step 2: Download dependencies (Docker caches this step!)
-RUN mvn dependency:go-offline -B
+RUN npm install
 
-# Step 3: Copy your actual Java code
-COPY src ./src
+# Step 3: Copy your actual React code (and the .env file)
+COPY . .
 
-# Step 4: Compile the code into a JAR file
-RUN mvn clean package -DskipTests
+# Step 4: Compile the Vite project into static HTML/JS files
+RUN npm run build
 
 # ==========================================
-# STAGE 2: RUN (The Lightweight Runner)
+# STAGE 2: RUN (The Ultra-Lightweight Web Server)
 # ==========================================
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
+FROM nginx:alpine
 
-# Step 5: Snatch the finished JAR file from Stage 1
-COPY --from=builder /app/target/*.jar app.jar
+# Step 5: Snatch the finished static files from the builder's 'dist' folder
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Step 6: The command that runs when the container starts
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Step 6: Expose standard web port
+EXPOSE 80
+
+# Step 7: Start Nginx to serve the website
+CMD ["nginx", "-g", "daemon off;"]
