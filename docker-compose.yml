@@ -115,6 +115,6 @@ services:
   # ==========================================
   frontend-ui:
     build:
-      context: ./frontend
+      context: ./job-board-ui
     container_name: frontend-ui
     restart: on-failure
