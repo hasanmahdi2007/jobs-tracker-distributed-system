@@ -33,11 +33,17 @@ public class IpRateLimiterFilter implements WebFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
                 
-        // 1. Extract the raw IP address of the incoming request
-        String ipAddress = exchange.getRequest().getRemoteAddress() != null ? 
-                exchange.getRequest().getRemoteAddress().getAddress().getHostAddress() : "unknown-ip";
+        // 1. Extract the true IP address (Handles both local testing and Cloud Load Balancers)
+        String ipAddress = exchange.getRequest().getHeaders().getFirst("X-Forwarded-For");
+        
+        if (ipAddress != null && !ipAddress.isEmpty()) {
+            ipAddress = ipAddress.split(",")[0].trim();
+        } else {
+            ipAddress = exchange.getRequest().getRemoteAddress() != null ? 
+                    exchange.getRequest().getRemoteAddress().getAddress().getHostAddress() : "unknown-ip";
+        }
 
-        // 2. Set the global IP rules (e.g., 50 requests per second max from any single IP)
+        // 2. Set the global IP rules 
         String capacity = "3000"; 
         String rate = "200"; 
         String now = String.valueOf(Instant.now().getEpochSecond());
