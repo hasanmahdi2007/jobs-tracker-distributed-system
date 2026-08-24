@@ -32,7 +32,7 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
         // 1. Let CORS preflight requests through cleanly
-        if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
+        if (exchange.getRequest().getMethod().name().equalsIgnoreCase("OPTIONS")) {
             return chain.filter(exchange);
         }
 
@@ -43,7 +43,7 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
         if (rawApiKey == null || rawApiKey.trim().isEmpty()) {
             
             // Match any job retrieval endpoint robustly
-            if (path.contains("/jobs") && exchange.getRequest().getMethod() == HttpMethod.GET) {
+            if (path.contains("/jobs") && exchange.getRequest().getMethod().name().equalsIgnoreCase("GET")) {
                 exchange.getAttributes().put("user_capacity", "15");
                 exchange.getAttributes().put("user_rate", "2");
                 return chain.filter(exchange);
