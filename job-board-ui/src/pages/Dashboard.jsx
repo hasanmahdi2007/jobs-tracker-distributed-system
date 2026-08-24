@@ -166,7 +166,6 @@ export default function Dashboard() {
                 type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search roles, companies, or keywords..."
                 className="w-full bg-transparent text-slate-900 text-sm font-medium outline-none placeholder-slate-400"
-                onKeyDown={(e) => e.key === 'Enter' && fetchJobs(searchTerm, filters, currentPage)}
               />
             </div>
           </motion.div>
