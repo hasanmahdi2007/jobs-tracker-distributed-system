@@ -23,7 +23,6 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
     private final ApiKeyRepo apiKeyRepo;
     private final ReactiveStringRedisTemplate redisTemplate;
 
-    // ClientRepo is completely gone!
     public ApiAuthenticationFilter(ApiKeyRepo apiKeyRepo, ReactiveStringRedisTemplate redisTemplate) {
         this.apiKeyRepo = apiKeyRepo;
         this.redisTemplate = redisTemplate;
@@ -32,34 +31,33 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
+        // 1. Let CORS preflight requests through cleanly
         if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
             return chain.filter(exchange);
         }
 
         String path = exchange.getRequest().getURI().getPath();
-
         String rawApiKey = exchange.getRequest().getHeaders().getFirst("X-API-KEY");
-        // 1. PUBLIC UI (No API Key provided)
-        if (rawApiKey == null || rawApiKey.isEmpty()) {
+
+        // 2. PUBLIC SLOW LANE: No API Key provided
+        if (rawApiKey == null || rawApiKey.trim().isEmpty()) {
             
-            // If they are just reading the jobs, let them through!
-            if (path.startsWith("/api/v1/jobs") && exchange.getRequest().getMethod() == HttpMethod.GET) {
-                // THE SLOW LANE: Put the 15-request limit on them
+            // Match any job retrieval endpoint robustly
+            if (path.contains("/jobs") && exchange.getRequest().getMethod() == HttpMethod.GET) {
                 exchange.getAttributes().put("user_capacity", "15");
                 exchange.getAttributes().put("user_rate", "2");
                 return chain.filter(exchange);
             }
-            
-            // If they try to do anything else (POST, DELETE, etc.), block them.
+            // other than GET /jobs
             return rejectRequest(exchange, "Missing X-API-KEY header");
         }
 
-        String hashedIncomingKey = SecurityUtil.hashKey(rawApiKey);
+        // 3. API Key Path (B2B Clients)
+        String hashedIncomingKey = SecurityUtil.hashKey(rawApiKey.trim());
         String cacheKey = "auth:" + hashedIncomingKey;
 
         return redisTemplate.opsForValue().get(cacheKey)
                 .switchIfEmpty(Mono.defer(() -> 
-                    // Single repository lookup! The tier is right on the ApiKey.
                     apiKeyRepo.findByKeyHash(hashedIncomingKey)
                         .flatMap(apiKey -> {
                             String tier = apiKey.getTier(); 
@@ -94,6 +92,13 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
     private Mono<Void> rejectRequest(ServerWebExchange exchange, String message) {
         exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
         exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        
+        // This is the magic fix! Attach explicit CORS header on errors so browser exposes actual status message
+        String origin = exchange.getRequest().getHeaders().getOrigin();
+        if (origin != null) {
+            exchange.getResponse().getHeaders().set("Access-Control-Allow-Origin", origin);
+            exchange.getResponse().getHeaders().set("Access-Control-Allow-Credentials", "true");
+        }
         
         String body = "{\"error\": \"" + message + "\"}";
         byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
