@@ -110,7 +110,7 @@ services:
     networks:
       - jobs-network
 
-  # ==========================================
+# ==========================================
   # FRONTEND (Optional placeholder)
   # ==========================================
   frontend-ui:
@@ -118,3 +118,5 @@ services:
       context: ./job-board-ui
     container_name: frontend-ui
     restart: on-failure
+    ports:
+      - "3000:80"
