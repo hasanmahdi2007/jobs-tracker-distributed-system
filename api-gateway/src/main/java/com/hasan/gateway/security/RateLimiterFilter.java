@@ -31,20 +31,37 @@ public class RateLimiterFilter implements WebFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
         String rawApiKey = exchange.getRequest().getHeaders().getFirst("X-API-KEY");
-        if (rawApiKey == null) {
-            return chain.filter(exchange); 
+        String trackingId;
+        
+        // 1. DETERMINE WHO WE ARE TRACKING
+        if (rawApiKey == null || rawApiKey.isEmpty()) {
+            // No API key? Fall back to tracking by IP address (Free User / UI Visitor)
+            String ipAddress = exchange.getRequest().getHeaders().getFirst("X-Forwarded-For");
+            if (ipAddress != null && !ipAddress.isEmpty()) {
+                ipAddress = ipAddress.split(",")[0].trim();
+            } else {
+                ipAddress = exchange.getRequest().getRemoteAddress() != null ? 
+                        exchange.getRequest().getRemoteAddress().getAddress().getHostAddress() : "unknown-ip";
+            }
+            trackingId = "anon_ip:" + ipAddress; // Unique prefix for anonymous users
+        } else {
+            // Has an API key? Track them by their API key (B2B Client)
+            trackingId = rawApiKey;
         }
 
-        // READ THE CLIPBOARD! (If for some reason it's missing, default to FREE tier: 20 and 5)
-        String capacity = exchange.getAttributeOrDefault("user_capacity", "20");
-        String rate = exchange.getAttributeOrDefault("user_rate", "5");
+        // 2. READ THE LIMITS (Assigned by the Bouncer upstream)
+        // If they are anonymous, the Bouncer gave them "15" capacity. If PRO, "3000".
+        String capacity = exchange.getAttributeOrDefault("user_capacity", "15");
+        String rate = exchange.getAttributeOrDefault("user_rate", "2");
         
         String now = String.valueOf(Instant.now().getEpochSecond());
         String requested = "1";
 
-        List<String> keys = List.of("tokens:" + rawApiKey, "timestamp:" + rawApiKey);
+        // 3. CREATE REDIS KEYS BASED ON WHO THEY ARE
+        List<String> keys = List.of("tokens:" + trackingId, "timestamp:" + trackingId);
         List<String> args = List.of(rate, capacity, now, requested);
 
+        // 4. EXECUTE THE TOKEN BUCKET SCRIPT
         return redisTemplate.execute(script, keys, args)
                 .next()
                 .flatMap(result -> {

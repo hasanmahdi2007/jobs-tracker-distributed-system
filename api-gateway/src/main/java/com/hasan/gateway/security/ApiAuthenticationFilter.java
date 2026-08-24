@@ -37,16 +37,20 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
         }
 
         String path = exchange.getRequest().getURI().getPath();
-        HttpMethod method = exchange.getRequest().getMethod();
-
-        // ALLOW ROUTE: Client Registration AND Public Job Viewing
-        if (path.startsWith("/api/v1/clients/register") || 
-           (path.startsWith("/api/v1/jobs") && method == HttpMethod.GET)) {
-            return chain.filter(exchange);
-        }
 
         String rawApiKey = exchange.getRequest().getHeaders().getFirst("X-API-KEY");
+        // 1. PUBLIC UI (No API Key provided)
         if (rawApiKey == null || rawApiKey.isEmpty()) {
+            
+            // If they are just reading the jobs, let them through!
+            if (path.startsWith("/api/v1/jobs") && exchange.getRequest().getMethod() == HttpMethod.GET) {
+                // THE SLOW LANE: Put the 15-request limit on them
+                exchange.getAttributes().put("user_capacity", "15");
+                exchange.getAttributes().put("user_rate", "2");
+                return chain.filter(exchange);
+            }
+            
+            // If they try to do anything else (POST, DELETE, etc.), block them.
             return rejectRequest(exchange, "Missing X-API-KEY header");
         }
 
