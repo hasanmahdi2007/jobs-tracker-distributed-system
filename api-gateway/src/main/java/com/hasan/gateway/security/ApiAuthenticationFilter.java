@@ -37,8 +37,11 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
         }
 
         String path = exchange.getRequest().getURI().getPath();
+        HttpMethod method = exchange.getRequest().getMethod();
 
-        if (path.startsWith("/api/v1/clients/register")) {
+        // ALLOW ROUTE: Client Registration AND Public Job Viewing
+        if (path.startsWith("/api/v1/clients/register") || 
+           (path.startsWith("/api/v1/jobs") && method == HttpMethod.GET)) {
             return chain.filter(exchange);
         }
 
