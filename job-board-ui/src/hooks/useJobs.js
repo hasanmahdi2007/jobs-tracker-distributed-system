@@ -2,19 +2,17 @@ import { useState, useCallback } from 'react';
 
 export function useJobs() {
   const [jobs, setJobs] = useState([]);
-  // Replaced totalPages with a simple 'hasMore' boolean for infinite scroll / next buttons
   const [pageData, setPageData] = useState({ number: 0, hasMore: true });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchJobs = useCallback(async (searchTerm, filters = {}, page = 0) => {
+  const fetchJobs = useCallback(async (searchTerm = '', filters = {}, page = 0) => {
     setLoading(true);
     setError(null);
     
     try {
-      const hiddenApiKey = import.meta.env.VITE_API_KEY;
-      if (!hiddenApiKey) throw new Error("Missing API Key in .env file!");
-
+      // 1. NO MORE API KEY CHECKS!
+      
       const queryParams = new URLSearchParams({
         search: searchTerm || '',
         page: page,
@@ -26,20 +24,16 @@ export function useJobs() {
         ...(filters.category && { category: filters.category })
       });
 
+      // 2. FETCH ANONYMOUSLY (The Gateway will track via IP instead)
       const response = await fetch(
-        `http://localhost:8080/api/v1/jobs?${queryParams.toString()}`, 
-        { headers: { 'X-API-KEY': hiddenApiKey } }
+        `http://localhost:8080/api/v1/jobs?${queryParams.toString()}`
       );
       
       if (!response.ok) throw new Error(`Gateway Error ${response.status}`);
       
-      // data is now a direct array: [ {job1}, {job2} ]
       const data = await response.json();
       
       setJobs(data || []);
-      
-      // If we got exactly 10 items back, there is likely a next page.
-      // If we got less than 10, we've reached the end of the database!
       setPageData({
         number: page,
         hasMore: data.length === 10 
