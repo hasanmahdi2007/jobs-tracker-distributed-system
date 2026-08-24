@@ -3,7 +3,7 @@ package com.distributed.job_finder.schedulers;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.distributed.job_finder.services.BambooHRScraperService; // <-- Added
+import com.distributed.job_finder.services.BambooHRScraperService;
 import com.distributed.job_finder.services.GreenhouseScraperService;
 import com.distributed.job_finder.services.LeverScraperService;
 import com.distributed.job_finder.services.SmartRecruitersScraperService;
@@ -21,18 +21,18 @@ public class JobScraperScheduler {
     private final TalenteraScraperService talenteraScraperService;
     private final LeverScraperService leverScraperService;
     private final SmartRecruitersScraperService smartRecruitersScraperService;
-    private final BambooHRScraperService bambooHRScraperService; // <-- Added
+    private final BambooHRScraperService bambooHRScraperService;
 
     public JobScraperScheduler(GreenhouseScraperService greenhouseScraperService,
                                TalenteraScraperService talenteraScraperService,
                                LeverScraperService leverScraperService,
                                SmartRecruitersScraperService smartRecruitersScraperService,
-                               BambooHRScraperService bambooHRScraperService) { // <-- Added
+                               BambooHRScraperService bambooHRScraperService) {
         this.greenhouseScraperService = greenhouseScraperService;
         this.talenteraScraperService = talenteraScraperService;
         this.leverScraperService = leverScraperService;
         this.smartRecruitersScraperService = smartRecruitersScraperService;
-        this.bambooHRScraperService = bambooHRScraperService; // <-- Added
+        this.bambooHRScraperService = bambooHRScraperService; 
     }
 
     // Runs once right after the app starts so we don't have to wait until 3 AM to test it
@@ -68,9 +68,9 @@ public class JobScraperScheduler {
                 leverScraperService.scrapeAllConfiguredBoards()
                         .doOnError(e -> log.error("Error during Lever scrape: {}", e.getMessage())),
                 smartRecruitersScraperService.scrapeAllConfiguredBoards()
-                        .doOnError(e -> log.error("Error during SmartRecruiters scrape: {}", e.getMessage())),
+                        .doOnError(e -> log.error("Error during SmartRecruiters scrape: {}", e.getMessage()))/*,
                 bambooHRScraperService.scrapeAllConfiguredBoards() // <-- Added
-                        .doOnError(e -> log.error("Error during BambooHR scrape: {}", e.getMessage()))
+                        .doOnError(e -> log.error("Error during BambooHR scrape: {}", e.getMessage()))*/
         );
     }
 }
