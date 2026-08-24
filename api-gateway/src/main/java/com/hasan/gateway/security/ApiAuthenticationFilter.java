@@ -39,6 +39,10 @@ public class ApiAuthenticationFilter implements WebFilter, Ordered {
         String path = exchange.getRequest().getURI().getPath();
         String rawApiKey = exchange.getRequest().getHeaders().getFirst("X-API-KEY");
 
+        if (path.startsWith("/api/v1/clients") || path.startsWith("/actuator")) {
+            return chain.filter(exchange);
+        }
+
         // 2. PUBLIC SLOW LANE: No API Key provided
         if (rawApiKey == null || rawApiKey.trim().isEmpty()) {
             
