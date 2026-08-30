@@ -115,7 +115,7 @@ services:
   # ==========================================
   frontend-ui:
     build:
-      context: ./job-board-ui
+      context: ./client-portal
     container_name: frontend-ui
     restart: on-failure
     ports:
