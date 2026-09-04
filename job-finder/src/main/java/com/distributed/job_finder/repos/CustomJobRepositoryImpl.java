@@ -40,7 +40,7 @@ public class CustomJobRepositoryImpl implements CustomJobRepository {
         if (company != null) sql.append(" AND company_name ILIKE :company"); 
         if (type != null) sql.append(" AND employment_type ILIKE :type");
         if (category != null) sql.append(" AND department ILIKE :category"); 
-        if (search != null) sql.append(" AND search_vector @@ plainto_tsquery('english', :search)");
+        if (search != null) sql.append(" AND search_vector @@ (websearch_to_tsquery('english', :search)::text || ':A')::tsquery");
 
         if (isDiverse) {
             sql.append(" ORDER BY updated_at DESC, id ASC LIMIT 1000) ");
